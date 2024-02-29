@@ -8,7 +8,7 @@ export const Navbar = () => {
                 <h1><img className="logo" src="/rava-black.png" alt="RAVA Logo" /></h1>
                 </Link>
                 <div className="nav-links">
-                    <Link to="">
+                    <Link to="/events">
                         <h1>Events</h1>
                     </Link>
                     <Link to="">
