@@ -39,4 +39,4 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('Error connecting to MongoDB:', error.message)
     })
 
-console.log("israr karim");
+console.log("israr karim fixed");
