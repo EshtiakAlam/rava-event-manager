@@ -5,6 +5,7 @@
   --primary: #f19100;
   --error: #e7195a;
 }
+
 body {
   background: #ffffff;
   margin: 0;
@@ -14,15 +15,25 @@ body {
   color: #363636;
 
 }
-header {
+
+.body-home {
+  background-image: url("../src/bg rava.png");
+  background-position: center;
+  background-size: cover;
+  width: 100%; /* Adjust as needed */
+  height: 1000px;
+}
+
+
+.Navbar {
   background: #ffffff;
 }
-header .container {
+.Navbar .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 8px 20px;
   justify-content: space-between;
-  display: grid;
+  display: flex;
   grid-template-columns: auto 1fr;
   align-items: center;
 }
@@ -42,7 +53,7 @@ header a {
   justify-self: start;
 }
 
-.nav-links{
+.navbarMid{
   font-weight: 500;
   display: flex;
   justify-content: center;
@@ -50,8 +61,44 @@ header a {
 
  }
 
-.nav-links h1 {
+.navbarMid h1 {
   margin: 0 10px;
+}
+
+.navbarRight{
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  font-size: xx-small;
+
+ }
+
+.navbarRight h1 {
+  margin: 0 10px;
+}
+
+.Homepage {
+  color: #f6fcf9;
+  max-width: 12000px;
+  align-items: right;
+  margin-left: 50px;
+  font-family: "Mulish";
+  font-weight: 20;
+}
+
+.Homepage .Home-tagline1 {
+  margin: 40px auto;
+  margin-top: 390px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  padding: 5px;
+}
+
+.Homepage .Home-tagline2 {
+  margin-bottom: 0px;
+  font-size: 30px;
+  margin: 0px auto;     
+  padding: 0px;                       
 }
 
 .events {

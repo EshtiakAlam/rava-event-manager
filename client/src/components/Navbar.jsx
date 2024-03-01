@@ -2,12 +2,12 @@
 import { Link } from 'react-router-dom'
 export const Navbar = () => {
     return (
-        <header>
+        <header className='Navbar'>
             <div className="container">
                 <Link to="">
                 <h1><img className="logo" src="/rava-black.png" alt="RAVA Logo" /></h1>
                 </Link>
-                <div className="nav-links">
+                <div className="navbarMid">
                     <Link to="/events">
                         <h1>Events</h1>
                     </Link>
@@ -16,6 +16,14 @@ export const Navbar = () => {
                     </Link>
                     <Link to="">
                         <h1>About</h1>
+                    </Link>
+                </div>
+                <div className='navbarRight'>
+                    <Link to="">
+                        <h1>Sign up</h1>
+                    </Link>
+                    <Link to="">
+                        <h1>Login</h1>
                     </Link>
                 </div>
 
