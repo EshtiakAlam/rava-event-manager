@@ -1,27 +1,38 @@
+import { Link } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
 
-import { Link } from 'react-router-dom'
 export const Navbar = () => {
-    return (
-        <header>
-            <div className="container">
-                <Link to="">
-                <h1><img className="logo" src="/rava-black.png" alt="RAVA Logo" /></h1>
-                </Link>
-                <div className="nav-links">
-                    <Link to="/events">
-                        <h1>Events</h1>
-                    </Link>
-                    <Link to="">
-                        <h1>Calendar</h1>
-                    </Link>
-                    <Link to="">
-                        <h1>About</h1>
-                    </Link>
-                </div>
+  const { logout } = useLogout();
 
-            </div>
-        </header>
-    )
-}
+  const handleClick = () => {
+    logout();
+  };
 
-export default Navbar
+  return (
+    <header>
+      <div className="container">
+        <Link to="">
+          <h1><img className="logo" src="/rava-black.png" alt="RAVA Logo" /></h1>
+        </Link>
+        <div className="nav-links">
+          <Link to="/events">
+            <h1>Events</h1>
+          </Link>
+          <Link to="">
+            <h1>Calendar</h1>
+          </Link>
+          <Link to="/login">
+            <h1>Log in</h1>
+          </Link>
+          <div>
+            <button className="logout-button" onClick={handleClick}>
+              Log out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;

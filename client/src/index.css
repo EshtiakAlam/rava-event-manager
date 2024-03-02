@@ -66,4 +66,19 @@ header a {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+/* Add these styles to your existing stylesheet or use a styling solution of your choice */
+
+.logout-button {
+  background-color: #f44336; /* Red background color */
+  color: white; /* White text color */
+  padding: 10px 15px; /* Padding inside the button */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.logout-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
 

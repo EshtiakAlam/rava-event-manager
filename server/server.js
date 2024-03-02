@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const eventRoutes = require('./routes/events')
+const userRoutes = require('./routes/user')
 
 // Express app
 const app = express()
@@ -22,6 +23,7 @@ app.use(morgan('dev'))         // log api calls
 
 // routes
 app.use('/api/events/',eventRoutes)
+app.use('/api/user',userRoutes)
 
 
 // connect to db
@@ -39,4 +41,4 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('Error connecting to MongoDB:', error.message)
     })
 
-console.log("israr karim fixed");
+//console.log("israr karim fixed");
