@@ -15,10 +15,10 @@ function App() {
                 <div className="pages">
                     <Routes>
                         <Route path="/"
-                               element={<Home/> }/>
+                               element={<Event /> }/>
                         <Route
                             path="/events"
-                            element={<Event />}
+                            element={<Home />}
                         />
                     </Routes>
                 </div>

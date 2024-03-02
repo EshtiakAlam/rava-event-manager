@@ -1,7 +1,19 @@
 import  { useEffect, useState } from 'react'
+
+
+
 // Components
 import {EventCard} from "../components/EventCard";
 const Event = () => {
+
+    // function changeBackgroundToHomePage() {
+    //     document.body.classList.add('body-eventPage');
+    //     return () => {
+    //         document.body.classList.add('body'); 
+    //     };
+    // }
+    // useEffect(changeBackgroundToHomePage, []);
+
     const [events, setEvents] = useState(null)
     useEffect(() => {
         const fetchEvents = async () => {
