@@ -8,6 +8,8 @@ import {Home} from "./pages/Home"
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import AdminLogin from './pages/AdminLogin'
+import AdminSignup from './pages/AdminSignup'
 
 function App() {
 
@@ -28,8 +30,16 @@ function App() {
                             element={<Login/>}
                         />
                         <Route
+                            path="/loginadmin"
+                            element={< AdminLogin/>}
+                        />
+                        <Route
                             path="/signup"
                             element={<Signup/>}
+                        />
+                        <Route
+                            path="/signupadmin"
+                            element={<AdminSignup/>}
                         />
                     </Routes>
                 </div>

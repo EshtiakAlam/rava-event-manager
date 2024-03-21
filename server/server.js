@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const eventRoutes = require('./routes/events')
 const userRoutes = require('./routes/user')
+const adminRoutes = require('./routes/admin')
 const clubRoutes= require('./routes/clubs')
 
 // Express app
@@ -25,6 +26,7 @@ app.use(morgan('dev'))         // log api calls
 // routes
 app.use('/api/events/',eventRoutes)
 app.use('/api/user',userRoutes)
+app.use('/api/admin',adminRoutes)
 app.use('/api/clubs',clubRoutes)
 
 

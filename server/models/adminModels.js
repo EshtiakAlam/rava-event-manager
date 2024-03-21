@@ -5,23 +5,7 @@ const validator = require("validator")
 
 
 const Schema =  mongoose.Schema
-const userSchema = new Schema({
-    email:{
-        type: String,
-        required: true,
-        unique: true
-    },
-    studentid:{type: String,
-        required: true,
-        unique: true
 
-    },
-
-    password:{
-        type: String,
-        required: true
-    }
-})
 const adminSchema = new Schema({
     email:{
         type: String,
@@ -34,8 +18,8 @@ const adminSchema = new Schema({
         required: true
     }
 })
-userSchema.statics.signup = async function(email,studentid,password)  {
-    if (!email || !password || !studentid){
+adminSchema.statics.signup = async function(email,password)  {
+    if (!email || !password){
         throw Error('Cannot keep any of these fields empty')
     }
     if (!validator.isEmail(email)){
@@ -48,36 +32,33 @@ userSchema.statics.signup = async function(email,studentid,password)  {
     if (exists){
         throw Error('Email already in use')
     }
-    const exist = await this.findOne({studentid})
-    if (exist){
-        throw Error('Student id already in use')
-    }
+    
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password,salt)
-    const user = await this.create({email, studentid, password: hash})
+    const admin = await this.create({email, password: hash})
 
-    return user
+    return admin
 
 }
 // static login method
-userSchema.statics.login = async function(email, password) {
+adminSchema.statics.login = async function(email, password) {
 
     if (!email || !password) {
       throw Error('All fields must be filled')
     }
   
-    const user = await this.findOne({ email })
-    if (!user) {
+    const admin = await this.findOne({ email })
+    if (!admin) {
       throw Error('Incorrect email')
     }
   
-    const match = await bcrypt.compare(password, user.password)
+    const match = await bcrypt.compare(password, admin.password)
     if (!match) {
       throw Error('Incorrect password')
     }
   
-    return user
+    return admin
   }
  
   
-  module.exports = mongoose.model('User', userSchema)
+  module.exports = mongoose.model('Admin', adminSchema)
