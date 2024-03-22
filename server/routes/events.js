@@ -27,5 +27,13 @@ router.delete('/:id', deleteEvent)
 //Update an event
 router.patch('/:id', updateEvent)
 
+// Like an event
+/*router.post('/:id/like', likeEvent);
+
+// Unlike an event
+router.delete('/:id/like', unlikeEvent);
+
+// Get liked events for a user
+router.get('/liked', getLikedEvents);*/
 
 module.exports = router

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components
 import Event from './pages/Event'
+import EventForm from './pages/Addevents'
 import {Home} from "./pages/Home"
 
 
@@ -24,6 +25,10 @@ function App() {
                         <Route
                             path="/events"
                             element={<Event />}
+                        />
+                        <Route
+                            path="/eventform"
+                            element={<EventForm />}
                         />
                         <Route
                             path="/login"

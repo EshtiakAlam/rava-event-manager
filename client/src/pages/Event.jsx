@@ -1,31 +1,43 @@
-import  { useEffect, useState } from 'react'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'; 
+import { useEventsContext } from '../hooks/useEventsContext';
+
 // Components
-import {EventCard} from "../components/EventCard";
+import { EventCard } from "../components/EventCard";
+
 const Event = () => {
-    const [events, setEvents] = useState(null)
+    const {events, dispatch}= useEventsContext()
+    
     useEffect(() => {
         const fetchEvents = async () => {
-            const response = await fetch("/api/events/")
-            const json = await response.json()
+            try {
+                const response = await fetch("/api/events/");
+                const json = await response.json();
 
-            if (response.ok){
-                setEvents(json)
+                if (response.ok) {
+                    dispatch({type:"SET_EVENTS", payload: json})
+                }
+            } catch (error) {
+                console.error("Error fetching events:", error);
             }
-        }
+        };
 
-        fetchEvents()
-    }, [])
+        fetchEvents();
+    }, [dispatch]);
 
     return (
-        <div className= "event-page">
+        <div className="event-page">
             <div className="events">
                 {events && events.map((event) => (
-                   <EventCard key={event._id} event ={event}/>
-                ))
-                }
+                    <EventCard key={event._id} event={event} />
+                ))}
             </div>
-        </div>
-    )
-}
+            <div className="add-event-container">
+                <Link to="/eventform" className="add-event-link">+</Link>
+            </div>
 
-export default Event
+        </div>
+    );
+};
+
+export default Event;

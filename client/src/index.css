@@ -81,4 +81,89 @@ header a {
   background-color: #d32f2f; /* Darker red on hover */
 }
 
+/* Add these styles to your existing stylesheet or use a styling solution of your choice */
 
+.create {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.create h3 {
+  margin-bottom: 20px;
+}
+
+.create label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.create input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create button {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create button:hover {
+  background-color: #e68a00;
+}
+
+.error {
+  color: var(--error);
+  margin-top: 8px;
+}
+.event-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the page takes at least the full height of the viewport */
+}
+
+
+
+.event-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the page takes at least the full height of the viewport */
+  position: relative; /* Set position to relative to position the button */
+}
+
+
+
+.add-event-container {
+  position: absolute; /* Set position to absolute */
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 20px; /* Align to the right side */
+}
+
+.add-event-link {
+  background-color: #3498db;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.add-event-link:hover {
+  background-color: #2980b9;
+}
