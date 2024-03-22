@@ -5,6 +5,7 @@ import Event from './pages/Event'
 import {Home} from "./pages/Home"
 
 import Navbar from './components/Navbar'
+import EventCard from './components/EventCard';
 
 function App() {
 
@@ -13,14 +14,16 @@ function App() {
             <BrowserRouter>
                 <Navbar />
                 <div className="pages">
-                    <Routes>
-                        <Route path="/"
-                               element={<Home/> }/>
-                        <Route
-                            path="/events"
-                            element={<Event />}
-                        />
-                    </Routes>
+                <Routes>
+                    <Route
+                        path="/events"
+                        element={<Event />}
+                    />
+                    {/* <Route
+                        path="/"
+                        element={<Home />}
+                    /> */}
+                </Routes>
                 </div>
             </BrowserRouter>
         </div>

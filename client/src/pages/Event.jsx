@@ -1,6 +1,8 @@
 import  { useEffect, useState } from 'react'
 // Components
 import {EventCard} from "../components/EventCard";
+
+
 const Event = () => {
     const [events, setEvents] = useState(null)
     useEffect(() => {
@@ -20,7 +22,9 @@ const Event = () => {
         <div className= "event-page">
             <div className="events">
                 {events && events.map((event) => (
+                    <div>
                    <EventCard key={event._id} event ={event}/>
+                   </div>
                 ))
                 }
             </div>
