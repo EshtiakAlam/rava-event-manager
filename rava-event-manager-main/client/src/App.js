@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // pages & components
 import Event from './pages/Event'
 import {Home} from "./pages/Home"
-
+import React from 'react';
+import AboutUs from 'client\src\pages\aboutus.jsx';
 import Navbar from './components/Navbar'
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
                         <Route
                             path="/events"
                             element={<Event />}
+                        />
+                        <Route path="/aboutus"
+                               element={<aboutus />}
                         />
                     </Routes>
                 </div>

@@ -22,7 +22,7 @@ app.use(morgan('dev'))         // log api calls
 
 // routes
 app.use('/api/events/',eventRoutes)
-
+app.use('/api/about', require('server\routes\aboutus.js'));
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
