@@ -13,7 +13,10 @@ export const Home = () => {
         };
     }
 
-    useEffect(changeBackgroundToHomePage, []);
+    useEffect(() => {
+        changeBackgroundToHomePage();
+        
+    }, []);
 
     return (
         <header className="Homepage">

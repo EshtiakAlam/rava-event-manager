@@ -18,6 +18,15 @@ const Event = () => {
         fetchEvents()
     }, [])
 
+    function changeBackgroundToHomePage() {
+        document.body.classList.add('body-event');
+        return () => {
+            document.body.classList.add('body'); 
+        };
+    }
+
+    useEffect(changeBackgroundToHomePage, []);
+
     return (
         <div className= "event-page">
             <div className="events">

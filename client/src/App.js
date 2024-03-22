@@ -19,10 +19,10 @@ function App() {
                         path="/events"
                         element={<Event />}
                     />
-                    {/* <Route
+                    <Route
                         path="/"
                         element={<Home />}
-                    /> */}
+                    />
                 </Routes>
                 </div>
             </BrowserRouter>

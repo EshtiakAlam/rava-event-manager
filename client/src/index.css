@@ -24,6 +24,11 @@ body {
   height: 1000px;
 }
 
+.body-event {
+  background-image: none;
+  background-color: #b2ebf2;
+}
+
 
 .Navbar {
   background: #ffffff;
@@ -155,11 +160,11 @@ header a {
   cursor: pointer;
   display: flex;
   justify-content: space-around;
-  margin-left: 100px;
+  margin-left: 40px;
 }
   
 .Interested :hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 
@@ -173,4 +178,30 @@ header a {
   grid-auto-flow: dense; /* Wrap grid items to next column when necessary */
   grid-row-gap: 40 px;
   grid-column-gap: 10px;
+
+}
+
+.EventIncludes .Info .EachInfo {
+  width: 230px;
+  border: 0.5px; /* Added 'solid' to specify the border style */
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.EventAboutandFAQ .About {
+  width: 800px;
+}
+
+.EventAboutandFAQ .Info .faq {
+  width: 800px;
+  border: 1px solid; /* Added 'solid' to specify the border style */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.EventAboutandFAQ .Info h2 {
+  margin-top: 80px;
 }

@@ -6,7 +6,7 @@ import  { useState, useEffect } from 'react';
 export const EventKeyInfo = ({ event }) => {
     const [interestCount, setInterestCount] = useState(Number(event.interested));
     const [interestStatus, setInterestStatus] = useState(false);
-    const [interestMsg, setInterestMsg] = useState("Interested");
+    const [interestMsg, setInterestMsg] = useState("Interested in this event?");
 
     const handleClick = () => {
         if (!interestStatus) {
@@ -16,7 +16,7 @@ export const EventKeyInfo = ({ event }) => {
         } else {
             setInterestCount(interestCount => interestCount-1);
             event.interested = interestCount;
-            setInterestMsg("Interested");
+            setInterestMsg("Interested in this event?");
         }
         setInterestStatus(!interestStatus);
 
