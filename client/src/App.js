@@ -12,6 +12,7 @@ import Signup from './pages/Signup'
 import AdminLogin from './pages/AdminLogin'
 import AdminSignup from './pages/AdminSignup'
 import Welcome from './pages/Welcome'
+import AboutUs from './pages/AboutUs'
 
 function App() {
 
@@ -42,6 +43,10 @@ function App() {
                         <Route
                             path="/signup"
                             element={<Signup/>}
+                        />
+                          <Route
+                            path="/aboutus"
+                            element={<AboutUs/>}
                         />
                         <Route
                             path="/signupadmin"

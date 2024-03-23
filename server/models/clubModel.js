@@ -1,40 +1,47 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema; // Function to create schema
 
-const clubSchema = new Schema({
+const clubSchema = new Schema(
+  {
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-    abbreviation:{
-        type: String,
-        required: true
+    abbreviation: {
+      type: String,
+      required: true,
     },
-    description:{
-        type: String,
-        required: true
+    description: {
+      type: String,
+      required: true,
     },
     contactInformation: {
-        email: String
+      email: String,
     },
     panel: {
-        type: Schema.Types.ObjectId, // Reference to User model
-        ref: 'User', // Referring to the User model
-        required: true
+      type: Schema.Types.ObjectId, // Reference to User model
+      ref: "User", // Referring to the User model
+      required: true,
     },
     advisor: {
-        type: Schema.Types.ObjectId, // Reference to User model
-        ref: 'User' // Referring to the User model
+      type: Schema.Types.ObjectId, // Reference to User model
+      ref: "User", // Referring to the User model
     },
-    events: [{
+    events: [
+      {
         type: Schema.Types.ObjectId,
-        ref: 'Event'
-    }],
+        ref: "Event",
+      },
+    ],
 
-    members: [{
+    members: [
+      {
         type: Schema.Types.ObjectId, // Reference to User model
-        ref: 'User' // Referring to the User model
-    }]
-}, { timestamps: true }); // Automatically saves when the document is created
+        ref: "User", // Referring to the User model
+      },
+    ],
+  },
+  { timestamps: true }
+); // Automatically saves when the document is created
 
-module.exports = mongoose.model('Club', clubSchema);
+module.exports = mongoose.model("Club", clubSchema);
