@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom'; 
 import { useEventsContext } from "../hooks/useEventsContext";
 
 const EventForm = () => {
     const { dispatch } = useEventsContext();
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); 
 
     const [title, setTitle] = useState("");
     const [organizer, setOrganizer] = useState("");
@@ -34,7 +34,7 @@ const EventForm = () => {
                 throw new Error(json.error);
             }
 
-            // Reset form fields after successful submission
+            
             setTitle("");
             setOrganizer("");
             setDetails("");
@@ -46,7 +46,7 @@ const EventForm = () => {
             console.log("New Event added", json);
             dispatch({ type: "CREATE_EVENT", payload: json });
 
-            // Redirect to the events page
+            
             navigate('/events');
         } catch (error) {
             setError(error.message);

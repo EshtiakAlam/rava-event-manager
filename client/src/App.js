@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 // pages & components
 import Event from './pages/Event'
 import EventForm from './pages/Addevents'
-import {Home} from "./pages/Home"
+import Home from "./pages/Home"
 
 
 import Navbar from './components/Navbar'
@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import AdminLogin from './pages/AdminLogin'
 import AdminSignup from './pages/AdminSignup'
+import Welcome from './pages/Welcome'
 
 function App() {
 
@@ -45,6 +46,14 @@ function App() {
                         <Route
                             path="/signupadmin"
                             element={<AdminSignup/>}
+                        />
+                        <Route
+                            path="/home"
+                            element={<Home/>}
+                        />
+                        <Route
+                            path="/welcome"
+                            element={<Welcome/>}
                         />
                     </Routes>
                 </div>

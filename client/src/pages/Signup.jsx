@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
+import { useNavigate } from 'react-router-dom'; 
 
 export default function Signup() {
   const [name, setName] = useState({ firstname: "", lastname: "" });
@@ -12,6 +13,7 @@ export default function Signup() {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [passwordMessage, setPasswordMessage] = useState("");
   const {signup, error, isLoading} =useSignup()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ export default function Signup() {
     }
   
     setButtonClicked(true);
+    //navigate("/welcome");
   };
   
 

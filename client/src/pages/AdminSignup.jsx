@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSignup } from "../hooks/useAdminSignup";
-
+import { useNavigate } from 'react-router-dom';
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState({ password: "" });
@@ -9,6 +9,7 @@ export default function Signup() {
   const [buttonClicked, setButtonClicked] = useState(false);
   const [passwordMessage, setPasswordMessage] = useState("");
   const { signup, error, isLoading } = useSignup();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +34,7 @@ export default function Signup() {
 
     await signup( email, password.password);
     setButtonClicked(true);
+    navigate("/events");
   };
 
   return (
