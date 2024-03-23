@@ -9,7 +9,7 @@ export const Home = () => {
     function changeBackgroundToHomePage() {
         document.body.classList.add('body-home');
         return () => {
-            document.body.classList.add('body'); 
+            document.body.classList.remove('body-home'); 
         };
     }
 

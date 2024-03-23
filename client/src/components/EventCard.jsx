@@ -1,4 +1,4 @@
-import formatDate from "../utils/FormatDate";
+// import formatDate from "../utils/FormatDate";
 import EventPicture from "./EventPicture";
 import {EventKeyInfo} from "../components/EventKeyInfo";
 import {EventIncludes} from "../components/EventIncludes";

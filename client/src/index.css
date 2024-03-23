@@ -22,11 +22,19 @@ body {
   background-size: cover;
   width: 100%; /* Adjust as needed */
   height: 1000px;
+  font-family: "Mulish", sans-serif;
+}
+
+.body-event-main {
+  background-color: rgb(135, 206, 235);
+  background-image: none;
+  font-family: "Mulish", sans-serif;
 }
 
 .body-event {
   background-image: none;
   background-color: #b2ebf2;
+  font-family: "Mulish", sans-serif;
 }
 
 
@@ -167,6 +175,27 @@ header a {
   background-color: #45a049;
 }
 
+.readMore {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+}
+
+.readLess, .SubmitComment {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+}
 
 .EventIncludes h2 {
   margin-top: 50px;
@@ -178,7 +207,6 @@ header a {
   grid-auto-flow: dense; /* Wrap grid items to next column when necessary */
   grid-row-gap: 40 px;
   grid-column-gap: 10px;
-
 }
 
 .EventIncludes .Info .EachInfo {
@@ -191,6 +219,7 @@ header a {
 
 .EventAboutandFAQ .About {
   width: 800px;
+  margin-top: 100px;
 }
 
 .EventAboutandFAQ .Info .faq {
@@ -204,4 +233,94 @@ header a {
 
 .EventAboutandFAQ .Info h2 {
   margin-top: 80px;
+}
+
+.event-page .Upperpart {
+  text-align: center;
+}
+
+.event-page .Upperpart h1 {
+  font-size: 50px;
+}
+
+.event-page h2 {
+  margin-top: 50px;
+}
+
+.event-page .Upperpart h4 {
+  font-size: 20px;
+  margin-bottom: 100px;
+}
+
+.event-page .Info {
+  display: flex;
+
+  width: 100%; /* Set the width of the container */
+  overflow-x: auto; /* Enable horizontal scrolling (alomng x-axis nortesi */
+  white-space: nowrap; /* Prevent boxes from wrapping */
+  margin-bottom: 50px;
+
+  
+}
+
+
+.event-page .Info .EachInfo {
+
+  width: 400px; /* Adjust the width as needed */
+  border: 1px solid; /* Added 'solid' to specify the border style */
+  border-radius: 0px;
+  padding: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  align-items: center; /* Center items vertically */
+  margin-right: 50px;
+  flex-shrink: 0; /*no shrinking of box*/
+  background-color: rgb(163, 106, 220); /*semi-transparent black*/
+  color: white;
+}
+
+.event-page .Info a {
+  color: white;
+}
+
+.event-card .Info .EachInfo h3 {
+  font-size: 200px;
+}
+
+.PostQueriesAll h2 {
+  margin-top: 100px;
+}
+
+
+.PostQueriesAll .PostQueries1 .Query .text-box {
+  width: 60%; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.PostQueriesAll .PostQueries2 .Info .EachInfo{
+  width: auto;
+  border: 1px solid; /* Added 'solid' to specify the border style */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  text-align: center;
+}
+
+.PostQueriesAll .PostQueries2 .Info .EachInfo .CommentButtons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.PostQueriesAll .PostQueries2 .Info .EachInfo .Report{
+  background-color: red;
+}
+
+.PostQueriesAll .PostQueries2 .Info .EachInfo .Upvote{
+  background-color: green;
 }
