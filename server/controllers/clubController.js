@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // GET all clubs
 const getClubs = async (req, res) => {
     try {
-        const clubs = await Club.find({}).sort({ Date: 1 });
+        const clubs = await Club.find({}).sort({ createdAt: 1 });
         res.status(200).json(clubs);
     } catch (error) {
         console.error('Error getting clubs:', error);
@@ -36,10 +36,10 @@ const getClubById = async (req, res) => {
 
 // POST a new club
 const createClub = async (req, res) => {
-    const { title, description, registration_number, roles, events, contactInformation, members } = req.body;
+    const { title, abbreviation, description, panel, advisor, events, contactInformation, members } = req.body;
 
     try {
-        const club = await Club.create({ title, description, registration_number, roles, events, contactInformation, members });
+        const club = await Club.create({ title, abbreviation, description, panel, advisor, events, contactInformation, members });
         res.status(201).json(club);
     } catch (error) {
         console.error('Error creating club:', error);
@@ -137,8 +137,8 @@ const getClubMembers = async (req, res) => {
     }
 };
 
-// GET president of a club by club ID
-const getClubPresident = async (req, res) => {
+// GET advisor of a club by club ID
+const getClubAdvisor = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -152,57 +152,11 @@ const getClubPresident = async (req, res) => {
             return res.status(404).json({ error: 'No such club' });
         }
 
-        const president = club.roles.find(role => role.position === 'President');
-        res.status(200).json(president);
+        const advisor = club.advisor;
+        res.status(200).json(advisor);
     } catch (error) {
-        console.error('Error getting club president:', error);
-        res.status(500).json({ error: 'Could not get club president.' });
-    }
-};
-
-// GET all partnerships of a club by club ID
-const getClubPartnerships = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const club = await Club.findById(id);
-
-        if (!club) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const partnerships = club.partnerships;
-        res.status(200).json(partnerships);
-    } catch (error) {
-        console.error('Error getting club partnerships:', error);
-        res.status(500).json({ error: 'Could not get club partnerships.' });
-    }
-};
-
-// GET all achievements of a club by club ID
-const getClubAchievements = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const club = await Club.findById(id);
-
-        if (!club) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const achievements = club.achievements;
-        res.status(200).json(achievements);
-    } catch (error) {
-        console.error('Error getting club achievements:', error);
-        res.status(500).json({ error: 'Could not get club achievements.' });
+        console.error('Error getting club advisor:', error);
+        res.status(500).json({ error: 'Could not get club advisor.' });
     }
 };
 
@@ -214,7 +168,5 @@ module.exports = {
     updateClub,
     getClubEvents,
     getClubMembers,
-    getClubPresident,
-    getClubPartnerships,
-    getClubAchievements
+    getClubAdvisor
 };
