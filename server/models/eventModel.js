@@ -26,18 +26,25 @@ const eventSchema = new Schema({
         type: String,
         required: false
     },
-    faq: [
-        {
-            question: {
-                type: String,
-                required: true
-            },
-            answer: {
-                type: String,
-                required: true
-            }
+    highlights: [{
+        type: String
+    }],
+    FAQ: [{
+        question: {
+            type: String
+        },
+        answer: {
+            type: String
         }
-    ]
+    }],
+    like: {
+        type: Number,
+        default: 0
+    },
+    approval: {
+        type: Boolean,
+        default: false
+    }
 }, {timestamps: true});
 
 module.exports = mongoose.model('Event', eventSchema);
