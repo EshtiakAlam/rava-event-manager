@@ -26,20 +26,21 @@ body {
 }
 
 .body-event-main {
-  background-color: rgb(135, 206, 235);
+  background-color: rgb(255, 255, 255);
   background-image: none;
   font-family: "Mulish", sans-serif;
 }
 
 .body-event {
   background-image: none;
-  background-color: #b2ebf2;
+  background-color: #ffffff;
   font-family: "Mulish", sans-serif;
 }
 
 
 .Navbar {
   background: #ffffff;
+  color: black;
 }
 .Navbar .container {
   max-width: 1400px;
@@ -89,6 +90,65 @@ header a {
 .navbarRight h1 {
   margin: 0 10px;
 }
+
+
+.BlackNavbar {
+  background: #000000; /* Black background color */
+  color: #ffffff; /* White text color */
+}
+
+.BlackNavbar .container {
+  color: #ffffff;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  justify-content: space-between;
+  display: flex;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.BlackNavbar .container .header a {
+  color: #ffffff; /* White text color for links */
+  text-decoration: none;
+}
+
+.BlackNavbar .container .pages {
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.BlackNavbar .logo {
+  width: 75px;
+  height: auto;
+  justify-self: start;
+}
+
+.BlackNavbar .navbarMid {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  font-size: xx-small;
+}
+
+.BlackNavbar .navbarMid h1 {
+  margin: 0 10px;
+  color: white;
+}
+
+.BlackNavbar .navbarRight {
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  font-size: xx-small;
+}
+
+.BlackNavbar .navbarRight h1 {
+  margin: 0 10px;
+  color: white;
+}
+
 
 .Homepage {
   color: #f6fcf9;
@@ -240,50 +300,96 @@ header a {
 }
 
 .event-page .Upperpart h1 {
-  font-size: 50px;
+  font-size: 70px;
 }
 
 .event-page h2 {
   margin-top: 50px;
+  font-size: 30px;
+}
+
+.special-letter {
+  color: orange;
 }
 
 .event-page .Upperpart h4 {
-  font-size: 20px;
+  font-size: 30px;
   margin-bottom: 100px;
 }
 
-.event-page .Info {
+.event-page .Info .InfoContent {
   display: flex;
 
   width: 100%; /* Set the width of the container */
   overflow-x: auto; /* Enable horizontal scrolling (alomng x-axis nortesi */
-  white-space: nowrap; /* Prevent boxes from wrapping */
+  white-space: normal; /* Allow wrapping */
+  word-wrap: break-word; /* Fallback for older browsers */
+  overflow-wrap: break-word; /* Ensure modern browsers handle wrapping */
   margin-bottom: 50px;
 
   
 }
 
+.event-page .Info .InfoContent .EachInfo .ImagePart {
+  width: 450px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  border: 1px solid #ccc; /* Border style */
+  padding: 5px; /* Padding around the image */
+  box-sizing: border-box; /* Include border and padding in width and height */
+}
 
-.event-page .Info .EachInfo {
+.event-page .Info .InfoContent .EachInfo .ImagePart img {
+  max-width: 100%; /* Ensure image does not exceed container width */
+  max-height: 100%; /* Ensure image does not exceed container height */
+  display: block; /* Prevents unwanted space below image */
+}
 
-  width: 400px; /* Adjust the width as needed */
-  border: 1px solid; /* Added 'solid' to specify the border style */
-  border-radius: 0px;
+.event-page .Info .InfoContent .EachInfo {
+
+  display: flex vertical;
+  width: 450px; /* Adjust the width as needed */
+  border: 0px solid; /* Added 'solid' to specify the border style */
+  border-radius: 10px;
   padding: 50px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px #00000099;
   align-items: center; /* Center items vertically */
   margin-right: 50px;
   flex-shrink: 0; /*no shrinking of box*/
-  background-color: rgb(163, 106, 220); /*semi-transparent black*/
-  color: white;
+  background-color: whitesmoke; /*semi-transparent black*/
+  color: black;
 }
 
-.event-page .Info a {
-  color: white;
+
+
+
+.event-page .Info .InfoContent .EachInfo .ContentPart h3 {
+  
+  font-size: 25px;
+  word-wrap: break-word;
 }
 
-.event-card .Info .EachInfo h3 {
+.event-page .Info .InfoContent a {
+  color: blue;
+  position: relative;
+}
+
+.event-page .Info .InfoContent a::after {
+  content: '→'; /* Right arrow character */
+  font-size: 50px;
+  position: absolute;
+  right: -0em; /* Adjust position as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  color: orange;
+}
+
+.event-card .Info .InfoContent .EachInfo  h3 {
   font-size: 200px;
+}
+
+.event-page .Info .InfoContent .EachInfo .ContentPart .ContentPartSplit {
+  display: flex;
+  justify-content: space-between;
 }
 
 .PostQueriesAll h2 {
@@ -315,12 +421,29 @@ header a {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  color: white;
 }
 
 .PostQueriesAll .PostQueries2 .Info .EachInfo .Report{
   background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
 }
 
 .PostQueriesAll .PostQueries2 .Info .EachInfo .Upvote{
   background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.PostQueriesAll .PostQueries2 .Info .EachInfo .Reply{
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
 }

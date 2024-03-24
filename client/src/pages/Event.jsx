@@ -22,8 +22,10 @@ const Event = () => {
 
     function changeBackgroundToHomePage() {
         document.body.classList.add('body-event-main');
+        document.querySelector('.Navbar').classList.add('BlackNavbar');
         return () => {
             document.body.classList.remove('body-event-main');      // cleanup lagbeii
+            document.querySelector('.Navbar').classList.remove('BlackNavbar');
         };
     }
 
@@ -62,26 +64,44 @@ const Event = () => {
                     <h4>Discover events around your campus</h4>
             </div>
 
-            <h2>EVENTS THIS MONTH</h2>
+            <h2><span class="special-letter">T</span>HIS MONTH</h2>
             <div className="Info">
-                {thisMonthEvents.map((event, index) => (
-                    <div className="EachInfo" key={index}>
-                        <h3>{event.title}</h3>
-                        <p>Date: { formatDate(event.date) }</p>
-                        <Link to={`/events/${event._id}`}>See event details</Link>
-                    </div>
-                ))}
+                <div className = "InfoContent">
+                    {thisMonthEvents.map((event, index) => (
+                        <div className="EachInfo" key={index}>
+                            <div className="ImagePart">
+
+                            </div>
+                            <div className="ContentPart">
+                                <h3><strong>{event.title}</strong></h3>
+                                <div className="ContentPartSplit">
+                                    <p><b><span className="special-letter">Date:</span> { formatDate(event.date) }</b></p>
+                                    <Link to={`/events/${event._id}`}></Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            <h2>UPCOMING EVENTS</h2>
+            <h2><span class="special-letter">U</span>PCOMING EVENTS</h2>
             <div className="Info">
-                {futureEvents.map((event, index) => (
-                    <div className="EachInfo" key={index}>
-                        <h3>{event.title}</h3>
-                        <p>Date: { formatDate(event.date) }</p>
-                        <Link to={`/events/${event._id}`}>See event details</Link>
-                    </div>
-                ))}
+                <div className = "InfoContent">
+                    {futureEvents.map((event, index) => (
+                        <div className="EachInfo" key={index}>
+                            <div className="ImagePart">
+
+                            </div>
+                            <div className="ContentPart">
+                                <h3><strong>{event.title}</strong></h3>
+                                <div className="ContentPartSplit">
+                                    <p><b><span className="special-letter">Date:</span> { formatDate(event.date) }</b></p>
+                                    <Link to={`/events/${event._id}`}></Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
