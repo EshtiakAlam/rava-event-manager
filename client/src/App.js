@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 // pages & components
-import Event from './pages/Event'
-import EventForm from './pages/Addevents'
-import {Home} from "./pages/Home"
+import AdminEvent from './pages/AdminEvent'
+import AdminEventForm from './pages/AdminAddevents'
 
 
 import Navbar from './components/Navbar'
@@ -19,16 +18,14 @@ function App() {
             <BrowserRouter>
                 <Navbar />
                 <div className="pages">
-                    <Routes>
-                        <Route path="/"
-                               element={<Home/> }/>
+                <Routes>
                         <Route
-                            path="/events"
-                            element={<Event />}
+                            path="/admin/events"
+                            element={<AdminEvent />}
                         />
                         <Route
-                            path="/eventform"
-                            element={<EventForm />}
+                            path="/admin/eventform"
+                            element={<AdminEventForm />}
                         />
                         <Route
                             path="/login"
