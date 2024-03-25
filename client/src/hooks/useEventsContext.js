@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { EventsContext } from '../context/EventContext'; 
+import { AdminEventsContext } from '../context/AdminEventContext';
 
 export const useEventsContext = () => {
-    const context = useContext(EventsContext);
+    const context = useContext(AdminEventsContext);
     if (!context) {
         throw new Error('useEventsContext must be used within an EventsContextProvider');
     }
