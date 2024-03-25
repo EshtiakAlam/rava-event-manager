@@ -6,7 +6,7 @@ export const EventIncludes = ({ event }) => {
         <div className="EventIncludes">
             <h2>This event includes</h2>
             <div className="Info">
-                {event.info.map((info, index) => (
+                {event.highlights.map((info, index) => (
                     <div className = "EachInfo" key={index}>
                         <FontAwesomeIcon icon={faStar} />{info}
                     </div>

@@ -67,7 +67,7 @@ const Event = () => {
             <h2><span class="special-letter">T</span>HIS MONTH</h2>
             <div className="Info">
                 <div className = "InfoContent">
-                    {thisMonthEvents.map((event, index) => (
+                    {thisMonthEvents && thisMonthEvents.map((event, index) => (
                         <div className="EachInfo" key={index}>
                             <div className="ImagePart">
 
@@ -87,7 +87,7 @@ const Event = () => {
             <h2><span class="special-letter">U</span>PCOMING EVENTS</h2>
             <div className="Info">
                 <div className = "InfoContent">
-                    {futureEvents.map((event, index) => (
+                    {futureEvents && futureEvents.map((event, index) => (
                         <div className="EachInfo" key={index}>
                             <div className="ImagePart">
 
@@ -102,7 +102,6 @@ const Event = () => {
                         </div>
                     ))}
                 </div>
->>>>>>> origin/shafi_events_working_5.0
             </div>
 
         </div>
