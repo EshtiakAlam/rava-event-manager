@@ -1,13 +1,18 @@
 import formatDate from "../utils/FormatDate";
 import { useEventsContext } from "../hooks/useEventsContext";
-
+import { useAdminAuthContext } from "../hooks/useAdminAuthContext";
 export const AdminEventCard = ({ event }) => {
     const { dispatch } = useEventsContext();
-
+    const { admin } = useAdminAuthContext();
     const handleClick = async () => {
+        
         try {
             const response = await fetch(`/api/events/${event._id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    
+                    Authorization: `Bearer ${admin.token}`,
+                  },
             });
 
             if (!response.ok) {
@@ -27,6 +32,7 @@ export const AdminEventCard = ({ event }) => {
             <p><strong>Date: {formatDate(event.date)}</strong></p>
             <p><strong>Location: {event.location} Time:{event.location}  </strong></p>
             <button onClick={handleClick}>Delete</button>
+            <a href="/admin/events">_</a>
         </div>
     );
 };

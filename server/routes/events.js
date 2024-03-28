@@ -12,8 +12,8 @@ const {
     findApprovedEvents
 } = require('../controllers/eventController.js')
 
-
-
+const requireAuth =require("../middleware/requireAuth.js")
+router.use(requireAuth)
 //GET all events
 router.get('/', getEvents)
 

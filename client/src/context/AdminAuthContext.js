@@ -1,37 +1,42 @@
-import { createContext, useReducer, useEffect } from 'react'
+// AdminAuthContext.js
+import { createContext, useReducer, useEffect, useContext } from 'react';
 
-export const AuthContext = createContext()
+export const AdminAuthContext = createContext();
 
-export const authReducer = (state, action) => {
+export const adminAuthReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
-      return { admin: action.payload }
+      return { admin: action.payload };
     case 'LOGOUT':
-      return { admin: null }
+      return { admin: null };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, { 
-    admin: null
-  })
+export const AdminAuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(adminAuthReducer, { admin: null });
 
   useEffect(() => {
-    const admin = JSON.parse(localStorage.getItem('admin'))
-
+    const admin = JSON.parse(localStorage.getItem('admin'));
     if (admin) {
-      dispatch({ type: 'LOGIN', payload: admin }) 
+      dispatch({ type: 'LOGIN', payload: admin });
     }
-  }, [])
+  }, []);
 
-  console.log('AuthContext state:', state)
-  
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
-      { children }
-    </AuthContext.Provider>
-  )
+    <AdminAuthContext.Provider value={{ ...state, dispatch }}>
+      {children}
+    </AdminAuthContext.Provider>
+  );
+};
 
-}
+export const useAdminAuthContext = () => {
+  const context = useContext(AdminAuthContext);
+
+  if (!context) {
+    throw Error('useAdminAuthContext must be used inside an AdminAuthContextProvider');
+  }
+
+  return context;
+};

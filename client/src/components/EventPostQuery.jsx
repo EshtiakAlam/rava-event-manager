@@ -1,6 +1,9 @@
 import { useState } from 'react';
-
+import { useAuthContext } from "../hooks/useAuthContext";
 export const EventPostQuery = ({ event }) => {
+    
+    const { user } = useAuthContext();
+    
     const [query, setQuery] = useState('');
 
     const handleSubmit = async () => {
@@ -9,6 +12,7 @@ export const EventPostQuery = ({ event }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${user.token}`
                 },
                 body: JSON.stringify({
                     eventId: event._id, 

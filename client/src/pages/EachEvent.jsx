@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import EventCard from '../components/EventCard';
-
+import { useAuthContext } from "../hooks/useAuthContext";
 export const EventDetails = () => {
+    const { user } = useAuthContext();
     const { _id } = useParams(); // Extract event ID from URL parameters
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -11,7 +12,11 @@ export const EventDetails = () => {
     useEffect(() => {
         const fetchEventDetails = async () => {
             try {
-                const response = await fetch(`/api/events/${_id}`);
+                const response = await fetch(`/api/events/${_id}`, {
+                    headers: {
+                        "Authorization": `Bearer ${user.token}`
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch event details');
                 }
