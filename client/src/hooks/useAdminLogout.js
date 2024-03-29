@@ -1,8 +1,8 @@
-import { useAuthContext } from './useAdminAuthContext'
+import { useAdminAuthContext } from './useAdminAuthContext'
 
 
-export const useLogout = () => {
-  const { dispatch } = useAuthContext()
+export const useAdminLogout = () => {
+  const { dispatch } = useAdminAuthContext()
   
 
   const logout = () => {

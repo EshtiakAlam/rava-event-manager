@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom"; 
 import { useLogin } from "../hooks/useAdminLogin"
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +68,7 @@ export default function Login() {
         </button>
 
         <p style={{ marginTop: "20px", fontSize: "1.2em" }}>
-          <Link to="/signupadmin" style={{ color: "#3498db" }}>Sign up as Admin</Link>
+          <Link to="/admin/signup" style={{ color: "#3498db" }}>Sign up as Admin</Link>
         </p>
       </form>
     </div>
