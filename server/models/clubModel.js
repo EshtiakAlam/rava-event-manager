@@ -17,11 +17,11 @@ const clubSchema = new Schema({
     contactInformation: {
         email: String
     },
-    panel: {
+    panel: [{
         type: Schema.Types.ObjectId, // Reference to User model
         ref: 'User', // Referring to the User model
         required: true
-    },
+    }],
     advisor: {
         type: Schema.Types.ObjectId, // Reference to User model
         ref: 'User' // Referring to the User model

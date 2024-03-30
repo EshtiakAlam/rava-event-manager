@@ -8,6 +8,18 @@ export const EventDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    function changeBackgroundToHomePage() {
+        document.body.classList.add('body-event');                      //NEED TP DEFINE
+        document.querySelector('.Navbar').classList.add('BlackNavbar');
+        return () => {
+            document.body.classList.remove('body-event');      // cleanup lagbeii
+            document.querySelector('.Navbar').classList.remove('BlackNavbar');
+            //document.body.style.backgroundImage = 'none';
+        };
+    }
+
+    useEffect(changeBackgroundToHomePage, []);
+
     useEffect(() => {
         const fetchEventDetails = async () => {
             try {

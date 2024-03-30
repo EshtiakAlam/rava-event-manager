@@ -5,8 +5,9 @@ import {EventIncludes} from "../components/EventIncludes";
 import {EventAboutandFAQ} from "../components/EventAboutandFAQ";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTicketAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
+
+import { Link } from 'react-router-dom';
 
 export const EventCard = ({ event }) => {
     console.log(event);
@@ -18,9 +19,15 @@ export const EventCard = ({ event }) => {
                     <div className="EventCardLayer1">
                         <div className="EventCardLayer1Left">
                             <div className="EventCardLayer1Left1">
-                                <h1><FontAwesomeIcon icon={faTicketAlt} />{event.title}</h1>
+                                <h1>{event.title}</h1>
                                 <h4>{event.tagline}</h4>
-                                <h3><strong> <FontAwesomeIcon icon={faUsers} /> {event.organizer}</strong></h3>
+                                <Link to={`/clubs/club`}>
+                                    <h3>
+                                        <strong> 
+                                            <FontAwesomeIcon icon={faUsers} /> {event.organizer}
+                                        </strong>
+                                    </h3>
+                                </Link>
                             </div>
                             <div className="EventCardLayer1Left2">
                                 <EventIncludes key={event._id} event ={event}/>

@@ -43,9 +43,9 @@ const Event = () => {
             });
 
             const futureEvents = events.filter(event => {
-                const eventDate = new Date(event.date);
-                return eventDate > currentDate;
-            });
+    const eventDate = new Date(event.date);
+    return eventDate > currentDate && (eventDate.getMonth() !== thisMonth || eventDate.getFullYear() !== thisYear);
+});
 
             // Sort 
             thisMonthEvents.sort((a, b) => new Date(a.date) - new Date(b.date));

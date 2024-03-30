@@ -2,19 +2,25 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // pages & components
 
-import AdminEvent from './pages/AdminEvent'
-import AdminEventForm from './pages/AdminAddEvents'
+import AdminEvent from './pages/AdminEvent';
+import AdminEventForm from './pages/AdminAddEvents';
 
 
-import Navbar from './components/Navbar'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import AdminLogin from './pages/AdminLogin'
-import AdminSignup from './pages/AdminSignup'
+import Navbar from './components/Navbar';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import AdminLogin from './pages/AdminLogin';
+import AdminSignup from './pages/AdminSignup';
+import ClubDashboard from './pages/ClubDashboard';
+
 
 import Event from './pages/Event';
 import EachEvent from './pages/EachEvent';
+import AllClubs from './pages/AllClubs';
+import EachClub from './pages/EachClub';
+import JoinClub from './pages/JoinClub';
 import { Home } from './pages/Home';
+import ShowClubEvents from './pages/ShowClubEvents';
 
 
 
@@ -26,6 +32,26 @@ function App() {
                 <Navbar />
                 <div className="pages">
                 <Routes>
+                        <Route
+                            path="/showclubevents"
+                            element={<ShowClubEvents />}
+                        />
+                        <Route
+                            path="/clubs/club/join-club"
+                            element={<JoinClub />}
+                        />
+                        <Route
+                            path="/clubs/club"
+                            element={<EachClub />}
+                        />
+                        <Route
+                            path="/clubs"
+                            element={<AllClubs />}
+                        />
+                        <Route
+                            path="/clubdashboard"               //pore login/clubdashboard banabo
+                            element={< ClubDashboard/>}
+                        />
                         <Route
                             path="/admin/events"
                             element={<AdminEvent />}

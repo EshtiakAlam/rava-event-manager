@@ -31,7 +31,7 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
-.body-event {
+.body-event, .body-club-main, .body-club {
   background-image: none;
   background-color: #ffffff;
   font-family: "Mulish", sans-serif;
@@ -149,6 +149,60 @@ header a {
   color: white;
 }
 
+
+.ClubNavbarVertical {
+  background: #000000; /* Black background color */
+  color: #ffffff; /* White text color */
+  width: 150px; /* Set width of Navbar */
+  height: 100%; /* Ensure Navbar fills the entire height */
+  position: fixed; /* Fix Navbar position */
+  top: 0; /* Align Navbar to top */
+  left: 0; /* Align Navbar to left */
+  justify-content: space-evenly;
+}
+
+.ClubNavbarVertical .container {
+  padding: 20px; /* Adjust padding */
+  display: flex;
+  flex-direction: column; /* Change to vertical layout */
+
+}
+
+.ClubNavbarVertical .container .header a {
+  color: #ffffff; /* White text color for links */
+  text-decoration: none;
+}
+
+.ClubNavbarVertical .pages {
+  padding: 20px;
+}
+
+.ClubNavbarVertical .logo {
+  width: 75px;
+  height: auto;
+  align-self: center; /* Center logo vertically */
+}
+
+.ClubNavbarVertical .navbarMid,
+.ClubNavbarVertical .navbarRight {
+  font-weight: 500;
+  display: flex;
+  flex-direction: column; /* Change to vertical layout */
+  font-size: xx-small;
+  justify-content: space-between;
+  margin-top: 175px;
+}
+
+.ClubNavbarVertical .navbarMid h1,
+.ClubNavbarVertical .navbarRight h1 {
+  margin: 5px 0; /* Adjust margin */
+  color: white;
+}
+
+.pageContent {
+  margin-left: 150px; /* Ensure content starts after Navbar */
+  padding: 20px; /* Adjust padding */
+}
 
 .Homepage {
   color: #f6fcf9;
@@ -357,10 +411,13 @@ header a {
   flex-shrink: 0; /*no shrinking of box*/
   background-color: whitesmoke; /*semi-transparent black*/
   color: black;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for transform and box-shadow */
 }
 
-
-
+.event-page .Info .InfoContent .EachInfo:hover {
+  transform: scale(1.1); /* Scale the element up by 10% upon hovering */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5); /* Increase the shadow to enhance depth */
+}
 
 .event-page .Info .InfoContent .EachInfo .ContentPart h3 {
   
@@ -442,3 +499,255 @@ header a {
   border-radius: 5px;
 }
 
+
+
+.createNewEventFromClub form.createNewEvent {
+  max-width: 400px; /* Adjust maximum width of the form */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 20px; /* Add padding to the form */
+  background-color: #f4f4f4; /* Light background color */
+  border-radius: 5px; /* Add rounded corners to the form */
+}
+
+.createNewEventFromClub form.createNewEvent h3 {
+  margin-top: 0; /* Remove top margin for the heading */
+  margin-bottom: 20px; /* Add bottom margin for the heading */
+  text-align: center; /* Center the heading */
+}
+
+.createNewEventFromClub form.createNewEvent label {
+  display: block; /* Display labels as blocks */
+  margin-bottom: 5px; /* Add bottom margin for labels */
+}
+
+.createNewEventFromClub form.createNewEvent input[type="text"] {
+  width: 90%; /* Make text inputs full width */
+  padding: 10px; /* Add padding to text inputs */
+  margin-bottom: 15px; /* Add bottom margin for text inputs */
+  border: 1px solid #ccc; /* Add border to text inputs */
+  border-radius: 5px; /* Add rounded corners to text inputs */
+}
+
+.createNewEventFromClub form.createNewEvent button[type="submit"] {
+  width: 100%; /* Make the submit button full width */
+  padding: 10px; /* Add padding to the submit button */
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add rounded corners to the submit button */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+.createNewEventFromClub form.createNewEvent button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue background color on hover */
+}
+
+.createNewEventFromClub form.createNewEvent .error {
+  color: #ff0000; /* Red color for error messages */
+  margin-top: 10px; /* Add top margin for error messages */
+}
+
+
+.ClubDashboard {
+  display: flex; /* Use flexbox */
+  margin-left: 150px;
+}
+
+.ClubDashboard .content {
+  font-family: "Oswald", sans-serif;
+  flex: 1; /* Allow the content to take up remaining space */
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.clubDashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+}
+
+.ClubData h3 {
+  margin-top: 40px;
+}
+
+.ClubData .PanelInfo {
+  width: 500px; /* Adjust the width as needed */
+  margin-right: 20px;
+  border: 1px solid; /* Added 'solid' to specify the border style */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  flex: 1 1 auto;
+  /* display: flex; Added flex display to center items */
+  align-items: center; /* Center items vertically */
+  /* justify-content: center; Center items horizontally */
+  justify-content: space-around; 
+}
+
+.ClubData .EachPanelist {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.club-page .Upperpart {
+  text-align: center;
+}
+
+.club-page .Upperpart h1 {
+  font-size: 70px;
+}
+
+.club-page h2 {
+  margin-top: 50px;
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.club-page .Upperpart h4 {
+  font-size: 30px;
+  margin-bottom: 100px;
+}
+
+.club-page .Info .InfoContent, .eachClub .Info .InfoContent, .ShowClubEvents .Info .InfoContent {
+  display: flex;
+
+  width: 100%; /* Set the width of the container */
+  flex-wrap: wrap;
+  white-space: normal; /* Allow wrapping */
+  word-wrap: break-word; /* Fallback for older browsers */
+  overflow-wrap: break-word; /* Ensure modern browsers handle wrapping */
+  margin-bottom: 50px;
+  margin-left: 20px;
+  
+}
+
+.club-page .Info .InfoContent .EachInfo .ImagePart {
+  width: 450px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  border: 1px solid #ccc; /* Border style */
+  padding: 5px; /* Padding around the image */
+  box-sizing: border-box; /* Include border and padding in width and height */
+}
+
+.club-page .Info .InfoContent .EachInfo .ImagePart img {
+  max-width: 100%; /* Ensure image does not exceed container width */
+  max-height: 100%; /* Ensure image does not exceed container height */
+  display: block; /* Prevents unwanted space below image */
+}
+
+.club-page .Info .InfoContent .EachInfo, .eachClub .Info .InfoContent .EachInfo, .ShowClubEvents .Info .InfoContent .EachInfo{
+
+  display: flex vertical;
+  width: 250px; /* Adjust the width as needed */
+  border: 0px solid; /* Added 'solid' to specify the border style */
+  border-radius: 10px;
+  padding: 50px;
+  box-shadow: 0 0 20px #00000099;
+  align-items: center; /* Center items vertically */
+  margin-right: 55px;
+  flex-shrink: 0; /*no shrinking of box*/
+  background-color: black; /*semi-transparent black*/
+  color: white;
+  margin-bottom: 60px;
+  transition: transform 0.3s ease; /* Add transition effect */
+}
+
+.club-page .Info .InfoContent .EachInfo:hover {
+  transform: translateY(-10px); /* Move the element up by 10px upon hovering */
+}
+
+
+.club-page .Info .InfoContent .EachInfo .ContentPart h3 , .eachClub .Info .InfoContent .EachInfo .ContentPart h3, .ShowClubEvents .Info .InfoContent .EachInfo .ContentPart h3{
+  
+  font-size: 25px;
+  word-wrap: break-word;
+}
+
+.club-page .Info .InfoContent a, .eachClub .Info .InfoContent a, .ShowClubEvents .Info .InfoContent a{
+  color: blue;
+  position: relative;
+}
+
+.club-page .Info .InfoContent a::after {
+  content: '→'; /* Right arrow character */
+  font-size: 50px;
+  position: absolute;
+  right: -0em; /* Adjust position as needed */
+  top: 90%;
+  transform: translateY(-50%);
+  color: orange;
+}
+
+.club-card .Info .InfoContent .EachInfo  h3 {
+  font-size: 200px;
+}
+
+.club-page .Info .InfoContent .EachInfo .ContentPart .ContentPartSplit, .eachClub .Info .InfoContent .EachInfo .ContentPart .ContentPartSplit {
+  display: flex;
+  justify-content: space-between;
+}
+
+.JoinClubButton {
+  display: inline-block;
+  padding: 15px 150px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.JoinClubButton:hover {
+  transform: scale(1.05); /* Add slight scale effect on hover */
+  background-color: orange; /* Change color as needed */
+  color: white;
+}
+
+.eachClub .eachClub-upper {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.ShowClubEvents .headers,
+.ShowClubEvents .info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three columns */
+  text-align: center; /* Align text to the left */
+  
+}
+
+.ShowClubEvents .headers h1,
+.ShowClubEvents .info p {
+  padding: 10px; /* Add padding */
+}
+
+.ShowClubEvents .headers h1 {
+  font-weight: bold; /* Make header text bold */
+}
+
+.ShowClubEvents {
+  margin-left: 150px;
+}
+
+.ShowClubEvents p1 {
+  color: green;
+}
+
+.ShowClubEvents p2 {
+  color: red;
+}
+
+.ShowClubEvents h2 {
+  margin-top: 60px;
+  margin-left: 20px ;
+  margin-bottom: 30px;
+}
