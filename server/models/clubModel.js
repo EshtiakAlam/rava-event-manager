@@ -8,7 +8,8 @@ const clubSchema = new Schema({
     },
     abbreviation:{
         type: String,
-        required: true
+        required: true,
+        //unique: true
     },
     description:{
         type: String,
@@ -20,7 +21,7 @@ const clubSchema = new Schema({
     panel: {
         type: Schema.Types.ObjectId, // Reference to User model
         ref: 'User', // Referring to the User model
-        required: true
+        //required: true
     },
     advisor: {
         type: Schema.Types.ObjectId, // Reference to User model
@@ -34,7 +35,8 @@ const clubSchema = new Schema({
     members: [{
         type: Schema.Types.ObjectId, // Reference to User model
         ref: 'User' // Referring to the User model
-    }]
+    }],
+    
 }, { timestamps: true }); // Automatically saves when the document is created
 
 module.exports = mongoose.model('Club', clubSchema);

@@ -7,7 +7,7 @@ const eventRoutes = require('./routes/events')
 const userRoutes = require('./routes/user')
 const adminRoutes = require('./routes/admin')
 const clubRoutes= require('./routes/clubs')
-
+const clubLoginRoutes = require("./routes/clublogin")
 // Express app
 
 const app = express()
@@ -29,6 +29,7 @@ app.use('/api/events/',eventRoutes)
 app.use('/api/user',userRoutes)
 app.use('/api/admin',adminRoutes)
 app.use('/api/clubs',clubRoutes)
+app.use('/api/clubinfo',clubLoginRoutes)
 
 
 // connect to db

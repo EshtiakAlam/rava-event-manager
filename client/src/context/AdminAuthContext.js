@@ -1,5 +1,5 @@
 // AdminAuthContext.js
-import { createContext, useReducer, useEffect, useContext } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 
 export const AdminAuthContext = createContext();
 
@@ -31,7 +31,7 @@ export const AdminAuthContextProvider = ({ children }) => {
   );
 };
 
-export const useAdminAuthContext = () => {
+/*export const useAdminAuthContext = () => {
   const context = useContext(AdminAuthContext);
 
   if (!context) {
@@ -39,4 +39,4 @@ export const useAdminAuthContext = () => {
   }
 
   return context;
-};
+};*/
