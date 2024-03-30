@@ -21,6 +21,7 @@ import EachClub from './pages/EachClub';
 import JoinClub from './pages/JoinClub';
 import { Home } from './pages/Home';
 import ShowClubEvents from './pages/ShowClubEvents';
+import ClubVolunteers from './pages/ClubVolunteers';
 
 
 
@@ -32,6 +33,10 @@ function App() {
                 <Navbar />
                 <div className="pages">
                 <Routes>
+                        <Route
+                            path="/showVolunteers"
+                            element={<ClubVolunteers />}
+                        />
                         <Route
                             path="/showclubevents"
                             element={<ShowClubEvents />}

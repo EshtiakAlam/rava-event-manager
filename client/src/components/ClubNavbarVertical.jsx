@@ -20,7 +20,7 @@ export const ClubNavbarVertical = ({ showHomepageButton }) => {
                 <Link to="/admin/eventform">
                     <h1>Edit Info</h1>
                 </Link>
-                <Link to="">
+                <Link to="/showVolunteers">
                     <h1>Volunteers</h1>
                 </Link>
             </div>

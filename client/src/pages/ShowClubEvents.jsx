@@ -84,7 +84,11 @@ export const ShowClubEvents = () => {
                     </div>
                 </div>
 
-                <p>Button for create new event</p>
+                <div className='clubAddEvent'>
+                    <Link to="/clubs/club/addEvent" className='ClubAddEvent'>
+                        <b>CREATE NEW EVENT</b>
+                    </Link>
+                </div>
             
         </div>
     );

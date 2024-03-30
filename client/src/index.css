@@ -689,7 +689,7 @@ header a {
   justify-content: space-between;
 }
 
-.JoinClubButton {
+.JoinClubButton, .ClubAddEvent {
   display: inline-block;
   padding: 15px 150px;
   background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
@@ -705,11 +705,12 @@ header a {
   margin-right: 20px;
 }
 
-.JoinClubButton:hover {
+.JoinClubButton:hover, .ClubAddEvent:hover{
   transform: scale(1.05); /* Add slight scale effect on hover */
   background-color: orange; /* Change color as needed */
   color: white;
 }
+
 
 .eachClub .eachClub-upper {
   display: flex;
@@ -717,8 +718,9 @@ header a {
 
 }
 
+
 .ShowClubEvents .headers,
-.ShowClubEvents .info {
+.ShowClubEvents .info{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* Three columns */
   text-align: center; /* Align text to the left */
@@ -750,4 +752,31 @@ header a {
   margin-top: 60px;
   margin-left: 20px ;
   margin-bottom: 30px;
+}
+
+.ShowClubEvents {
+  margin-left: 150px;
+}
+
+
+
+.ClubVolunteers {
+  margin-left: 150px;
+}
+
+.ClubVolunteers .headers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 20px;
+  
+}
+
+.ClubVolunteers .headers > div {
+  padding: 10px;
+  text-align: center;
+
+}
+
+..ClubVolunteers .headers > div:last-child {
+  border-right: none;
 }
