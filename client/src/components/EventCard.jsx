@@ -21,7 +21,8 @@ export const EventCard = ({ event }) => {
                             <div className="EventCardLayer1Left1">
                                 <h1>{event.title}</h1>
                                 <h4>{event.tagline}</h4>
-                                <Link to={`/clubs/club`}>
+                                <Link to={`/clubs/club`}>               //Change korbooo
+
                                     <h3>
                                         <strong> 
                                             <FontAwesomeIcon icon={faUsers} /> {event.organizer}

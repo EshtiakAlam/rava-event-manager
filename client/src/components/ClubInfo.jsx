@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 
 export const ClubInfo = ({ clubData }) => {
     console.log(clubData);
@@ -24,27 +26,27 @@ export const ClubInfo = ({ clubData }) => {
 
     return (
         <div className="ClubData">
-            <h1>{clubData.title} ({clubData.abbreviation})</h1>
+            <h1><span className='special-letter'>{clubData.title[0]}</span>{clubData.title.substring(1)} ({clubData.abbreviation})</h1>
             <h4> - {clubData.description}</h4>
             <h3>Current panel</h3>
             <div className='PanelInfo'>
                 {panelistMembers.map((member, index) => (
                     <div className='EachPanelist' key={index}>
                         <p><strong>{member.name}</strong></p>
-                        <p>Email: {member.email}</p>
+                        <p>{member.email}</p>
                     </div>
                 ))}
             </div>
             <h3>Club Advisors</h3>
-            <div className='PanelInfo'>
+            <div className='AdvisorInfo'>
                 {advisorMembers.map((advisor, index) => (
-                    <div className='EachPanelist' key={index}>
-                        <p><strong></strong> {advisor.name}</p>
-                        <p><strong></strong> {advisor.email}</p>
+                    <div className='EachAdvisor' key={index}>
+                        <p><strong> {advisor.name} </strong></p>
+                        <p>{advisor.email}</p>
                     </div>
                 ))}
             </div>
-            <h2>Club email: {clubData.contactInformation}</h2>
+            <h2><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation}</h2>
         </div>
     );
 };

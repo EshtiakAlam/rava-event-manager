@@ -56,6 +56,8 @@ export const ClubVolunteers = () => {
             <ClubNavbarVertical showHomepageButton={false} />
             <ClubDashBoardHeader />
 
+            <h1 className='extra'><span className='special-letter'>V</span>olunteers</h1>
+
             <div className="headers">
                 <div className="header-1">
                     <h1>Student ID</h1>

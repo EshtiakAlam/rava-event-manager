@@ -22,6 +22,7 @@ import JoinClub from './pages/JoinClub';
 import { Home } from './pages/Home';
 import ShowClubEvents from './pages/ShowClubEvents';
 import ClubVolunteers from './pages/ClubVolunteers';
+import UserCalendar from './pages/UserCalendar';
 
 
 
@@ -46,7 +47,7 @@ function App() {
                             element={<JoinClub />}
                         />
                         <Route
-                            path="/clubs/club"
+                            path="/clubs/:_id"
                             element={<EachClub />}
                         />
                         <Route
@@ -88,6 +89,10 @@ function App() {
                         <Route 
                             path="/events/:_id" 
                             element={<EachEvent />} 
+                        />
+                        <Route 
+                            path="/calendar" 
+                            element={<UserCalendar/>} 
                         />
                         <Route
                             path="/"

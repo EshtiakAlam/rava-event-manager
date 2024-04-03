@@ -37,8 +37,11 @@ export const ShowClubEvents = () => {
 
     return ( 
         <div className="ShowClubEvents">
-            <ClubNavbarVertical showHomepageButton={false} />
+            <ClubNavbarVertical showHomepageButton={true} />
             <ClubDashBoardHeader />
+            
+            <h1 className='extra'>Upcoming <span className='special-letter'>{club_info.abbreviation}</span> Events</h1>
+            
             <div className="headers">
                 <div className="header-left">
                     <h1>Event Name</h1>
@@ -74,9 +77,16 @@ export const ShowClubEvents = () => {
                                     <h3><strong>{event.title}</strong></h3>
                                     <div className="ContentPartSplit">
                                         <p><b><span className="special-letter">Date:</span> {event.tagline}</b></p>
-                                        <Link to={`/club/clubs/editevent`} className="EventLinkButton">
-                                            Edit Event
-                                        </Link>
+                                        <div className='event-links'>
+                                            <Link to={`/events/${event._id}`} className="EventLinkButton">
+                                                <p>View Event</p>
+                                            </Link>
+                                            
+                                    
+                                            <Link to={`/club/clubs/editevent`} className="EventLinkButton">
+                                                <p>Edit Event</p>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

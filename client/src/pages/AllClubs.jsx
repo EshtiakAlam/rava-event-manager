@@ -2,12 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
 
 export const AllClubs = () => {
-    const clubList = [
-        {"title": 'BRAC University Robotics Club', 'tagline': "Robo Nerd Hub"},
-        {"title": 'BRAC University Computer Club', 'tagline': "Computer Enthusaist Hub"},
-        {"title": 'BRAC University Business Club', 'tagline': "Entrepreneurrr It"},
-        {"title": 'BRAC University Football Club', 'tagline': "Khelbo Lorbo Jitbo"}
-    ]
+
+    const [clubs, setClubs] = useState(null);
+
+    useEffect(() => {
+        const fetchClubs = async () => {
+            const response = await fetch("/api/clubs/");
+            const json = await response.json();
+
+            if (response.ok) {
+                setClubs(json);
+            }
+        };
+
+        fetchClubs();
+    }, []);
+
+    console.log(clubs);
+
+
 
     function changeBackgroundToHomePage() {
         document.body.classList.add('body-club-main');                      //NEED TP DEFINE
@@ -32,13 +45,14 @@ export const AllClubs = () => {
             <h2><span class="special-letter">E</span>XPLORE</h2>
             <div className="Info">
                 <div className = "InfoContent">
-                    {clubList.map((club, index) => (
+                    {clubs && clubs.map((club, index) => (
                         <div className="EachInfo" key={index}>
                             <div className="ContentPart">
                                 <h3><strong>{club.title}</strong></h3>
                                 <div className="ContentPartSplit">
                                     <p><b><span className="special-letter">Tagline:</span> { club.tagline }</b></p>
-                                    <Link to={`/clubs/club`}></Link>
+                                    <Link to={`/clubs/${club._id}`}></Link>
+                                    
                                 </div>
                             </div>
                         </div>

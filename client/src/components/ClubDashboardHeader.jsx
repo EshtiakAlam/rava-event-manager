@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const ClubDashBoardHeader = () => {
     return ( 
@@ -10,7 +11,9 @@ export const ClubDashBoardHeader = () => {
             </div>
             <div className="clubDashboardHeaderRight">
                     <FontAwesomeIcon icon={faBell} style={{ fontSize: '2em', marginRight: '15px' }} />
-                    <FontAwesomeIcon icon={faUser} style={{ fontSize: '2em' }} />
+                    <Link to="/login"> 
+                        <FontAwesomeIcon icon={faUser} style={{ fontSize: '2em' }} />
+                    </Link>
 
             </div>
         </div> 

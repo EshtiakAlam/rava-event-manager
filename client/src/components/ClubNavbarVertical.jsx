@@ -14,9 +14,11 @@ export const ClubNavbarVertical = ({ showHomepageButton }) => {
                 </Link>
                                         )}
 
+                
                 <Link to="/showclubevents">
                     <h1>Club Events</h1>
                 </Link>
+                
                 <Link to="/admin/eventform">
                     <h1>Edit Info</h1>
                 </Link>

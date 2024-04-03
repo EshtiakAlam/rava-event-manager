@@ -20,6 +20,8 @@ const Event = () => {
         fetchEvents();
     }, []);
 
+    console.log(events);
+
     function changeBackgroundToHomePage() {
         document.body.classList.add('body-event-main');
         document.querySelector('.Navbar').classList.add('BlackNavbar');
@@ -43,9 +45,9 @@ const Event = () => {
             });
 
             const futureEvents = events.filter(event => {
-    const eventDate = new Date(event.date);
-    return eventDate > currentDate && (eventDate.getMonth() !== thisMonth || eventDate.getFullYear() !== thisYear);
-});
+                const eventDate = new Date(event.date);
+                return eventDate > currentDate && (eventDate.getMonth() !== thisMonth || eventDate.getFullYear() !== thisYear);
+            });
 
             // Sort 
             thisMonthEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
