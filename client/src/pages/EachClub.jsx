@@ -6,9 +6,19 @@ import ClubCard from '../components/ClubCard';
 const EachClub = () => {
     const { _id } = useParams(); // Extract club ID from URL parameters
     const [clubInfo, setClubInfo] = useState(null);
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState([]);                   // id collection
+    const [events_main, setEventsMain] = useState([]);          // main event er links thakbe
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        document.body.classList.add('body-club');
+        document.querySelector('.Navbar').classList.add('BlackNavbar');
+        return () => {
+            document.body.classList.remove('body-club');
+            document.querySelector('.Navbar').classList.remove('BlackNavbar');
+        };
+    }, []);
 
     useEffect(() => {
         const fetchClubDetails = async () => {
@@ -56,14 +66,26 @@ const EachClub = () => {
         fetchClubEvents();
     }, [_id]);
 
+
     useEffect(() => {
-        document.body.classList.add('body-club');
-        document.querySelector('.Navbar').classList.add('BlackNavbar');
-        return () => {
-            document.body.classList.remove('body-club');
-            document.querySelector('.Navbar').classList.remove('BlackNavbar');
+        console.log('Now we fetch actual events:');
+        const fetchEvents = async () => {
+            try {
+                const response = await fetch(`/api/events/${_id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch events');
+                }
+                const eventData = await response.json();
+                setEventsMain(eventData);
+            } catch (error) {
+                console.error('Error fetching events:', error.message);
+            }
         };
-    }, []);
+
+        if (events.length > 0) {
+            fetchEvents();
+        }
+    }, [events, _id]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -77,10 +99,17 @@ const EachClub = () => {
         return <div>No club data available</div>;
     }
 
+    console.log(`Pore 1`, clubInfo);
+    console.log(`Pore 2`, events);
+
+    console.log(`Now we fetch actual events:`);
+
+
+
     return (
         <div>
             <div className="events">
-                <ClubCard clubInfo={clubInfo} events={events} />
+                <ClubCard club_info={clubInfo} events={events_main} />
             </div>
         </div>
     )

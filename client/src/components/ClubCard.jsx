@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 const ClubCard = ({club_info, events}) => {
-    console.log(`Output:`, club_info);
-    console.log(events);
+    console.log(`Output in card:`, club_info);
+    console.log(`Output in card:`, events);
 
 
 
