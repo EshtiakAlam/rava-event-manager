@@ -66,27 +66,6 @@ const EachClub = () => {
         fetchClubEvents();
     }, [_id]);
 
-
-    useEffect(() => {
-        console.log('Now we fetch actual events:');
-        const fetchEvents = async () => {
-            try {
-                const response = await fetch(`/api/events/${_id}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch events');
-                }
-                const eventData = await response.json();
-                setEventsMain(eventData);
-            } catch (error) {
-                console.error('Error fetching events:', error.message);
-            }
-        };
-
-        if (events.length > 0) {
-            fetchEvents();
-        }
-    }, [events, _id]);
-
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -109,7 +88,7 @@ const EachClub = () => {
     return (
         <div>
             <div className="events">
-                <ClubCard club_info={clubInfo} events={events_main} />
+                <ClubCard club_info={clubInfo} events={events} />
             </div>
         </div>
     )

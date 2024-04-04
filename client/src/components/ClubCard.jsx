@@ -1,11 +1,41 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const ClubCard = ({club_info, events}) => {
     console.log(`Output in card:`, club_info);
     console.log(`Output in card:`, events);
 
+    const [new_events, setEvents] = useState(null);
 
+    // Function to fetch events by ID
+    const fetchEventById = async (eventId) => {
+        try {
+            const response = await fetch(`/api/events/${eventId}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch event');
+            }
+            const eventData = await response.json();
+            return eventData;
+        } catch (error) {
+            console.error('Error fetching event:', error.message);
+            return null;
+        }
+    };
 
+    // Fetch events for each ID in club_info.events array
+    useEffect(() => {
+        const fetchEventsForClub = async () => {
+            const eventPromises = club_info.events.map(async (eventId) => {
+                return fetchEventById(eventId);
+            });
+            const eventResults = await Promise.all(eventPromises);
+            // Set the fetched events
+            setEvents(eventResults.filter(event => event !== null));
+        };
+        fetchEventsForClub();
+    }, [club_info.events]);
+
+    console.log(`Fetch er por:`, new_events);
 
     return (
         <div className='eachClub'>
@@ -23,13 +53,13 @@ const ClubCard = ({club_info, events}) => {
             <h2>Events Organized by {club_info.title}</h2>
             <div className="Info">
                 <div className="InfoContent">
-                    {events && events.map((event, index) => (
+                    {new_events && new_events.map((event, index) => (
                         <div className="EachInfo" key={index}>
                             <div className="ContentPart">
                                 <h3><strong>{event.title}</strong></h3>
                                 <div className="ContentPartSplit">
                                     <p><b><span className="special-letter">Date:</span> {event.tagline}</b></p>
-                                    <Link to={`/clubs/${event._id}/events`} className="EventLinkButton">
+                                    <Link to={`/events/${event._id}`} className="EventLinkButton">
                                         View Event
                                     </Link>
                                 </div>
@@ -42,5 +72,5 @@ const ClubCard = ({club_info, events}) => {
         </div>
     );
 }
- 
+
 export default ClubCard;
