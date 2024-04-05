@@ -13,7 +13,8 @@ import EachEvent from './pages/EachEvent';
 import { Home } from './pages/Home';
 import { useAuthContext } from './hooks/useAuthContext';
 import { useAdminAuthContext } from './hooks/useAdminAuthContext';
-
+import ClubLogin from './components/clublogin';
+import ClubSignup from './components/clubSignup';
 function App() {
     const { user } = useAuthContext();
     const { admin } = useAdminAuthContext();
@@ -36,6 +37,11 @@ function App() {
                         <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/events" />} />
                         <Route path="/events" element={user ? <Event /> : <Navigate to="/login" />} />
                         <Route path="/events/:_id" element={<EachEvent />} />
+                        
+                         {/* Route for club login */}
+                         <Route path="/club/login" element={<ClubLogin />} />
+                         <Route path="/club/signup" element={<ClubSignup />} />
+                        
                         <Route path="/" element={<Home />} />
                     </Routes>
                 </div>

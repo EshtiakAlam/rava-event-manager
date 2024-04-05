@@ -535,3 +535,94 @@ header a {
   margin-top: 10px;
   text-align: center;
 }
+/* Add these styles to your existing stylesheet or use a styling solution of your choice */
+
+/* ClubSignup */
+.ClubSignup {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.ClubSignup h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ClubSignup label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ClubSignup input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.ClubSignup button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary); /* Use primary color variable */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ClubSignup button:hover {
+  background-color: #e18323; /* Darken the color on hover */
+}
+
+/* ClubLogin */
+.ClubLogin {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.ClubLogin h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ClubLogin label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.ClubLogin input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.ClubLogin button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary); /* Use primary color variable */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ClubLogin button:hover {
+  background-color: #e18323; /* Darken the color on hover */
+}
+
+.error {
+  color: var(--error); /* Use error color variable */
+  margin-top: 10px;
+  text-align: center;
+}
