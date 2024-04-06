@@ -69,40 +69,44 @@ const Event = () => {
             <h2><span class="special-letter">T</span>HIS MONTH</h2>
             <div className="Info">
                 <div className = "InfoContent">
-                    {thisMonthEvents && thisMonthEvents.map((event, index) => (
-                        <div className="EachInfo" key={index}>
-                            <div className="ImagePart">
+                {thisMonthEvents && thisMonthEvents
+                    // .filter(event => event.approved) // Filter out events where approved is true
+                    .map((event, index) => (
+                    <div className="EachInfo" key={index}>
+                        <div className="ImagePart">
 
+                        </div>
+                        <div className="ContentPart">
+                            <h3><strong>{event.title}</strong></h3>
+                            <div className="ContentPartSplit">
+                                <p><b><span className="special-letter">Date:</span> {formatDate(event.date)}</b></p>
+                                <Link to={`/events/${event._id}`}></Link>
                             </div>
-                            <div className="ContentPart">
-                                <h3><strong>{event.title}</strong></h3>
-                                <div className="ContentPartSplit">
-                                    <p><b><span className="special-letter">Date:</span> { formatDate(event.date) }</b></p>
-                                    <Link to={`/events/${event._id}`}></Link>
-                                </div>
                             </div>
                         </div>
-                    ))}
+                ))}
                 </div>
             </div>
 
             <h2><span class="special-letter">U</span>PCOMING EVENTS</h2>
             <div className="Info">
                 <div className = "InfoContent">
-                    {futureEvents && futureEvents.map((event, index) => (
+                {futureEvents && futureEvents
+                    // .filter(event => event.approved) // Filter out events where approved is true
+                    .map((event, index) => (
                         <div className="EachInfo" key={index}>
                             <div className="ImagePart">
 
-                            </div>
-                            <div className="ContentPart">
-                                <h3><strong>{event.title}</strong></h3>
-                                <div className="ContentPartSplit">
-                                    <p><b><span className="special-letter">Date:</span> { formatDate(event.date) }</b></p>
-                                    <Link to={`/events/${event._id}`}></Link>
-                                </div>
-                            </div>
                         </div>
-                    ))}
+                        <div className="ContentPart">
+                            <h3><strong>{event.title}</strong></h3>
+                            <div className="ContentPartSplit">
+                                <p><b><span className="special-letter">Date:</span> {formatDate(event.date)}</b></p>
+                                <Link to={`/events/${event._id}`}></Link>
+                        </div>
+                    </div>
+                </div>
+                ))}
                 </div>
             </div>
 
