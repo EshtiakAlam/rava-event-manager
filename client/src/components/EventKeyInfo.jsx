@@ -1,35 +1,49 @@
 import formatDate from "../utils/FormatDate";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons'; // Import heart icon
 import  { useState, useEffect } from 'react';
 
-export const EventKeyInfo = ({ event }) => {
-    const [interestCount, setInterestCount] = useState(Number(event.interested));
-    const [interestStatus, setInterestStatus] = useState(false);
-    const [interestMsg, setInterestMsg] = useState("Interested in this event?");
 
-    const handleClick = () => {
+export const EventKeyInfo = ({ event }) => {
+    const [interestCount, setInterestCount] = useState(Number(event.like));
+    const [interestStatus, setInterestStatus] = useState(false);
+
+    const handleClick = async () => {
+        let updatedCount = interestCount;
         if (!interestStatus) {
-            setInterestCount(interestCount => interestCount+1); // functional update na korle hoy na update
-            event.interested = interestCount;
-            setInterestMsg(`You and ${interestCount} others are interested`);
+            updatedCount += 1;
         } else {
-            setInterestCount(interestCount => interestCount-1);
-            event.interested = interestCount;
-            setInterestMsg("Interested in this event?");
+            updatedCount -= 1;
         }
+        setInterestCount(updatedCount);
         setInterestStatus(!interestStatus);
 
-        console.log(interestCount, interestStatus, event.interested);
+        // Update like count in the database
+        try {
+            const response = await fetch(`/api/events/${event._id}/like`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ like: updatedCount })
+            });
+            if (!response.ok) {
+                throw new Error('Failed to update like count');
+            }
+        } catch (error) {
+            console.error('Error updating like count:', error);
+        }
     };
 
-    useEffect(() => {
-        console.log(interestCount, interestStatus, event.interested);
-    }, [interestCount, interestStatus, event.interested]);
+    console.log(`After update:`,event.like);
 
     return (
         <div className="EventKeyInfo">
-            <button className="Interested" onClick={() => {handleClick()}}>{ interestMsg }</button>
+            {/* Display heart icon with the number of likes */}
+            <button className="Interested" onClick={handleClick}>
+                <FontAwesomeIcon icon={faHeart} /> {interestCount} Likes
+            </button>
             <p>Date</p>
             <p><strong>{ formatDate(event.date) }</strong></p>
             <p>Time</p>

@@ -53,7 +53,7 @@ export const ClubVolunteers = () => {
 
     return (
         <div className="ClubVolunteers">
-            <ClubNavbarVertical showHomepageButton={false} />
+            <ClubNavbarVertical showHomepageButton={true} />
             <ClubDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>V</span>olunteers</h1>

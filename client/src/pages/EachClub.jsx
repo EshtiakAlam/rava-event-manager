@@ -33,6 +33,9 @@ const EachClub = () => {
                     throw new Error('Received unexpected club data format');
                 }
 
+                //In Js, the Object.keys() method is used to extract the keys (property names) of an object and return them as an array.
+
+
                 setClubInfo(clubData);
                 setLoading(false);
             } catch (error) {

@@ -3,7 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 
 export const ClubInfo = ({ clubData }) => {
-    console.log(clubData);
+    console.log(`ClubInfo te ashche:`,clubData);
+
+    
+
+
+
+
+
 
     const members = [
         { 'name': "Shamsur Shafi", "status": "Panelist", 'studentId': '001', 'email': "m.s.shafi@g.bracu.ac.bd", 'memberStatus': 'None', 'department': "CSE" },

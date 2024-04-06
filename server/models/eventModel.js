@@ -44,7 +44,11 @@ const eventSchema = new Schema({
     approval: {
         type: Boolean,
         default: false
-    }
+    },
+    link:{
+        type: String,
+        required: true
+    },
 }, {timestamps: true});
 
 module.exports = mongoose.model('Event', eventSchema);

@@ -6,6 +6,34 @@ import { Link } from 'react-router-dom';
 
 export const ShowClubEvents = () => {
 
+    const [clubData, setClubData] = useState(null);
+    const clubId = '65fe1c21a6ccec4a9928b348';             
+    // MANUALLY SET KORA; PORE PROP HISHABE PASS KORABO FROM LOGIN
+
+    useEffect(() => {
+        const fetchClubData = async () => {
+            try {
+                const response = await fetch(`/api/clubs/${clubId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch club data');
+                }
+                const json = await response.json();
+                setClubData(json);
+            } catch (error) {
+                console.error('Error fetching club data:', error.message);
+            }
+        };
+
+        fetchClubData();
+    }, []);
+
+    console.log(`sHOW cLUB eVENTS E ASHCHE:`, clubData);
+
+
+
+
+
+
     const club_info = {"abbreviation":"BUCC","advisor":[{"name":"Asif Sir","email":"asif@bracu.ac.bd"},{"name":"Labiba","email":"labiba@bracu.ac.bd"}],"contactInformation":"bucc@g.bracu.ac.bd","description":"Computer Enthusiast Hub","events":[""],"members":[{"$oid":"65e2d466a9e4197986c16aeb"},{"$oid":"6606d237735cc60ca01a3f2e"},{"$oid":"6606d27b735cc60ca01a3f2f"},{"$oid":"6606d290735cc60ca01a3f30"},{"$oid":"6606d2a7735cc60ca01a3f31"}],"panel":[{"$oid":"6606ce87735cc60ca01a3f26"},{"$oid":"6606d43cb3ede7bc50db6a13"},{"$oid":"6606d10f735cc60ca01a3f28"},{"$oid":"6606d159735cc60ca01a3f2a"}],"title":"BRAC University Computer Club"};
 
     const eventsList = [

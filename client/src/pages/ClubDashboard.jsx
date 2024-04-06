@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import ClubNavbarVertical from '../components/ClubNavbarVertical';
 import ClubInfo from '../components/ClubInfo';
 import ClubDashboardHeader from '../components/ClubDashboardHeader';
+import ShowClubEvents from './ShowClubEvents';
 
 const ClubDashboard = () => {
     const [clubData, setClubData] = useState(null);
+    const clubId = '65fe1c21a6ccec4a9928b348';             
+    // MANUALLY SET KORA; PORE PROP HISHABE PASS KORABO FROM LOGIN
 
     useEffect(() => {
         const fetchClubData = async () => {
             try {
-                const response = await fetch("/api/clubs");
+                const response = await fetch(`/api/clubs/${clubId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch club data');
                 }
@@ -22,6 +25,8 @@ const ClubDashboard = () => {
 
         fetchClubData();
     }, []);
+
+
 
     useEffect(() => {
         // Remove the Navbar component from the DOM when ClubDashboard mounts
@@ -37,13 +42,15 @@ const ClubDashboard = () => {
             }
         };
     }, []);
+
+    console.log(`Club data fetched:`, clubData);
         
     return ( 
         <div className="ClubDashboard">
             <ClubNavbarVertical showHomepageButton={false} />
             <div className='content'>
                 <ClubDashboardHeader />
-                {clubData && <ClubInfo clubData={clubData[0]} />}
+                {clubData && <ClubInfo clubData={clubData} />}
             </div>
         </div>
     );

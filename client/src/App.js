@@ -43,9 +43,10 @@ function App() {
                             element={<ShowClubEvents />}
                         />
                         <Route
-                            path="/clubs/club/join-club"
+                            path="/join-club"
                             element={<JoinClub />}
                         />
+                        
                         <Route
                             path="/clubs/:_id"
                             element={<EachClub />}
