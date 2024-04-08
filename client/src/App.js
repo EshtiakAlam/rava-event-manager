@@ -23,6 +23,8 @@ import { Home } from './pages/Home';
 import ShowClubEvents from './pages/ShowClubEvents';
 import ClubVolunteers from './pages/ClubVolunteers';
 import UserCalendar from './pages/UserCalendar';
+import About from './pages/About';
+import BottomBar from './components/BottomBar';
 
 
 
@@ -96,11 +98,16 @@ function App() {
                             element={<UserCalendar/>} 
                         />
                         <Route
+                            path="/about"
+                            element={<About />}
+                        />
+                        <Route
                             path="/"
                             element={<Home />}
                         />
                     </Routes>
                 </div>
+                <BottomBar />
             </BrowserRouter>
         </div>
     );

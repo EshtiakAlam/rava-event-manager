@@ -77,13 +77,13 @@ const UserCalendar = () => {
     return (
         <div className="Calendar">
             <div className="calendarHeader">
-                <button onClick={handlePrevMonth}><FontAwesomeIcon icon={faArrowLeft} style={{ color: 'orange' }} /></button>  
+                <button onClick={handlePrevMonth}><FontAwesomeIcon icon={faArrowLeft} /></button>  
                 <h2>{selectedDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
                 {/* used to convert a Date object to a string, representing the date and time according to the locale-specific 
                 conventions (language and region) of the environment in which the code is running. */}
-                <button onClick={handleNextMonth}><FontAwesomeIcon icon={faArrowRight} style={{ color: 'orange' }}  /></button>
+                <button onClick={handleNextMonth}><FontAwesomeIcon icon={faArrowRight} /></button>
             </div>
-            <div className="calendarGrid">                                          {/*special effects*/}
+            <div className="calendarGrid">
                 {Array.from({ length: 42 }).map((_, index) => {
                     const currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), index + 1 - selectedDate.getDay());
                     const classNames = currentDate.getMonth() === selectedDate.getMonth() ? 'calendarDay' : 'calendarDay otherMonth';

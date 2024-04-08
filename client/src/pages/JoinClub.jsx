@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 
 const JoinClub = () => {
@@ -11,6 +11,20 @@ const JoinClub = () => {
     const [skills, setSkills] = useState("");
     const [error, setError] = useState(null);
     const [requestSent, setRequestSent] = useState(false); // State variable for tracking request sent
+
+    function changeBackgroundToHomePage() {
+        //document.body.style.backgroundImage = `url(${bgImage})`;
+        document.body.classList.add('body-home');
+        return () => {
+
+            document.body.classList.remove('body-home'); 
+        };
+    }
+
+    useEffect(() => {
+        changeBackgroundToHomePage();
+        
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,7 +60,7 @@ const JoinClub = () => {
     };
 
     return (
-        <div className="createNewEventFromClub">
+        <div className="createNewEventFromClub" style = {{marginTop: '50px', marginBottom: '100px'}}>
             <form className="createNewEvent" onSubmit={handleSubmit}>
                 <h3>Join the Club</h3>
                 <label>Student Name</label>

@@ -37,6 +37,14 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
+.body-about {
+  background-image: none;
+  background: linear-gradient(to bottom, black, darkblue 90%) 0 0 / 100% 90% no-repeat,
+              linear-gradient(to bottom, white 90%, white 90%) 0 90% / 100% 10% no-repeat;
+  font-family: "Mulish", sans-serif;
+  color: white;
+}
+
 
 .Navbar {
   background: #ffffff;
@@ -145,6 +153,55 @@ header a {
 }
 
 .BlackNavbar .navbarRight h1 {
+  margin: 0 10px;
+  color: white;
+}
+
+
+
+.BottomBar {
+  margin-top: 200px;
+  background: #000000; /* Black background color */
+  color: #ffffff; /* White text color */
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.BottomBar:hover {
+  opacity: 1;
+}
+
+
+.BottomBar .container {
+  color: #ffffff;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0px 20px;
+  justify-content: space-between;
+  display: flex;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.BottomBar .container a {
+  color: #ffffff; /* White text color for links */
+  text-decoration: none;
+}
+
+.BottomBar .logo {
+  width: 50px;
+  height: auto;
+  justify-self: start;
+}
+
+.BottomBar .navbarRight {
+  font-weight: 200;
+  display: flex;
+  justify-content: space-between;
+  font-size: xx-small;
+}
+
+.BottomBar .navbarRight h1 {
   margin: 0 10px;
   color: white;
 }
@@ -452,10 +509,19 @@ header a {
   margin-right: 75px;
   font-size: 30px;
   padding: 20px;
-  background-color: red;
-  color: #ffffff;
+  color: red;
   border-radius: 10px;
   text-align: center;
+  animation: flicker-failure 1s infinite alternate;
+}
+
+@keyframes flicker-failure {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
 }
 
 .EventDeadline .RegisterEventButton{
@@ -485,6 +551,11 @@ header a {
   margin-bottom: 100px;
 }
 
+.event-page h2 {
+  font-size: 40px;
+  font-weight: 900;
+}
+
 .event-page .Info .InfoContent {
   display: flex;
 
@@ -494,7 +565,6 @@ header a {
   word-wrap: break-word; /* Fallback for older browsers */
   overflow-wrap: break-word; /* Ensure modern browsers handle wrapping */
   margin-bottom: 50px;
-
   
 }
 
@@ -975,6 +1045,7 @@ header a {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  margin-bottom: 150px;
 }
 
 .calendarHeader {
@@ -1037,4 +1108,275 @@ header a {
 .eventPopup a {
   color: #007bff;
   text-decoration: none;
+}
+
+.about-container .Intro {
+  margin-right: 200px;
+  margin-left: 200px;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+.about-container .Intro h1 {
+  margin-left: 250px;
+}
+
+.about-container .Intro p {
+  cursor: text; 
+  font-size: 18px; 
+  text-align: center;
+}
+
+.about-container .AboutMid1 .content,
+.about-container .AboutMid2 .content,
+.about-container .AboutMid3 .content,
+.about-container .AboutMid4 .content {
+  width: 800px;
+  height: 500px;
+  box-sizing: border-box;
+  margin-left: 20px;
+  margin-bottom: 100px;
+  transition: transform 0.3s ease; /* Add a transition for smooth scaling */
+}
+
+.about-container .AboutMid1 .content:hover,
+.about-container .AboutMid2 .content:hover,
+.about-container .AboutMid3 .content:hover,
+.about-container .AboutMid4 .content:hover {
+  transform: scale(1.1); /* Scale the element to 1.4 times its original size on hover */
+}
+
+
+.about-container .AboutMid1,
+.about-container .AboutMid2 {
+  margin-bottom: 50px;
+}
+
+/* Assuming these classes are associated with the divs where you want to set the background images */
+.AboutMid1 .content {
+  background-image: url("../public/about-1.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* Additional CSS properties */
+}
+
+.AboutMid2 .content {
+  background-image: url("../public/about-2.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* Additional CSS properties */
+}
+
+.AboutMid3 .content {
+  background-image: url("../public/about-3.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* Additional CSS properties */
+}
+
+.AboutMid4 .content {
+  background-image: url("../public/about-4.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* Additional CSS properties */
+}
+
+/* Additional CSS properties for the background container */
+.content {
+  /* Adjust background properties as needed */
+  background-size: cover;
+  background-position: center;
+  /* Add more properties if necessary */
+}
+
+
+.about-container .AboutMid3 .content,
+.about-container .AboutMid4 .content {
+  margin-left: 350px;
+}
+
+.about-container .AboutMid1 h1,
+.about-container .AboutMid2 h1 {
+  font-size: 50px;
+  font-weight: 800;
+  
+}
+
+.about-container .AboutMid3 h1,
+.about-container .AboutMid4 h1 {
+  text-align: right;
+  margin-bottom: 50px;
+  font-size: 50px;
+  font-weight: 800;
+  width: 1100px;
+  margin-right: 10px;
+  margin-left: 80px;
+}
+
+.about-container .Founders h1 {
+  text-align: center;
+  font-size: 70px;
+  margin-bottom: 50px;
+}
+
+.FounderImage {
+  width: 200px; /* Adjust according to your requirement */
+  height: 200px; /* Adjust according to your requirement */
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%; /* To make the image round */
+}
+
+
+/* Basic styling for the Person div */
+.about-container .Founders .card-container .Person {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  width: 200px; /* Adjust as needed */
+  height: 300px; /* Adjust as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease; /* Add transition effect */
+}
+
+@keyframes moveLeft {
+  0% { transform: translateX(0%); opacity: 1; }
+  50% { transform: translateX(-60%); opacity: 0; }
+  51% { transform: translateX(60%); opacity: 0; }
+  100% { transform: translateX(0%); opacity: 1; }
+}
+
+.Person {
+  animation: moveLeft 10s infinite; /* Adjust the duration as needed */
+}
+
+
+/* Styling for the content inside the Person div */
+.about-container .Founders .card-container .Person .PersonContent {
+  text-align: center;
+}
+
+/* Basic styling for the card-container */
+.about-container .Founders .card-container {
+  display: flex;
+  justify-content: space-evenly;
+  perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+/* Styling for the entire about-container */
+.about-container {
+  padding: 20px;
+}
+
+/* Hover effect */
+.about-container .Founders .card-container .Person:hover {
+  transform: translateY(-20px) rotateX(20deg); /* Adjust the translation and rotation as needed */
+}
+
+
+.about-container .Intro .neon {
+  color: yellow;
+  animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+  from {
+      opacity: 0.5;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+
+.Anecdotes-container {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Anecdotes-cloud {
+  width: 30%;
+  margin-top: 30px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.Anecdotes-cloud:hover {
+  transform: perspective(500px) rotateX(-10deg);
+}
+
+
+/* Cloud shape */
+.Anecdotes-cloud:before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  top: -10px;
+  left: 10%;
+}
+
+.Anecdotes-cloud:after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 70%;
+  top: -10px;
+  right: 10%;
+}
+
+.Anecdotes-cloud p {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  color: darkblue;
+}
+
+.about-container .Outro .Newsletter {
+  color: black;
+}
+
+.BottomBar .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.BottomBar .container .bottomBarRight {
+  display: flex;
+  font-size: 10px;
+}
+
+.BottomBar .container .bottomBarRight a {
+  margin-right: 30px; /* Adjust the margin as needed */
+}
+
+.about-container .Outro {
+  margin-top: 150px;
+  margin-right: 5px;
+}
+
+.about-container .Contacts {
+  color: black;
+}
+
+.about-container .Contacts h1 {
+  text-align: right;
+}
+
+.about-container .Contacts .contact-icons {
+  margin-left: 40px;
 }

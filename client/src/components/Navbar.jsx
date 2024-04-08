@@ -17,9 +17,6 @@ export const Navbar = () => {
                     <Link to="/calendar">
                         <h1>Calendar</h1>
                     </Link>
-                    <Link to="">
-                        <h1>About</h1>
-                    </Link>
                 </div>
                 <div className='navbarRight'>
                     <Link to="">
