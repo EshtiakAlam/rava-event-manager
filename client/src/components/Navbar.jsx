@@ -11,7 +11,7 @@ export const Navbar = () => {
                     <Link to="/events">
                         <h1>Events</h1>
                     </Link>
-                    <Link to="/clubs">
+                    <Link to="/allclubs">
                         <h1>Clubs</h1>
                     </Link>
                     <Link to="/calendar">

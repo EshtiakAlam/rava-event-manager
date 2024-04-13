@@ -50,7 +50,7 @@ export const EventCard = ({ event }) => {
                             <div className="EventCardLayer1Left1">
                                 <h1><span className="special-letter">{event.title[0]}</span>{event.title.substring(1)}</h1>
                                 <h3>{event.tagline}</h3>
-                                <Link to={`/clubs/${clubId}`}>         
+                                <Link to={`/allclubs/${clubId}`}>         
 
                                     <h3>
                                         <strong> 

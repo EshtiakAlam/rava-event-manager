@@ -247,7 +247,7 @@ header a {
   flex-direction: column; /* Change to vertical layout */
   font-size: xx-small;
   justify-content: space-between;
-  margin-top: 175px;
+  margin-top: 155px;
 }
 
 .ClubNavbarVertical .navbarMid h1,
@@ -685,7 +685,7 @@ header a {
 
 
 
-.createNewEventFromClub form.createNewEvent {
+.createNewEventFromClub form .createNewEvent {
   max-width: 400px; /* Adjust maximum width of the form */
   margin: 0 auto; /* Center the form horizontally */
   padding: 20px; /* Add padding to the form */
@@ -965,7 +965,7 @@ header a {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* Three columns */
   text-align: center; /* Align text to the left */
-  
+  gap: 30px;
 }
 
 
@@ -990,17 +990,30 @@ header a {
 }
 
 .ShowClubEvents .extra,
-.ClubVolunteers .extra {
+.ClubVolunteers .extra,
+.ClubAddVolunteer .extra,
+.ClubAddNewEvent .extra{
   border-bottom: solid 1px black;
   margin-bottom: 10px; /* Set margin to zero */
   padding: 0;
 }
 
 
+.ClubEditEvent .extra{
+  border-bottom: solid 1px black;
+  margin-bottom: 50px; /* Set margin to zero */
+  padding: 0;
+}
+
+.ShowClubEvents .extra2 {
+  margin-bottom: 50px;
+}
+
 .ShowClubEvents h2 {
+  border-bottom: solid 1px black;
   margin-top: 60px;
-  margin-left: 20px ;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
+  font-size: 30px;
 }
 
 .ShowClubEvents {
@@ -1016,6 +1029,13 @@ header a {
   color: lightblue;
 }
 
+.ShowClubEvents .top {
+  background-color: skyblue;
+  color:white;
+  border-radius: 12px;
+  font-size: 25px;
+  padding: 10px;
+}
 
 
 .ClubVolunteers {
@@ -1024,21 +1044,78 @@ header a {
 
 .ClubVolunteers .headers {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 170px); /* Adjust the fixed width as needed */
   margin: 20px;
-  
 }
 
-.ClubVolunteers .headers > div {
+.ClubVolunteers .headers2 {
+  display: grid;
+  grid-template-columns: repeat(5, 170px); /* Adjust the fixed width as needed */
+  margin: 20px;
+  margin-left: 120px;
+}
+
+.ClubVolunteers .headers > div, 
+.ClubVolunteers .headers2 > div {
   padding: 10px;
   text-align: center;
 
 }
 
-.ClubVolunteers .headers > div:last-child {
+.ClubVolunteers .headers > div:last-child,
+.ClubVolunteers .headers2 > div:last-child {
   border-right: none;
 }
 
+.ClubVolunteers .headers h1, 
+.ClubVolunteers .headers2 h1  {
+  font-size: 18px;
+  border-radius: 30px;
+  background-color: skyblue;
+  color:white;
+  padding: 5px;
+}
+
+/* Truncate the content and show full content on hover */
+.ClubVolunteers .headers p,
+.ClubVolunteers .headers2 p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Adjust the maximum width as needed */
+}
+
+
+/* Add this style for truncated text */
+.ClubVolunteers .truncated {
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative; /* Ensure relative positioning for the parent */
+}
+
+/* Add this style for the popup */
+.ClubVolunteers .popup {
+  position: absolute; /* Change to absolute positioning */
+  top: 550px; /* Adjust as needed to position above the hovered element */
+  left: 50%;
+  transform: translateX(-50px);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.ClubVolunteers .Nobody {
+  font-size: 40px;
+  font-weight: 300px;
+  margin-top: 30px;
+  margin-left: 340px;
+  margin-bottom: 100px;
+}
 
 
 .Calendar {
@@ -1379,4 +1456,256 @@ header a {
 
 .about-container .Contacts .contact-icons {
   margin-left: 40px;
+}
+
+/* CSS code */
+.action-buttons {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 11px;
+}
+
+.ClubVolunteers .promote-button {
+  background: linear-gradient(to right, #00FF00, #00cc00);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.ClubVolunteers .fire-button {
+  background: linear-gradient(to right, #FF0000, #cc0000);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ClubVolunteers .accept-button {
+  background: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.ClubVolunteers .decline-button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ClubAddEvent, .clubAddVolunteer {
+  display: inline-block;
+  padding: 15px 150px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 250px;
+}
+
+.ClubAddEvent:hover, .clubAddVolunteer:hover {
+  transform: scale(1.05); /* Add slight scale effect on hover */
+  background-color: orange; /* Change color as needed */
+  color: white;
+}
+
+.ClubAddVolunteer, .ClubAddNewEvent {
+  margin-left: 150px;
+}
+
+.ClubAddVolunteer .createVolunteerFromClub,
+.ClubAddNewEvent .createEvent {
+  margin-top: 50px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.ClubAddVolunteer .createVolunteer,
+.ClubAddNewEvent .createEvent {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ClubAddVolunteer .createVolunteer h3,
+.ClubAddNewEvent .createEvent h3 {
+  margin-bottom: 20px;
+}
+
+.ClubAddVolunteer .createVolunteer label,
+.ClubAddNewEvent .createEvent label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.ClubAddVolunteer .createVolunteer input[type="text"],
+.ClubAddVolunteer .createVolunteer input[type="date"],
+.ClubAddNewEvent .createEvent input[type="text"],
+.ClubAddNewEvent .createEvent input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.ClubAddVolunteer .createVolunteer button[type="submit"]{
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  font-size: 20px;
+}
+
+.ClubAddNewEvent .createEvent button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.ClubAddVolunteer .createVolunteer button[type="submit"]:hover,
+.ClubAddNewEvent .createEvent button[type="submit"]:hover {
+  transform: scale(1.05); /* Add slight scale effect on hover */
+  background-color: orange; /* Change color as needed */
+  color: white;
+}
+
+.ClubAddVolunteer .error,
+.ClubAddNewEvent .error {
+  color: red;
+  margin-top: 10px;
+}
+
+.Club-Volunteer-success-message,
+.Club-Event-success-message {
+  color: lightgreen;
+  margin-top: 10px;
+}
+
+/* CSS for Add FAQ and Remove FAQ buttons */
+.createClubEvent button {
+  background-color: orange;
+  color: white;
+  border: 1px solid black;
+  padding: 8px 12px;
+  margin-right: 10px; /* Adjust spacing as needed */
+  margin-bottom: 30px; /* Adjust spacing as needed */
+  cursor: pointer;
+}
+
+.ClubAddEvent .FAQ-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.ClubEditEvent {
+  margin-left: 150px;
+}
+
+.ClubEditEvent input[type="text"] {
+  width: 100%; /* Take full width */
+  padding: 8px; /* Add padding */
+  font-size: 16px; /* Default font size */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 4px; /* Add border radius */
+  box-sizing: border-box; /* Include padding and border in width */
+  margin-bottom: 30px; /* Add margin bottom */
+}
+
+/* Increase font size for longer text */
+.ClubEditEvent [type="text"] {
+  font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300))); /* Adjust font size dynamically */
+}
+
+.ClubEditEvent .edit-form-wrapper {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form-wrapper label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Text inputs and textareas */
+.edit-form-wrapper input[type="text"],
+.edit-form-wrapper textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Date input */
+.edit-form-wrapper input[type="date"] {
+  width: calc(100% - 2px); /* Adjust for border */
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Submit button */
+.edit-form-wrapper button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.edit-form-wrapper button[type="submit"]:hover {
+  transform: scale(1.05); /* Add slight scale effect on hover */
+  background-color: orange; /* Change color as needed */
+  color: white;
 }

@@ -1,27 +1,24 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
+import formatDate from '../utils/FormatDate';
 
 export const ClubInfo = ({ clubData }) => {
     console.log(`ClubInfo te ashche:`,clubData);
 
-    
-
-
-
-
-
 
     const members = [
-        { 'name': "Shamsur Shafi", "status": "Panelist", 'studentId': '001', 'email': "m.s.shafi@g.bracu.ac.bd", 'memberStatus': 'None', 'department': "CSE" },
-        { 'name': "Eshtiak Shihab", "status": "Panelist", 'studentId': '002', 'email': "shihabi@g.bracu.ac.bd", 'memberStatus': 'None', 'department': "EEE"  },
-        { 'name': "Karim Benz", "status": "Panelist", 'studentId': '003', 'email': "karim.israr@g.bracu.ac.bd", 'memberStatus': 'None', 'department': "EEE"  },
-        { 'name': "Maruf", "status": "Panelist", 'studentId': '004', 'email': "maruf@g.bracu.ac.bd", 'memberStatus': 'None' , 'department': "ANT" },
-        { 'name': "Anurag Sikder", "status": "Member", 'studentId': '005', 'email': "anurag@g.bracu.ac.bd", 'memberStatus': 'Department Lead', 'department': "ECO"  },
-        { 'name': "Nuzhat Rahman", "status": "Member", 'studentId': '006', 'email': "catto@g.bracu.ac.bd", 'memberStatus': 'Volunteer' , 'department': "ANT" },
-        { 'name': "Nuhash Neeha", "status": "Member", 'studentId': '007', 'email': "kobir.bhai@g.bracu.ac.bd", 'memberStatus': 'Volunteer' , 'department': "CS" },
-        { 'name': "Raki", "status": "Member", 'studentId': '008', 'email': "original.shafee@g.bracu.ac.bd", 'memberStatus': 'Volunteer' , 'department': "MNS" },
-        { 'name': "Imtela Islam", "status": "Member", 'studentId': '008', 'email': "married.hu@g.bracu.ac.bd", 'memberStatus': 'Department Lead', 'department': "MNS"  },
+        { 'name': "Shamsur Shafi", "status": "Panelist", 'studentId': '001', 'email': "m.s.shafi@g.bracu.ac.bd", 'department': "CSE", 'joinDate': '2020-04-15T00:00:00.000Z' },
+        { 'name': "Eshtiak Shihab", "status": "Panelist", 'studentId': '002', 'email': "shihabi@g.bracu.ac.bd", 'department': "EEE", 'joinDate': '2021-06-15T00:00:00.000Z' },
+        { 'name': "Karim Benz", "status": "Panelist", 'studentId': '003', 'email': "karim.israr@g.bracu.ac.bd", 'department': "EEE" , 'joinDate': '2019-08-19T00:00:00.000Z' },
+        { 'name': "Maruf", "status": "Panelist", 'studentId': '004', 'email': "maruf@g.bracu.ac.bd", 'department': "ANT" , 'joinDate': '2020-12-02T00:00:00.000Z'},
+        { 'name': "Anurag Sikder", "status": "Member", 'studentId': '005', 'email': "anurag@g.bracu.ac.bd", 'department': "ECO"  , 'joinDate': '2023-04-15T00:00:00.000Z'},
+        { 'name': "Haseen", "status": "None", 'studentId': '010', 'email': "haseen@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2023-03-13T00:00:00.000Z'},
+        { 'name': "Nuzhat Rahman", "status": "Member", 'studentId': '006', 'email': "catto@g.bracu.ac.bd", 'department': "ANT" , 'joinDate': '2023-01-10T00:00:00.000Z'},
+        { 'name': "Nuhash Neeha", "status": "Member", 'studentId': '007', 'email': "kobir.bhai@g.bracu.ac.bd", 'department': "CS" , 'joinDate': '2024-01-01T00:00:00.000Z'},
+        { 'name': "Raki", "status": "Member", 'studentId': '008', 'email': "original.shafee.shamsur.shafi.nureaziz@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2024-03-13T00:00:00.000Z'},
+        { 'name': "Imtela Islam", "status": "Member", 'studentId': '009', 'email': "married.hu@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2019-09-22T00:00:00.000Z' },
+        { 'name': "Maliha Sejutee", "status": "None", 'studentId': '012', 'email': "sejutee@g.bracu.ac.bd", 'department': "MIC" , 'joinDate': '2024-03-13T00:00:00.000Z'},
     ];
 
     // Filter only panelist members

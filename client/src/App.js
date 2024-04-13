@@ -25,6 +25,9 @@ import ClubVolunteers from './pages/ClubVolunteers';
 import UserCalendar from './pages/UserCalendar';
 import About from './pages/About';
 import BottomBar from './components/BottomBar';
+import ClubAddVolunteer from './pages/ClubAddVolunteer';
+import ClubAddEvent from './pages/ClubAddEvent';
+import ClubEditEvent from './pages/ClubEditEvent';
 
 
 
@@ -36,29 +39,28 @@ function App() {
                 <Navbar />
                 <div className="pages">
                 <Routes>
-                        <Route
-                            path="/showVolunteers"
-                            element={<ClubVolunteers />}
+                        <Route      
+                            path="/club/addVolunteer"
+                            element={<ClubAddVolunteer />}
                         />
                         <Route
-                            path="/showclubevents"
+                            path="/club/showVolunteers"
+                            element={<ClubVolunteers />}
+                        />
+                        <Route      
+                            path="/club/showclubevents/club/addEvent"
+                            element={<ClubAddEvent />}
+                        />
+                        <Route      
+                            path="/club/edit/event/:_id"
+                            element={<ClubEditEvent />}
+                        />
+                        <Route
+                            path="/club/showclubevents"
                             element={<ShowClubEvents />}
                         />
                         <Route
-                            path="/join-club"
-                            element={<JoinClub />}
-                        />
-                        
-                        <Route
-                            path="/clubs/:_id"
-                            element={<EachClub />}
-                        />
-                        <Route
-                            path="/clubs"
-                            element={<AllClubs />}
-                        />
-                        <Route
-                            path="/clubdashboard"               //pore login/clubdashboard banabo
+                            path="/club/clubdashboard"               //pore login/clubdashboard banabo
                             element={< ClubDashboard/>}
                         />
                         <Route
@@ -84,6 +86,18 @@ function App() {
                         <Route
                             path="/signupadmin"
                             element={<AdminSignup/>}
+                        />
+                        <Route
+                            path="/join-club"
+                            element={<JoinClub />}
+                        />
+                        <Route
+                            path="/allclubs/:_id"
+                            element={<EachClub />}
+                        />
+                        <Route
+                            path="/allclubs"
+                            element={<AllClubs />}
                         />
                         <Route 
                             path="/events" 
