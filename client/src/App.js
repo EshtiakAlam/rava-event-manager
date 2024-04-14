@@ -28,6 +28,9 @@ import BottomBar from './components/BottomBar';
 import ClubAddVolunteer from './pages/ClubAddVolunteer';
 import ClubAddEvent from './pages/ClubAddEvent';
 import ClubEditEvent from './pages/ClubEditEvent';
+import UpdateClubData from './pages/UpdateClubData';
+import ClubLogistics from './pages/ClubLogistics';
+import ClubAddLogistics from './pages/ClubAddLogistics';
 
 
 
@@ -39,16 +42,24 @@ function App() {
                 <Navbar />
                 <div className="pages">
                 <Routes>
+                        <Route            
+                            path="/club/addLogistics/:_id"
+                            element={<ClubAddLogistics />}
+                        />
                         <Route      
-                            path="/club/addVolunteer"
+                            path="/club/addVolunteer/:_id"
                             element={<ClubAddVolunteer />}
                         />
                         <Route
-                            path="/club/showVolunteers"
+                            path="/club/showVolunteers/:_id"
                             element={<ClubVolunteers />}
                         />
                         <Route      
-                            path="/club/showclubevents/club/addEvent"
+                            path="/club/showLogistics/:_id"
+                            element={<ClubLogistics />}
+                        />
+                        <Route      
+                            path="/club/showclubevents/addEvent/:_id"
                             element={<ClubAddEvent />}
                         />
                         <Route      
@@ -56,12 +67,16 @@ function App() {
                             element={<ClubEditEvent />}
                         />
                         <Route
-                            path="/club/showclubevents"
+                            path="/club/showclubevents/:_id"
                             element={<ShowClubEvents />}
                         />
                         <Route
+                            path="/club/edit/:_id"
+                            element={<UpdateClubData />}
+                        />
+                        <Route
                             path="/club/clubdashboard"               //pore login/clubdashboard banabo
-                            element={< ClubDashboard/>}
+                            element={<ClubDashboard/>}
                         />
                         <Route
                             path="/admin/events"

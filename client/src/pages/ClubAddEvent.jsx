@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ClubDashBoardHeader from '../components/ClubDashboardHeader';
 import ClubNavbarVertical from '../components/ClubNavbarVertical';
+import { useParams } from 'react-router-dom';
 
 const ClubAddEvent = () => {
+    const { _id } = useParams();
+
     const [eventName, setEventName] = useState("");
     const [tagline, setTagline] = useState("");
     const [date, setDate] = useState("");
@@ -87,7 +90,7 @@ const ClubAddEvent = () => {
 
     return (
         <div className='ClubAddNewEvent'>
-            <ClubNavbarVertical showHomepageButton={true} />
+            <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
             <ClubDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>A</span>dd Event</h1>

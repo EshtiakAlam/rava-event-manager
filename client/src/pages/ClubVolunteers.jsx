@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import formatDate from "../utils/FormatDate"; 
 import ClubDashBoardHeader from '../components/ClubDashboardHeader';
 import ClubNavbarVertical from '../components/ClubNavbarVertical';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export const ClubVolunteers = () => {
     const club_info = {
@@ -37,6 +37,9 @@ export const ClubVolunteers = () => {
         "title": "BRAC University Computer Club"
     };
 
+    const { _id } = useParams();
+
+    //pore dynamically fetch korbo
     const [panelistMembers, setPanelistMembers] = useState(club_info.members.filter(member => member.status === 'Panelist'));
     const [members, setMembers] = useState(club_info.members.filter(member => member.status === 'Member'));
     const [pendingMembers, setPendingMembers] = useState(club_info.members.filter(member => member.status === 'None'));
@@ -111,9 +114,11 @@ export const ClubVolunteers = () => {
         console.log("Declined:", declinedMember);
     };
 
+    console.log(`Ekhane club er id is:`, _id);
+
     return (
         <div className="ClubVolunteers">
-            <ClubNavbarVertical showHomepageButton={true} />
+            <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
             <ClubDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>V</span>olunteers</h1>
@@ -241,7 +246,7 @@ export const ClubVolunteers = () => {
             )}
 
             <div>
-                <Link to="/club/addVolunteer" className='clubAddVolunteer'>
+                <Link to={`/club/addVolunteer/${_id}`} className='clubAddVolunteer'>
                     <b>ADD NEW VOLUNTEER</b>
                 </Link>
             </div>

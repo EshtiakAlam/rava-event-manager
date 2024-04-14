@@ -50,7 +50,7 @@ export const AllClubs = () => {
                             <div className="ContentPart">
                                 <h3><strong>{club.title}</strong></h3>
                                 <div className="ContentPartSplit">
-                                    <p><b><span className="special-letter">Tagline:</span> { club.tagline }</b></p>
+                                    <p><b><span className="special-letter">Tagline:</span> { club.description }</b></p>
                                     <Link to={`/allclubs/${club._id}`}></Link>
                                     
                                 </div>

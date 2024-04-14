@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ClubDashBoardHeader from "../components/ClubDashboardHeader";
 import ClubNavbarVertical from "../components/ClubNavbarVertical";
+import { useParams } from 'react-router-dom';
 
 const ClubAddVolunteer = () => {
+    const { _id } = useParams();
+
     const [studentID, setStudentID] = useState("");
     const [name, setName] = useState("");
     const [department, setDepartment] = useState("");
@@ -55,7 +58,7 @@ const ClubAddVolunteer = () => {
 
     return (
         <div className='ClubAddVolunteer'>
-            <ClubNavbarVertical showHomepageButton={true} />
+            <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
             <ClubDashBoardHeader />
             
             <h1 className='extra'><span className='special-letter'>A</span>dd Volunteer</h1>

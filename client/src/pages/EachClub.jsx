@@ -6,8 +6,7 @@ import ClubCard from '../components/ClubCard';
 const EachClub = () => {
     const { _id } = useParams(); // Extract club ID from URL parameters
     const [clubInfo, setClubInfo] = useState(null);
-    const [events, setEvents] = useState([]);                   // id collection
-    const [events_main, setEventsMain] = useState([]);          // main event er links thakbe
+    const [eventsData, setEventsData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
@@ -45,28 +44,21 @@ const EachClub = () => {
             }
         };
 
-        const fetchClubEvents = async () => {
+        const fetchEventData = async () => {
             try {
-                const response = await fetch(`/api/clubs/${_id}/events`);
+                const response = await fetch('/api/events');
                 if (!response.ok) {
-                    throw new Error('Failed to fetch club events');
+                    throw new Error('Failed to fetch events data');
                 }
                 const eventData = await response.json();
-
-                if (!eventData || eventData.length === 0) {
-                    console.error('No events found for the club');
-                    setEvents([]);
-                } else {
-                    setEvents(eventData);
-                }
+                setEventsData(eventData);
             } catch (error) {
-                console.error('Error fetching club events:', error.message);
-                setEvents([]);
+                console.error('Error fetching events data:', error.message);
             }
         };
 
         fetchClubDetails();
-        fetchClubEvents();
+        fetchEventData();
     }, [_id]);
 
     if (loading) {
@@ -82,9 +74,13 @@ const EachClub = () => {
     }
 
     console.log(`Pore 1`, clubInfo);
-    console.log(`Pore 2`, events);
+    console.log(`Pore 2`, eventsData);
 
     console.log(`Now we fetch actual events:`);
+ 
+    const events = clubInfo ? eventsData.filter(event => event.organizer === clubInfo.title) : [];
+
+    console.log(`AFter filter:`, events);
 
 
 

@@ -44,10 +44,12 @@ const ClubDashboard = () => {
     }, []);
 
     console.log(`Club data fetched:`, clubData);
+    console.log(`Dashboard theke sending`);
         
     return ( 
         <div className="ClubDashboard">
-            <ClubNavbarVertical showHomepageButton={false} />
+            {clubData && <ClubNavbarVertical clubId={clubId} showHomepageButton={false} />}
+
             <div className='content'>
                 <ClubDashboardHeader />
                 {clubData && <ClubInfo clubData={clubData} />}
@@ -57,3 +59,6 @@ const ClubDashboard = () => {
 }
 
 export default ClubDashboard;
+
+
+//shafi_club_work_pt1

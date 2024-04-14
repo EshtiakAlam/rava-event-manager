@@ -9,6 +9,36 @@ const ClubEditEvent = () => {
     const [editedEventData, setEditedEventData] = useState(null);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const [clubData, setClubData] = useState(null);
+    const [clubId, setClubId] = useState(null);
+
+    useEffect(() => {
+        const fetchClubData = async () => {
+            try {
+                const response = await fetch("/api/clubs/");
+                if (!response.ok) {
+                    throw new Error('Failed to fetch club data');
+                }
+                const json = await response.json();
+                setClubData(json);
+            } catch (error) {
+                console.error('Error fetching club data:', error.message);
+            }
+        };
+
+        fetchClubData();
+    }, []);
+
+    useEffect(() => {
+        if (clubData && eventData) {
+            const filterClub = clubData.filter(club => club.title === eventData.organizer);
+            if (filterClub.length > 0) {
+                setClubId(filterClub[0]._id);
+            }
+        }
+    }, [clubData, eventData]);
+
+    console.log(`All events info:`, clubData);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -81,9 +111,31 @@ const ClubEditEvent = () => {
         setEditedEventData({ ...editedEventData, highlights: newHighlights });
     };
 
+    const handleAddHighlight = () => {
+        const newHighlights = [...editedEventData.highlights, ''];
+        setEditedEventData({ ...editedEventData, highlights: newHighlights });
+    };
+
+    const handleRemoveHighlight = (index) => {
+        const newHighlights = [...editedEventData.highlights];
+        newHighlights.splice(index, 1);
+        setEditedEventData({ ...editedEventData, highlights: newHighlights });
+    };
+
     const handleFAQChange = (e, index, field) => {
         const newFAQ = [...editedEventData.FAQ];
         newFAQ[index][field] = e.target.value;
+        setEditedEventData({ ...editedEventData, FAQ: newFAQ });
+    };
+
+    const handleAddFAQ = () => {
+        const newFAQ = [...editedEventData.FAQ, { question: '', answer: '' }];
+        setEditedEventData({ ...editedEventData, FAQ: newFAQ });
+    };
+
+    const handleRemoveFAQ = (index) => {
+        const newFAQ = [...editedEventData.FAQ];
+        newFAQ.splice(index, 1);
         setEditedEventData({ ...editedEventData, FAQ: newFAQ });
     };
 
@@ -91,7 +143,7 @@ const ClubEditEvent = () => {
 
     return (
         <div className="ClubEditEvent">
-            <ClubNavbarVertical showHomepageButton={true} />
+            <ClubNavbarVertical clubId={clubId} showHomepageButton={true} />
             <ClubDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>E</span>dit Event</h1>
@@ -188,8 +240,13 @@ const ClubEditEvent = () => {
                                         value={highlight}
                                         onChange={(e) => handleHighlightChange(e, index)}
                                     />
+                                    <div className='Keys'>
+                                        <button type="button" onClick={() => handleRemoveHighlight(index)}>Remove</button>
+                                        <button type="button" onClick={handleAddHighlight}>Add Highlight</button>
+                                    </div>
                                 </div>
                             ))}
+                            
                         </div>
                         <div>
                             <label>FAQ:</label>
@@ -207,8 +264,13 @@ const ClubEditEvent = () => {
                                         value={faq.answer}
                                         onChange={(e) => handleFAQChange(e, index, 'answer')}
                                     />
+                                <div className='Keys'>
+                                    <button type="button" onClick={() => handleRemoveFAQ(index)}>Remove</button>
+                                    <button type="button" onClick={handleAddFAQ}>Add FAQ</button>
+                                </div>
                                 </div>
                             ))}
+                            
                         </div>
                         {error && <p className="error-message">Error: {error}</p>}
                         {success && <p className="success-message">Event data updated successfully!</p>}

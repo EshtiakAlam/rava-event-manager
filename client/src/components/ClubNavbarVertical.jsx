@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 
-export const ClubNavbarVertical = ({ showHomepageButton }) => {
+export const ClubNavbarVertical = ({ clubId, showHomepageButton }) => {
+    console.log(`Passed to Navbar`, clubId, showHomepageButton);
+
+    console.log(`At ClubVerticalNavbar:`, clubId, showHomepageButton);
+
     return (
         <header className='ClubNavbarVertical'>
             <div className="container">
@@ -13,13 +17,13 @@ export const ClubNavbarVertical = ({ showHomepageButton }) => {
                             <h1>Homepage</h1>
                         </Link>
                     )}
-                    <Link to="/club/showclubevents">
-                        <h1>Club Events</h1>
+                    <Link to={`/club/showClubEvents/${clubId}`}>
+                        <h1>Events</h1>
                     </Link>
-                    <Link to="/club/eventrequestform">
-                        <h1>Edit Info</h1>
+                    <Link to={`/club/showLogistics/${clubId}`}>
+                        <h1>Logistics</h1>
                     </Link>
-                    <Link to="/club/showVolunteers">
+                    <Link to={`/club/showVolunteers/${clubId}`}>
                         <h1>Volunteers</h1>
                     </Link>
                 </div>

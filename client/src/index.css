@@ -750,6 +750,12 @@ header a {
   margin-bottom: 50px;
 }
 
+.ClubData .OuterLayer{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5px;
+}
+
 .ClubData h1 {
   border-bottom: 1px solid black; 
 }
@@ -998,8 +1004,17 @@ header a {
   padding: 0;
 }
 
+.ClubLogistics .extra{
+  border-bottom: solid 1px black;
+  margin-bottom: 5px; /* Set margin to zero */
+  padding: 0;
+  margin-top: 30px;
+}
 
-.ClubEditEvent .extra{
+
+.UpdateClubData .extra,
+.ClubEditEvent .extra,
+.ClubAddLogistics .extra{
   border-bottom: solid 1px black;
   margin-bottom: 50px; /* Set margin to zero */
   padding: 0;
@@ -1584,7 +1599,8 @@ header a {
   font-size: 20px;
 }
 
-.ClubAddNewEvent .createEvent button[type="submit"] {
+.ClubAddNewEvent .createEvent button[type="submit"],
+.ClubAddLogistics .createLogistics button[type="submit"] {
   width: 100%;
   padding: 10px;
   background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
@@ -1598,7 +1614,8 @@ header a {
 }
 
 .ClubAddVolunteer .createVolunteer button[type="submit"]:hover,
-.ClubAddNewEvent .createEvent button[type="submit"]:hover {
+.ClubAddNewEvent .createEvent button[type="submit"]:hover,
+.ClubAddLogistics .createLogistics button[type="submit"]:hover {
   transform: scale(1.05); /* Add slight scale effect on hover */
   background-color: orange; /* Change color as needed */
   color: white;
@@ -1652,7 +1669,8 @@ header a {
   font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300))); /* Adjust font size dynamically */
 }
 
-.ClubEditEvent .edit-form-wrapper {
+.ClubEditEvent .edit-form-wrapper,
+.UpdateClubData .edit-club-wrapper {
   width: 50%;
   margin: 0 auto;
   padding: 20px;
@@ -1662,7 +1680,8 @@ header a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.edit-form-wrapper label {
+.edit-form-wrapper label,
+.edit-club-wrapper label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
@@ -1671,7 +1690,9 @@ header a {
 
 /* Text inputs and textareas */
 .edit-form-wrapper input[type="text"],
-.edit-form-wrapper textarea {
+.edit-form-wrapper textarea,
+.edit-club-wrapper input[type="text"],
+.edit-club-wrapper textarea {
   width: 100%;
   padding: 8px;
   margin-bottom: 30px;
@@ -1681,7 +1702,8 @@ header a {
 }
 
 /* Date input */
-.edit-form-wrapper input[type="date"] {
+.edit-form-wrapper input[type="date"],
+.edit-club-wrapper input[type="date"] {
   width: calc(100% - 2px); /* Adjust for border */
   padding: 8px;
   margin-bottom: 15px;
@@ -1691,7 +1713,8 @@ header a {
 }
 
 /* Submit button */
-.edit-form-wrapper button[type="submit"] {
+.edit-form-wrapper button[type="submit"],
+.edit-club-wrapper button[type="submit"] {
   width: 100%;
   padding: 10px;
   background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
@@ -1704,8 +1727,222 @@ header a {
   margin-top: 30px;
 }
 
-.edit-form-wrapper button[type="submit"]:hover {
+.edit-form-wrapper button[type="submit"]:hover,
+.edit-club-wrapper button[type="submit"]:hover {
   transform: scale(1.05); /* Add slight scale effect on hover */
   background-color: orange; /* Change color as needed */
   color: white;
+}
+
+
+.ClubUpdateButton,
+.AddLogisticsButton {
+  display: inline-block;
+  padding: 0px 70px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  margin-top: 80px;
+}
+
+.AddLogisticsButton {
+  padding: 18px 70px;
+}
+
+
+.ClubUpdateButton:hover,
+.AddLogisticsButton:hover {
+  transform: scale(1.05); /* Add slight scale effect on hover */
+  background-color: orange; /* Change color as needed */
+  color: white;
+}
+
+.AddLogisticsButton {
+  margin-left: 25%;
+}
+
+.UpdateClubData {
+  margin-left: 150px;
+}
+
+.ClubInfoSideBar {
+  margin-right: 30px;
+}
+
+.ClubInfoSideBar .DashboardInfo.event {
+  background-color: white; /* Blue background */
+  color: black; /* White text */
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+
+/* Remove underlines from h4 and h2 tags */
+.ClubInfoSideBar h1 {
+  text-decoration: none;
+  background-color: skyblue;
+  color: white;
+  border-bottom: none;
+  border-radius: 15px;
+  text-align: center;
+  padding: 5px;
+  font-size: 25px;
+}
+
+.ClubInfoSideBar .extra {
+  border-radius: 0px;
+  background-color: white;
+  color: orange;
+  border-bottom: solid 1px black;
+  animation: flickerClubDashboard 2s infinite alternate; /* Apply flicker animation */
+}
+
+/* Define the flicker animation */
+@keyframes flickerClubDashboard {
+  0% {
+      opacity: 1; /* Start with fully visible */
+  }
+  50% {
+      opacity: 0; /* Transition to invisible */
+  }
+  100% {
+      opacity: 1; /* Transition back to fully visible */
+  }
+}
+
+
+.ClubLogistics, .ClubAddLogistics {
+  margin-left: 150px;
+}
+
+
+.ClubLogistics .headers {
+  display: grid;
+  grid-template-columns: 450px 300px 150px 150px; /* Adjust the fixed width as needed */
+  margin: 10px;
+  margin-top: 22px;
+  margin-left: 10px;
+}
+
+.ClubLogistics .headers2 {
+  display: grid;
+  grid-template-columns: 450px 300px 150px; /* Adjust the fixed width as needed */
+  margin-left: 70px;
+  margin-top: 22px;
+}
+
+.ClubLogistics .headers > div, 
+.ClubLogistics .headers2 > div {
+  padding: 10px;
+  text-align: center;
+
+}
+
+.ClubLogistics .headers > div:last-child,
+.ClubLogistics .headers2 > div:last-child {
+  border-right: none;
+}
+
+.ClubLogistics .headers h1, 
+.ClubLogistics .headers2 h1  {
+  font-size: 18px;
+  border-radius: 30px;
+  background-color: skyblue;
+  color:white;
+  padding: 5px;
+}
+
+/* Truncate the content and show full content on hover */
+.ClubLogistics .headers p,
+.ClubLogistics .headers2 p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Adjust the maximum width as needed */
+}
+
+.ClubAddLogistics form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto; /* Center the form horizontally */
+    border-radius: 10px; /* Add rounded corners */
+}
+
+.ClubAddLogistics label {
+  margin-bottom: 10px;
+}
+
+.ClubAddLogistics input,
+.ClubAddLogistics select,
+.ClubAddLogistics textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+}
+
+.ClubAddLogistics button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.ClubAddLogistics button:hover {
+  background-color: #0056b3;
+}
+
+.ClubAddLogistics .error {
+  color: red;
+}
+
+.ClubAddLogistics .success-message {
+  color: green;
+}
+
+.ClubAddLogistics .Option {
+  margin-top: 30px;
+}
+
+.ClubLogistics .approved {
+  color: green;
+}
+
+.ClubLogistics .rejected {
+  color: red;
+}
+
+.UpdateClubData .edit-club-wrapper .Keys,
+.ClubEditEvent .edit-form-wrapper .Keys {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.UpdateClubData .edit-club-wrapper .Keys button,
+.ClubEditEvent .edit-form-wrapper .Keys button {
+  background-color: darkorange;
+  color: white;
+  font-size: 13px;
+  padding: 10px;
 }

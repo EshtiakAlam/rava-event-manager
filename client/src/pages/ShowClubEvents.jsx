@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import formatDate from "../utils/FormatDate"; 
 import ClubDashBoardHeader from '../components/ClubDashboardHeader';
 import ClubNavbarVertical from '../components/ClubNavbarVertical';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export const ShowClubEvents = () => {
+
+    const { _id} = useParams();
 
     const [clubData, setClubData] = useState(null);
     const [eventsData, setEventsData] = useState([]);
 
-    const clubId = '65fe1c21a6ccec4a9928b348';             
+    // const clubId = '65fe1c21a6ccec4a9928b348';             
     // MANUALLY SET KORA; PORE PROP HISHABE PASS KORABO FROM LOGIN
+
+    const clubId = _id;
 
     useEffect(() => {
         const fetchClubData = async () => {
@@ -85,10 +89,11 @@ export const ShowClubEvents = () => {
     }, []);
 
     console.log(`Ei club er events:`, filteredEvents);
+    console.log(`Ekhon ShowClubEvents e asi`);
 
     return (
         <div className="ShowClubEvents">
-            <ClubNavbarVertical showHomepageButton={true} />
+            <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
             <ClubDashBoardHeader />
             {clubData && eventsData && (
                 <>
@@ -119,7 +124,8 @@ export const ShowClubEvents = () => {
                             </div>
                         </div>
                     ))}
-    
+                    
+
                     <h2 className='extra2'>Events Created</h2>
                     <div className="Info">
                         <div className="InfoContent">
@@ -146,7 +152,7 @@ export const ShowClubEvents = () => {
                     </div>
     
                     <div className='clubAddEvent'>
-                        <Link to="club/addEvent" className='ClubAddEvent'>
+                        <Link to={`/club/showclubevents/addEvent/${_id}`} className='ClubAddEvent'>
                             <b>CREATE NEW EVENT</b>
                         </Link>
                     </div>

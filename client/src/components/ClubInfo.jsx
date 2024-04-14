@@ -2,6 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 import formatDate from '../utils/FormatDate';
+import { Link } from 'react-router-dom';
+import ClubInfoSideBar from './ClubInfoSideBar';
+
 
 export const ClubInfo = ({ clubData }) => {
     console.log(`ClubInfo te ashche:`,clubData);
@@ -28,29 +31,45 @@ export const ClubInfo = ({ clubData }) => {
     // Hardcoded example data for advisorMembers
     advisorMembers = [{'name': "AsifSir", 'email':'asif@bracu.ac.bd'}, {'name': "LabibaMiss", 'email':'labiba@bracu.ac.bd'}]
 
+
+    console.log(`Dashbaord e elam!`);
+    console.log(clubData);
+    console.log(`Still in dashboard..`);
+
+
     return (
         <div className="ClubData">
             <h1><span className='special-letter'>{clubData.title[0]}</span>{clubData.title.substring(1)} ({clubData.abbreviation})</h1>
             <h4> - {clubData.description}</h4>
-            <h3>Current panel</h3>
-            <div className='PanelInfo'>
-                {panelistMembers.map((member, index) => (
-                    <div className='EachPanelist' key={index}>
-                        <p><strong>{member.name}</strong></p>
-                        <p>{member.email}</p>
-                    </div>
-                ))}
+            
+            <div className='OuterLayer'>
+                <div className='case1'>
+                <div className='heading'>
+                    <h3>Current panel</h3>
+                </div>
+                <div className='PanelInfo'>
+                    {panelistMembers.map((member, index) => (
+                        <div className='EachPanelist' key={index}>
+                            <p><strong>{member.name}</strong></p>
+                            <p>{member.email}</p>
+                        </div>
+                    ))}
+                </div>
+                <h3>Club Advisors</h3>
+                <div className='AdvisorInfo'>
+                    {advisorMembers.map((advisor, index) => (
+                        <div className='EachAdvisor' key={index}>
+                            <p><strong> {advisor.name} </strong></p>
+                            <p>{advisor.email}</p>
+                        </div>
+                    ))}
+                </div>
+                <h2><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation}</h2>
             </div>
-            <h3>Club Advisors</h3>
-            <div className='AdvisorInfo'>
-                {advisorMembers.map((advisor, index) => (
-                    <div className='EachAdvisor' key={index}>
-                        <p><strong> {advisor.name} </strong></p>
-                        <p>{advisor.email}</p>
-                    </div>
-                ))}
+            <div className='case2'>
+                {clubData && <ClubInfoSideBar clubData={clubData} />}
             </div>
-            <h2><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation}</h2>
+            </div>
         </div>
     );
 };
