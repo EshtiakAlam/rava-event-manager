@@ -59,7 +59,7 @@ const UpdateClubData = () => {
         e.preventDefault();
         try {
             const response = await fetch(`/api/clubs/${_id}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },

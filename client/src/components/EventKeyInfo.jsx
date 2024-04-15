@@ -21,8 +21,8 @@ export const EventKeyInfo = ({ event }) => {
 
         // Update like count in the database
         try {
-            const response = await fetch(`/api/events/${event._id}/like`, {
-                method: 'PUT',
+            const response = await fetch(`/api/events/${event._id}`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },

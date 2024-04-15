@@ -44,7 +44,7 @@ const ClubEditEvent = () => {
         e.preventDefault();
         try {
             const response = await fetch(`/api/events/${_id}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
