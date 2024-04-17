@@ -4,12 +4,26 @@ import { Link } from 'react-router-dom'; // Import Link from React Router
 
 const Event = () => {
     const [events, setEvents] = useState(null);
+    const [allEvents, setAllEvents] = useState(null);
     const [thisMonthEvents, setThisMonthEvents] = useState([]);
     const [futureEvents, setFutureEvents] = useState([]);
 
     useEffect(() => {
+        const fetchAllEvents = async () => {
+            const response = await fetch("/api/events");
+            const json = await response.json();
+
+            if (response.ok) {
+                setAllEvents(json);
+            }
+        };
+
+        fetchAllEvents();
+    }, []);
+
+    useEffect(() => {
         const fetchEvents = async () => {
-            const response = await fetch("/api/events/");
+            const response = await fetch("/api/events/approved");
             const json = await response.json();
 
             if (response.ok) {
@@ -20,7 +34,8 @@ const Event = () => {
         fetchEvents();
     }, []);
 
-    console.log(events);
+    console.log(`SHOB KI KI EVENTS ASE:`, allEvents);
+    console.log(`Ekhane ki ki events approved ashtese lets see:`,events);
 
     function changeBackgroundToHomePage() {
         document.body.classList.add('body-event-main');
@@ -59,59 +74,63 @@ const Event = () => {
         }
     }, [events]);
 
+
     return (
         <div className="event-page">
             <div className='Upperpart'>
-                    <h1><strong>DON'T MISS OUT</strong></h1>
-                    <h4>Discover events around your campus</h4>
+                <h1><strong>DON'T MISS OUT</strong></h1>
+                <h4>Discover events around your campus</h4>
             </div>
-
-            <h2><span class="special-letter">T</span>HIS MONTH</h2>
+    
+            <h2><span className="special-letter">THIS MONTH</span></h2>
             <div className="Info">
-                <div className = "InfoContent">
-                {thisMonthEvents && thisMonthEvents
-                    // .filter(event => event.approved) // Filter out events where approved is true
-                    .map((event, index) => (
-                    <div className="EachInfo" key={index}>
-                        <div className="ImagePart">
-
-                        </div>
-                        <div className="ContentPart">
-                            <h3><strong>{event.title}</strong></h3>
-                            <div className="ContentPartSplit">
-                                <p><b><span className="special-letter">Date:</span> {formatDate(event.date)}</b></p>
-                                <Link to={`/events/${event._id}`}></Link>
+                <div className="InfoContent">
+                    {thisMonthEvents && thisMonthEvents.length > 0 ? (
+                        thisMonthEvents.map((event, index) => (
+                            <div className="EachInfo" key={index}>
+                                <div className="ImagePart"></div>
+                                <div className="ContentPart">
+                                    <h3><strong>{event.title}</strong></h3>
+                                    <div className="ContentPartSplit">
+                                        <p><b><span className="special-letter">Date:</span> {formatDate(event.date)}</b></p>
+                                        <Link to={`/events/${event._id}`}></Link>
+                                    </div>
+                                </div>
                             </div>
-                            </div>
+                        ))
+                    ) : (
+                        <div className="NothingToShow">
+                            No events to show
                         </div>
-                ))}
+                    )}
                 </div>
             </div>
-
-            <h2><span class="special-letter">U</span>PCOMING EVENTS</h2>
+    
+            <h2><span className="special-letter">UPCOMING EVENTS</span></h2>
             <div className="Info">
-                <div className = "InfoContent">
-                {futureEvents && futureEvents
-                    // .filter(event => event.approved) // Filter out events where approved is true
-                    .map((event, index) => (
-                        <div className="EachInfo" key={index}>
-                            <div className="ImagePart">
-
+                <div className="InfoContent">
+                    {futureEvents && futureEvents.length > 0 ? (
+                        futureEvents.map((event, index) => (
+                            <div className="EachInfo" key={index}>
+                                <div className="ImagePart"></div>
+                                <div className="ContentPart">
+                                    <h3><strong>{event.title}</strong></h3>
+                                    <div className="ContentPartSplit">
+                                        <p><b><span className="special-letter">Date:</span> {formatDate(event.date)}</b></p>
+                                        <Link to={`/events/${event._id}`}></Link>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="NothingToShow">
+                            No events to show
                         </div>
-                        <div className="ContentPart">
-                            <h3><strong>{event.title}</strong></h3>
-                            <div className="ContentPartSplit">
-                                <p><b><span className="special-letter">Date:</span> {formatDate(event.date)}</b></p>
-                                <Link to={`/events/${event._id}`}></Link>
-                        </div>
-                    </div>
-                </div>
-                ))}
+                    )}
                 </div>
             </div>
-
         </div>
-    );
+    );    
 };
 
 export default Event;

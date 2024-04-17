@@ -60,11 +60,11 @@ const JoinClub = () => {
     };
 
     return (
-        <div className="createNewEventFromClub" style = {{marginTop: '50px', marginBottom: '100px'}}>
-            <form className="createNewEvent" onSubmit={handleSubmit}>
-                <h3>Join the Club</h3>
+        <div className="createNewEventFromClub-Page" style = {{marginTop: '50px', marginBottom: '100px'}}>
+            <h3>Join the Club</h3>
+            <form className="createNewEventFromClub" onSubmit={handleSubmit}>
                 <label>Student Name</label>
-                <input
+                <input 
                     type="text"
                     value={studentName}
                     onChange={(e) => setStudentName(e.target.value)}

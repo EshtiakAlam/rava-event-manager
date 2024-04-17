@@ -3,13 +3,18 @@ import { useState, useEffect } from "react";
 import formatDate from "../utils/FormatDate";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
-const ClubCard = ({club_info, events}) => {
-    console.log(`Output in card:`, club_info);
-    console.log(`Output in card:`, events);
+const ClubCard = ({ club_info, events }) => {
+    const [filteredEvents, setFilteredEvents] = useState([]);
 
-    console.log(`Fetch er por o:`, events);
+    useEffect(() => {
+        if (events) {
+            const currentDate = new Date();
+            const filteredEvents = events.filter(event => new Date(event.date) > currentDate);
+            setFilteredEvents(filteredEvents);
+        }
+    }, [events]);
 
     return (
         <div className='eachClub'>
@@ -27,20 +32,26 @@ const ClubCard = ({club_info, events}) => {
             <h2>Events Organized by {club_info.title}</h2>
             <div className="Info">
                 <div className="InfoContent">
-                    {events && events.map((event, index) => (
-                        <div className="EachInfo" key={index}>
-                            <div className="ContentPart">
-                                <h3><strong>{event.title}</strong></h3>
-                                <div className="ContentPartSplit"> 
-                                    <p><b><span className="special-letter">Date:</span> { formatDate(event.date) }</b></p>
-                                    <Link to={`/events/${event._id}`} className="EventLinkButton">
-                                        <FontAwesomeIcon icon={ faEye } size= "2x" />
-                                        <span className="ViewEventText">View Event</span>
-                                    </Link>
+                    {filteredEvents.length === 0 ? (
+                        <div className="NothingToShow">
+                            No events to show
+                        </div>
+                    ) : (
+                        filteredEvents.map((event, index) => (
+                            <div className="EachInfo" key={index}>
+                                <div className="ContentPart">
+                                    <h3><strong>{event.title}</strong></h3>
+                                    <div className="ContentPartSplit"> 
+                                        <p><b><span className="special-letter">Date:</span> { formatDate(event.date) }</b></p>
+                                        <Link to={`/events/${event._id}`} className="EventLinkButton">
+                                            <FontAwesomeIcon icon={ faEye } size= "2x" />
+                                            <span className="ViewEventText">View Event</span>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             </div>
             <h2>Contact us at: {club_info.contactInformation}</h2>
@@ -49,34 +60,3 @@ const ClubCard = ({club_info, events}) => {
 }
 
 export default ClubCard;
-
-
-
-
-
-// Promise: 
-// A promise represents the eventual completion or failure of an asynchronous operation and its resulting value. 
-// When you call an asynchronous function, it returns a promise immediately, which may be pending, fulfilled with a value, or rejected with an error. 
-// In this case, fetchEventById returns a promise 
-// that resolves with the event data when the data is fetched successfully.
-
-// Promise.all: 
-// The map function returns an array of promises, each representing a fetch operation for an event. 
-// Promise.all takes an array of promises and returns a single promise 
-// that resolves when all of the promises in the array have resolved or rejects if any of the promises reject. 
-// This ensures that all events are fetched concurrently.
-
-// Setting Fetched Events: 
-// Once all events are fetched (eventResults), 
-// the code filters out any null values (which might occur if there's an error fetching an event)
-// Then, it sets the fetched events using the setEvents function, updating the component's state.
-
-// Dependency Array: 
-// The useEffect hook has a dependency array [club_info.events], 
-// the effect will re-run whenever the value of club_info.events changes. 
-// This ensures that the events are re-fetched whenever the club_info.events data changes.
-
-
-
-// Hooks basically make it easier to write functional components in React, 
-// giving them superpowers to manage data, handle updates, and do other useful things. 

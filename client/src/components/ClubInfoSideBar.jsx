@@ -20,39 +20,68 @@ const ClubInfoSideBar = ({clubData}) => {
         { 'name': "Maliha Sejutee", "status": "None", 'studentId': '012', 'email': "sejutee@g.bracu.ac.bd", 'department': "MIC" , 'joinDate': '2024-03-13T00:00:00.000Z'},
     ]
 
-    const [eventsData, setEventsData] = useState([]);
+    // const [eventsData, setEventsData] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchEventData = async () => {
+    //         try {
+    //             const response = await fetch('/api/events/approved');
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch events data');
+    //             }
+    //             const eventData = await response.json();
+    //             setEventsData(eventData);
+    //         } catch (error) {
+    //             console.error('Error fetching events data:', error.message);
+    //         }
+    //     };
+
+    //     fetchEventData();
+    // }, []);
+
+    // const clubTitle = clubData ? clubData.title : null;
+    // const filteredEvents = clubData ? eventsData.filter(event => event.organizer === clubTitle && event.approval === true) : [];
+
+    const [filteredEvents, setFilteredEvents] = useState([]);
 
     useEffect(() => {
-        const fetchEventData = async () => {
+        const fetchEventDataById = async (eventId) => {
             try {
-                const response = await fetch('/api/events');
+                const response = await fetch(`/api/events/${eventId}`);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch events data');
+                    throw new Error(`Failed to fetch event with ID ${eventId}`);
                 }
-                const eventData = await response.json();
-                setEventsData(eventData);
+                return await response.json();
             } catch (error) {
-                console.error('Error fetching events data:', error.message);
+                console.error(`Error fetching event with ID ${eventId}:`, error.message);
+                return null;
             }
         };
 
-        fetchEventData();
-    }, []);
+        if (clubData.events) {
+            const fetchEvents = async () => {
+                const eventPromises = clubData.events.map(eventId => fetchEventDataById(eventId));
+                const events = await Promise.all(eventPromises);
+                const filteredEvents = events.filter(event => event !== null);
+                setFilteredEvents(filteredEvents);
+            };
 
-    const clubTitle = clubData ? clubData.title : null;
-    const filteredEvents = clubData ? eventsData.filter(event => event.organizer === clubTitle && event.approval === true) : [];
-
-    console.log(`Events ki ki ashche:`, filteredEvents);
+            fetchEvents();
+        }
+    }, [clubData.events]);
 
     // Filter events happening this month
     const today = new Date();
     const thisMonthEvents = filteredEvents.filter(event => {
         const eventDate = new Date(event.date);
-        return eventDate.getMonth() === today.getMonth() && eventDate.getFullYear() === today.getFullYear();
+        return eventDate.getMonth() === today.getMonth() && eventDate.getFullYear() === today.getFullYear() && event.approval == 1;
     });
 
     // Filter members with status = None
     const pendingMembers = members.filter(member => member.status === 'None');
+
+    console.log(`Side bar e all events:`, clubData.events);
+    console.log(`final list:`, filteredEvents);
 
     return ( 
         <div className="ClubInfoSideBar">

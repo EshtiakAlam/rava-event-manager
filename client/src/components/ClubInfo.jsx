@@ -26,10 +26,10 @@ export const ClubInfo = ({ clubData }) => {
 
     // Filter only panelist members
     const panelistMembers = members.filter(member => member.status === 'Panelist');
-    let advisorMembers = clubData.advisor || []; // Add a null check
+    // const advisorMembers = clubData.advisor || []; // Add a null check
 
     // Hardcoded example data for advisorMembers
-    advisorMembers = [{'name': "AsifSir", 'email':'asif@bracu.ac.bd'}, {'name': "LabibaMiss", 'email':'labiba@bracu.ac.bd'}]
+    const advisorMembers = [{'name': "AsifSir", 'email':'asif@bracu.ac.bd'}, {'name': "LabibaMiss", 'email':'labiba@bracu.ac.bd'}]
 
 
     console.log(`Dashbaord e elam!`);
@@ -64,7 +64,7 @@ export const ClubInfo = ({ clubData }) => {
                         </div>
                     ))}
                 </div>
-                <h2><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation}</h2>
+                <h2 style={{marginBottom: '50px'}}><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation}</h2>
             </div>
             <div className='case2'>
                 {clubData && <ClubInfoSideBar clubData={clubData} />}

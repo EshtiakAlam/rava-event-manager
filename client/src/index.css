@@ -210,7 +210,7 @@ header a {
 .ClubNavbarVertical {
   background: #000000; /* Black background color */
   color: #ffffff; /* White text color */
-  width: 150px; /* Set width of Navbar */
+  width: 130px; /* Set width of Navbar */
   height: 100%; /* Ensure Navbar fills the entire height */
   position: fixed; /* Fix Navbar position */
   top: 0; /* Align Navbar to top */
@@ -684,27 +684,32 @@ header a {
 }
 
 
+.createNewEventFromClub-Page h3 {
+  margin-left: 45%;
+  color:white;
+}
 
-.createNewEventFromClub form .createNewEvent {
-  max-width: 400px; /* Adjust maximum width of the form */
+
+.createNewEventFromClub {
+  max-width: 50%; /* Adjust maximum width of the form */
   margin: 0 auto; /* Center the form horizontally */
   padding: 20px; /* Add padding to the form */
   background-color: #f4f4f4; /* Light background color */
   border-radius: 5px; /* Add rounded corners to the form */
 }
 
-.createNewEventFromClub form.createNewEvent h3 {
+.createNewEventFromClub h3 {
   margin-top: 0; /* Remove top margin for the heading */
   margin-bottom: 20px; /* Add bottom margin for the heading */
   text-align: center; /* Center the heading */
 }
 
-.createNewEventFromClub form.createNewEvent label {
+.createNewEventFromClub label {
   display: block; /* Display labels as blocks */
   margin-bottom: 5px; /* Add bottom margin for labels */
 }
 
-.createNewEventFromClub form.createNewEvent input[type="text"] {
+.createNewEventFromClub input[type="text"] {
   width: 90%; /* Make text inputs full width */
   padding: 10px; /* Add padding to text inputs */
   margin-bottom: 15px; /* Add bottom margin for text inputs */
@@ -712,7 +717,7 @@ header a {
   border-radius: 5px; /* Add rounded corners to text inputs */
 }
 
-.createNewEventFromClub form.createNewEvent button[type="submit"] {
+.createNewEventFromClub button[type="submit"] {
   width: 100%; /* Make the submit button full width */
   padding: 10px; /* Add padding to the submit button */
   background-color: #007bff; /* Blue background color */
@@ -722,11 +727,11 @@ header a {
   cursor: pointer; /* Add pointer cursor on hover */
 }
 
-.createNewEventFromClub form.createNewEvent button[type="submit"]:hover {
+.createNewEventFromClub button[type="submit"]:hover {
   background-color: #0056b3; /* Darker blue background color on hover */
 }
 
-.createNewEventFromClub form.createNewEvent .error {
+.createNewEventFromClub .error {
   color: #ff0000; /* Red color for error messages */
   margin-top: 10px; /* Add top margin for error messages */
 }
@@ -734,7 +739,7 @@ header a {
 
 .ClubDashboard {
   display: flex; /* Use flexbox */
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ClubDashboard .content {
@@ -984,7 +989,7 @@ header a {
 }
 
 .ShowClubEvents {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ShowClubEvents p1 {
@@ -1032,7 +1037,7 @@ header a {
 }
 
 .ShowClubEvents {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ShowClubEvents .event-links {
@@ -1054,7 +1059,7 @@ header a {
 
 
 .ClubVolunteers {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ClubVolunteers .headers {
@@ -1542,7 +1547,7 @@ header a {
 }
 
 .ClubAddVolunteer, .ClubAddNewEvent {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ClubAddVolunteer .createVolunteerFromClub,
@@ -1651,7 +1656,7 @@ header a {
 
 
 .ClubEditEvent {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ClubEditEvent input[type="text"] {
@@ -1685,6 +1690,10 @@ header a {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  text-align: center;
+}
+
+.edit-club-wrapper p{
   text-align: center;
 }
 
@@ -1736,7 +1745,8 @@ header a {
 
 
 .ClubUpdateButton,
-.AddLogisticsButton {
+.AddLogisticsButton,
+.admin-button {
   display: inline-block;
   padding: 0px 70px;
   background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
@@ -1757,7 +1767,8 @@ header a {
 
 
 .ClubUpdateButton:hover,
-.AddLogisticsButton:hover {
+.AddLogisticsButton:hover,
+.admin-button:hover {
   transform: scale(1.05); /* Add slight scale effect on hover */
   background-color: orange; /* Change color as needed */
   color: white;
@@ -1768,7 +1779,7 @@ header a {
 }
 
 .UpdateClubData {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 .ClubInfoSideBar {
@@ -1805,6 +1816,8 @@ header a {
   animation: flickerClubDashboard 2s infinite alternate; /* Apply flicker animation */
 }
 
+
+
 /* Define the flicker animation */
 @keyframes flickerClubDashboard {
   0% {
@@ -1820,7 +1833,7 @@ header a {
 
 
 .ClubLogistics, .ClubAddLogistics {
-  margin-left: 150px;
+  margin-left: 130px;
 }
 
 
@@ -1945,4 +1958,158 @@ header a {
   color: white;
   font-size: 13px;
   padding: 10px;
+}
+
+
+.NothingToShow {
+  font-size: 20px;
+  margin-left: 40px;
+  color:red;
+  margin-bottom: 50px;
+}
+
+.AdminDashboard {
+  margin-left: 130px;
+}
+
+.DeleteEventByClub {
+  background-color: #000000;
+  color: skyblue;
+}
+
+.extra{
+  border-bottom: solid 1px black;
+  margin-bottom: 5px; /* Set margin to zero */
+  padding: 0;
+  margin-top: 30px;
+}
+
+
+.admin-buttons1 {
+  margin-left: 20%;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.admin-buttons2 {
+  margin-left: 20%;
+}
+
+.admin-button {
+  background-color: skyblue;
+  color: white;
+  padding: 40 250px;
+  width: 70%;
+  text-align: center;
+  margin-top: 0px;
+}
+
+
+
+
+
+
+
+.AdminEvents .headers,
+.AdminEvents .info{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Three columns */
+  text-align: center; /* Align text to the left */
+  gap: 15px;
+  margin-left: 10px;
+}
+
+
+.AdminEvents .info p {
+  padding: 10px; /* Add padding */
+}
+
+.AdminEvents .headers h1 {
+  font-weight: bold; /* Make header text bold */
+}
+
+.AdminEvents {
+  margin-left: 140px;
+}
+
+.AdminEvents p1 {
+  color: green;
+}
+
+.AdminEvents p2 {
+  color: red;
+}
+
+.AdminEvents .extra{
+  border-bottom: solid 1px black;
+  margin-bottom: 10px; /* Set margin to zero */
+  padding: 0;
+}
+
+.AdminEvents .Info .InfoContent {
+  display: flex;
+  width: 100%; /* Set the width of the container */
+  flex-wrap: wrap;
+  white-space: normal; /* Allow wrapping */
+  word-wrap: break-word; /* Fallback for older browsers */
+  overflow-wrap: break-word; /* Ensure modern browsers handle wrapping */
+  margin-bottom: 50px;
+  margin-left: 20px;
+  
+}
+
+.AdminEvents .extra2 {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.AdminEvents h2 {
+  border-bottom: solid 1px black;
+  margin-top: 60px;
+  margin-bottom: 100px;
+  font-size: 30px;
+}
+
+.AdminEvents {
+  margin-left: 130px;
+}
+
+.AdminEvents .event-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.AdminEvents .event-links p {
+  color: lightblue;
+}
+
+.AdminEvents .top {
+  background-color: skyblue;
+  color:white;
+  border-radius: 12px;
+  font-size: 25px;
+  padding: 10px;
+}
+
+
+.CurrentDecisionAdminEvent{
+  display: inline-block;
+  padding: 15px 150px;
+  background: linear-gradient(to right, #ff8c00, #ff4500); /* Gradient background */
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.CurrentDecisionAdminEvent:hover{
+  transform: scale(1.05); /* Add slight scale effect on hover */
+  background-color: orange; /* Change color as needed */
+  color: white;
 }

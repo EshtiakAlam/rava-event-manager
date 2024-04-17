@@ -34,11 +34,17 @@ const ClubDashboard = () => {
         if (navbarElement) {
             navbarElement.style.display = 'none';
         }
+
+        const bottomBarElement = document.querySelector('.BottomBar');
+        if (bottomBarElement) {
+            bottomBarElement.style.display = 'none';
+        }
         
         // Show the Navbar component again when ClubDashboard unmounts
         return () => {
             if (navbarElement) {
                 navbarElement.style.display = 'block';
+                bottomBarElement.style.display = 'block';
             }
         };
     }, []);

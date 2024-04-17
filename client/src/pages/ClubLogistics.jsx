@@ -10,11 +10,14 @@ const ClubLogistics = () => {
     const [eventsData, setEventsData] = useState([]);
     const [pendingLogistics, setPendingLogistics] = useState([]);
     const [approvedLogistics, setApprovedLogistics] = useState([]);
+    const [filteredEvents, setFilteredEvents] = useState([]);
+
+    const clubId = _id;
 
     useEffect(() => {
         const fetchClubData = async () => {
             try {
-                const response = await fetch(`/api/clubs/${_id}`);
+                const response = await fetch(`/api/clubs/${clubId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch club data');
                 }
@@ -26,31 +29,54 @@ const ClubLogistics = () => {
         };
 
         fetchClubData();
-    }, [_id]);
+    }, [clubId]);
 
     useEffect(() => {
-        const fetchEventData = async () => {
-            try {
-                const response = await fetch('/api/events');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch events data');
+        // Fetch event data only if clubData exists and has been fetched
+        if (clubData && clubData.events) {
+            const fetchEventDataById = async (eventId) => {
+                try {
+                    const response = await fetch(`/api/events/${eventId}`);
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch event with ID ${eventId}`);
+                    }
+                    const eventData = await response.json();
+                    // If eventData is empty or null, return null
+                    if (!eventData || Object.keys(eventData).length === 0) {
+                        return null;
+                    }
+                    return eventData;
+                } catch (error) {
+                    console.error(`Error fetching event with ID ${eventId}:`, error.message);
+                    return null;
                 }
-                const eventData = await response.json();
-                setEventsData(eventData);
-            } catch (error) {
-                console.error('Error fetching events data:', error.message);
-            }
-        };
+            };
+    
+            const fetchEvents = async () => {
+                const eventPromises = clubData.events.map(eventId => fetchEventDataById(eventId));
+                const events = await Promise.all(eventPromises);
+                // Filter out null or empty responses
+                const filteredEvents = events.filter(event => event !== null);
+                setFilteredEvents(filteredEvents);
+            };
+    
+            fetchEvents();
+        }
+    }, [clubData]);
+    
 
-        fetchEventData();
-    }, []);
+
+    console.log(`Filtered e ase:`, filteredEvents);
+
 
     useEffect(() => {
+        // Remove the Navbar component from the DOM when AdminEventForm mounts
         const navbarElement = document.querySelector('.Navbar');
         if (navbarElement) {
             navbarElement.style.display = 'none';
         }
-
+        
+        // Show the Navbar component again when AdminEventForm unmounts
         return () => {
             if (navbarElement) {
                 navbarElement.style.display = 'block';
@@ -60,14 +86,13 @@ const ClubLogistics = () => {
 
     useEffect(() => {
         console.log(`Shuru of process e asi`);
-        console.log(`All:`, eventsData);
     
-        if (clubData && clubData.title && eventsData.length) {
+        if (clubData && clubData.title && filteredEvents.length) {
             const clubTitle = clubData.title;
             const allLogistics = [];
     
-            eventsData.forEach(event => {
-                if (event.organizer === clubTitle && event.approval === true && event.logistics) {
+            filteredEvents.forEach(event => {
+                if (event.organizer === clubTitle && event.approval === 1 && event.logistics) {
                     console.log(`Entering event:`);
                     console.log(`Data 1:`, event);
                     event.logistics.forEach(logistic => {
@@ -93,7 +118,7 @@ const ClubLogistics = () => {
             setPendingLogistics(pending);
             setApprovedLogistics(approved);
         }
-    }, [clubData, eventsData]);
+    }, [clubData, filteredEvents]);
     
     
 

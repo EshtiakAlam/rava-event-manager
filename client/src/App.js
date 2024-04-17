@@ -31,6 +31,10 @@ import ClubEditEvent from './pages/ClubEditEvent';
 import UpdateClubData from './pages/UpdateClubData';
 import ClubLogistics from './pages/ClubLogistics';
 import ClubAddLogistics from './pages/ClubAddLogistics';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminViewEvent from './pages/AdminViewEvent';
+import AdminLogistics from './pages/AdminLogistics';
+import AdminEditLogistics from './pages/AdminEditLogistics';
 
 
 
@@ -42,6 +46,22 @@ function App() {
                 <Navbar />
                 <div className="pages">
                 <Routes>
+                        <Route            
+                            path="/admin/editLogistic/:item/:_id"
+                            element={<AdminEditLogistics />}
+                        />
+                        <Route            
+                            path="/admin/logistics"
+                            element={<AdminLogistics />}
+                        />
+                        <Route            
+                            path="/admin/event/:_id"
+                            element={<AdminViewEvent />}
+                        />
+                        <Route            
+                            path="/admin"
+                            element={<AdminDashboard />}
+                        />
                         <Route            
                             path="/club/addLogistics/:_id"
                             element={<ClubAddLogistics />}
@@ -83,7 +103,7 @@ function App() {
                             element={<AdminEvent />}
                         />
                         <Route
-                            path="/admin/eventform"
+                            path="/admin/addEvent"
                             element={<AdminEventForm />}
                         />
                         <Route
