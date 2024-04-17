@@ -35,6 +35,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminViewEvent from './pages/AdminViewEvent';
 import AdminLogistics from './pages/AdminLogistics';
 import AdminEditLogistics from './pages/AdminEditLogistics';
+import AdminAddLogistics from './pages/AdminAddLogistics';
 
 
 
@@ -46,6 +47,10 @@ function App() {
                 <Navbar />
                 <div className="pages">
                 <Routes>
+                        <Route            
+                            path="/admin/addLogistics/"
+                            element={<AdminAddLogistics />}
+                        />
                         <Route            
                             path="/admin/editLogistic/:item/:_id"
                             element={<AdminEditLogistics />}

@@ -52,7 +52,7 @@ const AdminEvent = () => {
 
     return (
         <div className="AdminEvents">
-            <AdminNavbarVertical />
+            <AdminNavbarVertical showHomepageButton={true}/>
             <AdminDashBoardHeader />
 
             {events && (

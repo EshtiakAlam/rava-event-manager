@@ -13,7 +13,7 @@ export const AdminNavbarVertical = ({ clubId, showHomepageButton }) => {
                 </Link>
                 <div className="navbarMid">
                     {showHomepageButton && (
-                        <Link to="/admin/clubdashboard">
+                        <Link to="/admin/">
                             <h1>Homepage</h1>
                         </Link>
                     )}

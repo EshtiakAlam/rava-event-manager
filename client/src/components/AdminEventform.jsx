@@ -72,24 +72,31 @@ const AdminEventForm = () => {
         }, 3000);
     };
 
+    
     useEffect(() => {
-        // Remove the Navbar component from the DOM when AdminEventForm mounts
+        // Remove the Navbar component from the DOM when ClubDashboard mounts
         const navbarElement = document.querySelector('.Navbar');
         if (navbarElement) {
             navbarElement.style.display = 'none';
         }
+
+        const bottomBarElement = document.querySelector('.BottomBar');
+        if (bottomBarElement) {
+            bottomBarElement.style.display = 'none';
+        }
         
-        // Show the Navbar component again when AdminEventForm unmounts
+        // Show the Navbar component again when ClubDashboard unmounts
         return () => {
             if (navbarElement) {
                 navbarElement.style.display = 'block';
+                bottomBarElement.style.display = 'block';
             }
         };
     }, []);
 
     return (
         <div className='ClubAddNewEvent'>
-            <AdminNavbarVertical />
+            <AdminNavbarVertical showHomepageButton={true}/>
             <AdminDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>A</span>dd Event</h1>

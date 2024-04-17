@@ -91,12 +91,12 @@ const AdminViewEvent = () => {
 
     return (
         <div className="ClubEditEvent">
-            <AdminNavbarVertical />
+            <AdminNavbarVertical showHomepageButton={true} />
             <AdminDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>V</span>iew Event</h1>
 
-            <div className="edit-form-wrapper">
+            <div className="edit-form-wrapper" style={{textAlign: 'center'}}>
                 {eventData && (
                     <form>
                         <div>
@@ -155,13 +155,17 @@ const AdminViewEvent = () => {
                             // If event is approved or not approved, show current decision
                             <div>
                                 <p className='CurrentDecisionAdminEvent'>Current Decision: {eventData.approval ? 'Approved' : 'Not Approved'}</p>
-                                <button onClick={() => handleRevertDecision(eventData._id)}>Revert Decision</button>
+                                <button className='CurrentDecisionAdminEvent' onClick={() => handleRevertDecision(eventData._id)}>Revert Decision</button>
                             </div>
                         ) : (
                             // If event is pending, show buttons to approve or not approve
                             <div>
-                                <button onClick={handleApprove}>Approve</button>
-                                <button onClick={handleRevertDecision}>Not Approve</button>
+                                <div>
+                                    <button className='CurrentDecisionAdminEvent' onClick={handleApprove}>Approve</button>
+                                </div>
+                                <div>
+                                    <button className='CurrentDecisionAdminEvent' onClick={handleRevertDecision}>Not Approve</button>
+                                </div>
                             </div>
                         )}
                         {error && <p className="error-message">{error}</p>}
