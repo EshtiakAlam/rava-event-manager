@@ -1,0 +1,20 @@
+{
+  "panel": [
+    {
+      "name": "John Doe",
+      "department": "Computer Science",
+      "contact": "123-456-7890",
+      "email": "john.doe@example.com",
+      "status": "Approved",
+      "position": "President"
+    },
+    {
+      "name": "Jane Smith",
+      "department": "Electrical Engineering",
+      "contact": "987-654-3210",
+      "email": "jane.smith@example.com",
+      "status": "Approved",
+      "position": "Vice President"
+    }
+  ]
+}

@@ -36,10 +36,10 @@ const getLogisticsRequestById = async (req, res) => {
 
 // POST a new logistics request
 const createLogisticsRequest = async (req, res) => {
-    const { club, items, approvedBy } = req.body;
+    const { event, items } = req.body;
 
     try {
-        const request = await LogisticsRequest.create({ club, items, approvedBy });
+        const request = await LogisticsRequest.create({ event, items });
         res.status(201).json(request);
     } catch (error) {
         console.error('Error creating logistics request:', error);

@@ -3,11 +3,12 @@ const Schema = mongoose.Schema;
 
 // Define schema for Logistics Request
 const logisticsRequestSchema = new Schema({
-    club: {
+    event: {
         type: Schema.Types.ObjectId,
-        ref: 'Club',
+        ref: 'Event',
         required: true
     },
+
     items: [{
         name: {
             type: String,
@@ -22,14 +23,7 @@ const logisticsRequestSchema = new Schema({
         type: String,
         enum: ['Pending', 'Approved', 'Rejected'],
         default: 'Pending'
-    },
-
-    approvedBy: {
-        type: Schema.Types.ObjectId,
-        ref: 'Admin',
-        required: true
     }
-    // Other logistics request details
 });
 
 // Create model

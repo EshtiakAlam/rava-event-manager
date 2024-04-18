@@ -36,10 +36,10 @@ const getEventById = async (req, res) => {
 
 //POST a new event
 const createEvent = async (req, res) => {
-    const { title, organizer, date, location, time, description, highlights, FAQ, like, approval, link } = req.body;
+    const { title, tagline, organizer, date, location, time, description, highlights, faq, like, approval, link } = req.body;
 
     try {
-        const event = await Event.create({ title, organizer, date, location, time, description, highlights, FAQ, like: 0, approval: false, link: 'None' });
+        const event = await Event.create({ title, tagline, organizer, date, location, time, description, highlights, faq, like: 0, approval: false, link: 'None' });
         res.status(201).json(event);
     } catch (error) {
         console.error('Error creating event:', error);

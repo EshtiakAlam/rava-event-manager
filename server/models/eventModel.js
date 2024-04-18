@@ -6,6 +6,10 @@ const eventSchema = new Schema({
         type: String,
         required:true
     },
+    tagline: {
+        type: String,
+        required:true
+    },
     organizer:{
         type: String,
         required: true
@@ -29,7 +33,7 @@ const eventSchema = new Schema({
     highlights: [{
         type: String
     }],
-    FAQ: [{
+    faq: [{
         question: {
             type: String
         },

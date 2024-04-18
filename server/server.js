@@ -8,6 +8,7 @@ const userRoutes = require('./routes/user')
 const adminRoutes = require('./routes/admin')
 const clubRoutes= require('./routes/clubs')
 const clubLoginRoutes = require("./routes/clublogin")
+const clubMemberRoutes = require('./routes/clubMembers');
 // Express app
 
 const app = express()
@@ -30,7 +31,7 @@ app.use('/api/user',userRoutes)
 app.use('/api/admin',adminRoutes)
 app.use('/api/clubs',clubRoutes)
 app.use('/api/clubinfo',clubLoginRoutes)
-
+app.use('/api/club-members', clubMemberRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

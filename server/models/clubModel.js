@@ -19,9 +19,8 @@ const clubSchema = new Schema({
         email: String
     },
     panel: [{
-        type: Schema.Types.ObjectId, // Reference to User model
-        ref: 'User', // Referring to the User model
-        //required: true
+            type: Schema.Types.ObjectId,
+            ref: 'ClubMember',
     }],
     advisor: {
         type: String,
@@ -30,13 +29,8 @@ const clubSchema = new Schema({
     events: [{
         type: Schema.Types.ObjectId,
         ref: 'Event'
-    }],
+    }]
 
-    members: [{
-        type: Schema.Types.ObjectId, // Reference to User model
-        ref: 'User' // Referring to the User model
-    }],
-    
 }, { timestamps: true }); // Automatically saves when the document is created
 
 module.exports = mongoose.model('Club', clubSchema);

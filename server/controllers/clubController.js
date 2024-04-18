@@ -1,5 +1,6 @@
 const Club = require('../models/clubModel');
 const mongoose = require('mongoose');
+const ClubMember = require('../models/clubMemberModel');
 
 // GET all clubs
 const getClubs = async (req, res) => {
@@ -13,33 +14,33 @@ const getClubs = async (req, res) => {
 };
 
 // GET a single club by ID
+
 const getClubById = async (req, res) => {
+    const clubId = req.params.id;
+
     try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const club = await Club.findById(id);
+        // Fetch the club by ID and populate the panel members
+        const club = await Club.findById(clubId).populate('panel');
 
         if (!club) {
-            return res.status(404).json({ error: 'No such club' });
+            return res.status(404).json({ message: 'Club not found' });
         }
 
-        res.status(200).json(club);
+        res.json(club);
     } catch (error) {
-        console.error('Error getting club:', error);
-        res.status(500).json({ error: 'Could not get club.' });
+        console.error('Error fetching club:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
+
+
 // POST a new club
 const createClub = async (req, res) => {
-    const { title, abbreviation, description, panel, advisor, events, contactInformation, members } = req.body;
+    const { title, abbreviation, description, advisor, events, contactInformation } = req.body;
 
     try {
-        const club = await Club.create({ title, abbreviation, description, panel, advisor, events, contactInformation, members });
+        const club = await Club.create({ title, abbreviation, description, advisor, events, contactInformation });
         res.status(201).json(club);
     } catch (error) {
         console.error('Error creating club:', error);
@@ -114,51 +115,10 @@ const getClubEvents = async (req, res) => {
     }
 };
 
-// GET all members of a club by club ID
-const getClubMembers = async (req, res) => {
-    try {
-        const { id } = req.params;
 
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ error: 'No such club' });
-        }
 
-        const club = await Club.findById(id);
 
-        if (!club) {
-            return res.status(404).json({ error: 'No such club' });
-        }
 
-        const members = club.members;
-        res.status(200).json(members);
-    } catch (error) {
-        console.error('Error getting club members:', error);
-        res.status(500).json({ error: 'Could not get club members.' });
-    }
-};
-
-// GET advisor of a club by club ID
-const getClubAdvisor = async (req, res) => {
-    try {
-        const { id } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const club = await Club.findById(id);
-
-        if (!club) {
-            return res.status(404).json({ error: 'No such club' });
-        }
-
-        const advisor = club.advisor;
-        res.status(200).json(advisor);
-    } catch (error) {
-        console.error('Error getting club advisor:', error);
-        res.status(500).json({ error: 'Could not get club advisor.' });
-    }
-};
 
 module.exports = {
     getClubs,
@@ -166,7 +126,5 @@ module.exports = {
     createClub,
     deleteClub,
     updateClub,
-    getClubEvents,
-    getClubMembers,
-    getClubAdvisor
+    getClubEvents
 };

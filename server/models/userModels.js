@@ -13,12 +13,6 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    studentid:{type: String,
-        required: true,
-        unique: true
-
-    },
-
     password:{
         type: String,
         required: true
@@ -36,8 +30,8 @@ const adminSchema = new Schema({
         required: true
     }
 })
-userSchema.statics.signup = async function(email,studentid,password)  {
-    if (!email || !password || !studentid){
+userSchema.statics.signup = async function(email,password)  {
+    if (!email || !password){
         throw Error('Cannot keep any of these fields empty')
     }
     if (!validator.isEmail(email)){
@@ -50,13 +44,9 @@ userSchema.statics.signup = async function(email,studentid,password)  {
     if (exists){
         throw Error('Email already in use')
     }
-    const exist = await this.findOne({studentid})
-    if (exist){
-        throw Error('Student id already in use')
-    }
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password,salt)
-    const user = await this.create({email, studentid, password: hash})
+    const user = await this.create({email, password: hash})
 
     return user
 
