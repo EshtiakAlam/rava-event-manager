@@ -13,11 +13,9 @@ const {
 // GET all clubs
 router.get('/', getClubs);
 
-// GET a single club
-router.get('/:id', getClubById);
 
 // GET a single club
-router.get('/:abbr', getClubById);
+router.get('/:id', getClubById);
 
 // GET all events of a club
 router.get('/:id/events', getClubEvents);

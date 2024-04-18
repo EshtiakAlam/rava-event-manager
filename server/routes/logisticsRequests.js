@@ -6,11 +6,15 @@ const {
     getLogisticsRequests,
     getLogisticsRequestById,
     deleteLogisticsRequest,
-    updateLogisticsRequest
+    updateLogisticsRequest,
+    fetchLogisticsRequestsByClub
 } = require('../controllers/logisticsRequestController.js');
 
 // GET all logistics requests
 router.get('/', getLogisticsRequests);
+
+// GET Logistics requests by club id
+router.get('/:clubId', fetchLogisticsRequestsByClub);
 
 // GET a single logistics request
 router.get('/:id', getLogisticsRequestById);

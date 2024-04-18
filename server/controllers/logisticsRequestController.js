@@ -1,5 +1,7 @@
 const LogisticsRequest = require('../models/logisticsRequestModel');
 const mongoose = require('mongoose');
+const Event = require('../models/eventModel');
+const Club = require('../models/clubModel');
 
 // GET all logistics requests
 const getLogisticsRequests = async (req, res) => {
@@ -36,10 +38,10 @@ const getLogisticsRequestById = async (req, res) => {
 
 // POST a new logistics request
 const createLogisticsRequest = async (req, res) => {
-    const { event, items } = req.body;
+    const { club, event, items } = req.body;
 
     try {
-        const request = await LogisticsRequest.create({ event, items });
+        const request = await LogisticsRequest.create({ club, event, items });
         res.status(201).json(request);
     } catch (error) {
         console.error('Error creating logistics request:', error);
@@ -91,10 +93,32 @@ const updateLogisticsRequest = async (req, res) => {
     }
 };
 
+// Controller function to fetch logistics requests by club
+const fetchLogisticsRequestsByClub = async (req, res) => {
+    const { clubId } = req.params; // Assuming clubId is passed in the request params
+
+    try {
+        // Find all logistics requests for the specified club
+        const logisticsRequests = await LogisticsRequest.find({ club: clubId }).populate('event', 'title');
+
+        // If there are no logistics requests for the club
+        if (!logisticsRequests) {
+            return res.status(404).json({ message: 'No logistics requests found for this club.' });
+        }
+
+        // Respond with the logistics requests including event name
+        res.json({ logisticsRequests });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 module.exports = {
     getLogisticsRequests,
     getLogisticsRequestById,
     createLogisticsRequest,
     deleteLogisticsRequest,
-    updateLogisticsRequest
+    updateLogisticsRequest,
+    fetchLogisticsRequestsByClub
 };

@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 // Define schema for Logistics Request
 const logisticsRequestSchema = new Schema({
+    club: {
+        type: Schema.Types.ObjectId,
+        ref: 'Club',
+        required: true
+    },
     event: {
         type: Schema.Types.ObjectId,
         ref: 'Event',

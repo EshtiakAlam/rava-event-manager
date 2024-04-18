@@ -9,6 +9,7 @@ const adminRoutes = require('./routes/admin')
 const clubRoutes= require('./routes/clubs')
 const clubLoginRoutes = require("./routes/clublogin")
 const clubMemberRoutes = require('./routes/clubMembers');
+const logisticsRoutes = require("./routes/logisticsRequests")
 // Express app
 
 const app = express()
@@ -30,6 +31,7 @@ app.use('/api/events/',eventRoutes)
 app.use('/api/user',userRoutes)
 app.use('/api/admin',adminRoutes)
 app.use('/api/clubs',clubRoutes)
+app.use('/api/logistics', logisticsRoutes)
 app.use('/api/clubinfo',clubLoginRoutes)
 app.use('/api/club-members', clubMemberRoutes);
 

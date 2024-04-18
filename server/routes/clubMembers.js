@@ -10,7 +10,7 @@ router.get('/', clubMemberController.getAllClubMembers);
 // GET a single club member by ID
 router.get('/:id', clubMemberController.getClubMemberById);
 
-// GET pending club members by club ID
+// GET pending club members by club ID: localhost:4000/club-members/pending-by-club/:clubId
 router.get('/pending-by-club/:clubId', clubMemberController.getPendingClubMembersByClubId);
 
 // GET approved club members by club ID
