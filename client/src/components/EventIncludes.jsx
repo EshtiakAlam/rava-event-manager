@@ -8,7 +8,7 @@ export const EventIncludes = ({ event }) => {
             <div className="Info">
                 {event.highlights.map((info, index) => (
                     <div className = "EachInfo" key={index}>
-                        <FontAwesomeIcon icon={faStar} />{info}
+                        <FontAwesomeIcon icon={faStar} /><strong>  {info}</strong>
                     </div>
                 ))}
             </div>

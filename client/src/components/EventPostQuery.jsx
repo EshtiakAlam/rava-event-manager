@@ -55,7 +55,7 @@ export const EventPostQuery = ({ event }) => {
                         onChange={handleQueryChange}
                         required
                     />
-                    <button type="submit" className="SubmitComment">Submit</button> {/* Change button type to submit */}
+                    <button type="submit" className="SubmitComment"><strong>Submit</strong></button> {/* Change button type to submit */}
                 </form>
             </div>
             <div className='PostQueries2'>

@@ -1,4 +1,5 @@
 import { CollapseableText } from "../components/CollapseableText";
+import EventDeadline from "./EventDeadline";
 import EventPostQuery from "./EventPostQuery";
 
 export const EventAboutandFAQ = ({ event }) => {
@@ -6,8 +7,13 @@ export const EventAboutandFAQ = ({ event }) => {
     return (
         <div className="EventAboutandFAQ">
             <div className="About">
-                <h2><strong>About the event</strong></h2>
-                <p><b>{ event.description }</b></p>
+                <div className="layer1">
+                    <h2><strong>About the event</strong></h2>
+                    <p><b>{ event.description }</b></p>
+                </div>
+                <div className="layer2">
+                    <EventDeadline event = {event} />
+                </div>
             </div>
             <div className="Info">
                 <h2><strong>Frequently Asked Questions (FAQs)</strong></h2>
