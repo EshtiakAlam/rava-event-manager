@@ -6,7 +6,8 @@ const {
     getClubById,
     deleteClub,
     updateClub,
-    getClubEvents
+    getClubEvents,
+    getClubsByAbbreviation
 } = require('../controllers/clubController.js');
 
 // GET all clubs
@@ -15,9 +16,14 @@ router.get('/', getClubs);
 // GET a single club
 router.get('/:id', getClubById);
 
+// GET a single club
+router.get('/:abbr', getClubById);
+
 // GET all events of a club
 router.get('/:id/events', getClubEvents);
 
+// GET clubs by abbreviation
+router.get("/:abbreviation", getClubsByAbbreviation);
 
 // POST a new club
 router.post('/', createClub);

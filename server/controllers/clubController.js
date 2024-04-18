@@ -115,8 +115,23 @@ const getClubEvents = async (req, res) => {
     }
 };
 
+// GET clubs by abbreviation
+async function getClubsByAbbreviation(req, res) {
+    const abbreviation = req.params.abbreviation;
 
+    try {
+        const clubs = await Club.find({ abbreviation: abbreviation });
 
+        if (!clubs || clubs.length === 0) {
+            return res.status(404).json({ message: "Clubs not found" });
+        }
+
+        res.status(200).json(clubs);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+}
 
 
 
@@ -126,5 +141,6 @@ module.exports = {
     createClub,
     deleteClub,
     updateClub,
-    getClubEvents
+    getClubEvents,
+    getClubsByAbbreviation
 };
