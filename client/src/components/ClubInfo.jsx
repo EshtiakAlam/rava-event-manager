@@ -29,9 +29,8 @@ export const ClubInfo = ({ clubData }) => {
     // const advisorMembers = clubData.advisor || []; // Add a null check
 
     // Hardcoded example data for advisorMembers
-    const advisorMembers = [{'name': "AsifSir", 'email':'asif@bracu.ac.bd'}, {'name': "LabibaMiss", 'email':'labiba@bracu.ac.bd'}]
-
-
+    const advisor = clubData.advisor;
+    
     console.log(`Dashbaord e elam!`);
     console.log(clubData);
     console.log(`Still in dashboard..`);
@@ -57,12 +56,9 @@ export const ClubInfo = ({ clubData }) => {
                 </div>
                 <h3>Club Advisors</h3>
                 <div className='AdvisorInfo'>
-                    {advisorMembers.map((advisor, index) => (
-                        <div className='EachAdvisor' key={index}>
-                            <p><strong> {advisor.name} </strong></p>
-                            <p>{advisor.email}</p>
+                        <div className='EachAdvisor'>
+                            <p><strong> {advisor} </strong></p>
                         </div>
-                    ))}
                 </div>
                 <h2 style={{marginBottom: '50px'}}><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation.email}</h2>
             </div>

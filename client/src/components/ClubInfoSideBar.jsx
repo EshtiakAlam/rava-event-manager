@@ -42,46 +42,22 @@ const ClubInfoSideBar = ({clubData}) => {
     // const clubTitle = clubData ? clubData.title : null;
     // const filteredEvents = clubData ? eventsData.filter(event => event.organizer === clubTitle && event.approval === true) : [];
 
-    const [filteredEvents, setFilteredEvents] = useState([]);
-
-    useEffect(() => {
-        const fetchEventDataById = async (eventId) => {
-            try {
-                const response = await fetch(`/api/events/${eventId}`);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch event with ID ${eventId}`);
-                }
-                return await response.json();
-            } catch (error) {
-                console.error(`Error fetching event with ID ${eventId}:`, error.message);
-                return null;
-            }
-        };
-
-        if (clubData.events) {
-            const fetchEvents = async () => {
-                const eventPromises = clubData.events.map(eventId => fetchEventDataById(eventId));
-                const events = await Promise.all(eventPromises);
-                const filteredEvents = events.filter(event => event !== null);
-                setFilteredEvents(filteredEvents);
-            };
-
-            fetchEvents();
-        }
-    }, [clubData.events]);
+    console.log(`Kono fetch na kore trying`,clubData.events);
 
     // Filter events happening this month
     const today = new Date();
-    const thisMonthEvents = filteredEvents.filter(event => {
+    const thisMonthEvents = clubData.events.filter(event => {
+        console.log(`Type of event.approval:`, typeof event.approval);
+        console.log(`Value of event.approval:`, event.approval);
         const eventDate = new Date(event.date);
-        return eventDate.getMonth() === today.getMonth() && eventDate.getFullYear() === today.getFullYear() && event.approval == 1;
+        return eventDate.getMonth() === today.getMonth() && eventDate.getFullYear() === today.getFullYear() && event.approval === 1;
     });
+    
 
     // Filter members with status = None
     const pendingMembers = members.filter(member => member.status === 'None');
 
     console.log(`Side bar e all events:`, clubData.events);
-    console.log(`final list:`, filteredEvents);
 
     return ( 
         <div className="ClubInfoSideBar">

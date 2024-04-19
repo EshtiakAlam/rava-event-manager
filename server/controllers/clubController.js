@@ -20,7 +20,7 @@ const getClubById = async (req, res) => {
 
     try {
         // Fetch the club by ID and populate the panel members
-        const club = await Club.findById(clubId).populate('panel');
+        const club = await Club.findById(clubId).populate('panel').populate('events');
 
         if (!club) {
             return res.status(404).json({ message: 'Club not found' });
