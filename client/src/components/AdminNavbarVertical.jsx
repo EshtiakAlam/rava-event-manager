@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useAdminLogout } from "../hooks/useAdminLogout";
+import { useAdminAuthContext } from '../hooks/useAdminAuthContext';
 
 export const AdminNavbarVertical = ({ clubId, showHomepageButton }) => {
+    const { logout } = useAdminLogout();
+    const { admin } = useAdminAuthContext();
+    const handleClick = () => {
+        logout();
+    };
     console.log(`Passed to Navbar`, clubId, showHomepageButton);
 
     console.log(`At ClubVerticalNavbar:`, clubId, showHomepageButton);
@@ -24,17 +31,27 @@ export const AdminNavbarVertical = ({ clubId, showHomepageButton }) => {
                     <Link to={`/admin/logistics/`}>
                         <h1>Logistics</h1>
                     </Link>
-                    <Link to={`/admin/showAdminVolunteers`}>
-                        <h1>Volunteers</h1>
-                    </Link>
+                    
                 </div>
                 <div className='navbarRight'>
-                    <Link to="/club/calendar">
-                        <h1>Calendar</h1>
-                    </Link>
-                    <Link to="/about">
+                <Link to="/about">
                         <h1>About</h1>
-                    </Link>
+                </Link>
+                {!admin && (
+                        <>
+                            
+                            <Link to="/admin/login">
+                                <h1>Login</h1>
+                            </Link>
+                        </>
+                    )}
+                    {admin && (
+                        <div className="user-info">
+                            <span>{admin.email}</span>
+                            <button onClick={handleClick}>Log out </button>
+                        </div>
+                    )}
+                    
                 </div>
             </div>
         </header>

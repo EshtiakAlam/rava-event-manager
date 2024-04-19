@@ -88,7 +88,7 @@ function App() {
                         <Route path="/club/edit/event/:_id" element={<ClubEditEvent />} />
                         <Route path="/club/showclubevents/:_id" element={<ShowClubEvents />} />
                         <Route path="/club/edit/:_id" element={<UpdateClubData />} />
-                        <Route path="/club/clubdashboard" element={<ClubDashboard/>} />
+                        <Route path="/club" element={<ClubDashboard/>} />
 
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />

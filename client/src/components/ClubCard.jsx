@@ -54,7 +54,7 @@ const ClubCard = ({ club_info, events }) => {
                     )}
                 </div>
             </div>
-            <h2>Contact us at: {club_info.contactInformation}</h2>
+            <h2>Contact us at: {club_info.contactInformation.email}</h2>
         </div>
     );
 }

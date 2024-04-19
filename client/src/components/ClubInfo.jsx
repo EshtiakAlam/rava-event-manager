@@ -64,7 +64,7 @@ export const ClubInfo = ({ clubData }) => {
                         </div>
                     ))}
                 </div>
-                <h2 style={{marginBottom: '50px'}}><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation}</h2>
+                <h2 style={{marginBottom: '50px'}}><FontAwesomeIcon icon={faMailBulk} style={{ fontSize: '2em' }} /> Club email: {clubData.contactInformation.email}</h2>
             </div>
             <div className='case2'>
                 {clubData && <ClubInfoSideBar clubData={clubData} />}

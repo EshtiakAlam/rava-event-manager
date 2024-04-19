@@ -1,26 +1,27 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema; // Function to create schema
+const Schema = mongoose.Schema;
 
 const clubSchema = new Schema({
     title: {
         type: String,
         required: true
     },
-    abbreviation:{
+    abbreviation: {
         type: String,
         required: true,
         //unique: true
     },
-    description:{
+    description: {
         type: String,
         required: true
     },
+    password: String, // Make the password field optional
     contactInformation: {
         email: String
     },
     panel: [{
-            type: Schema.Types.ObjectId,
-            ref: 'ClubMember',
+        type: Schema.Types.ObjectId,
+        ref: 'ClubMember',
     }],
     advisor: {
         type: String,
@@ -30,7 +31,6 @@ const clubSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Event'
     }]
-
-}, { timestamps: true }); // Automatically saves when the document is created
+}, { timestamps: true });
 
 module.exports = mongoose.model('Club', clubSchema);

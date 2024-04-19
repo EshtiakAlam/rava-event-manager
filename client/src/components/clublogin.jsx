@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ClubLogin = () => {
+  const navigate = useNavigate(); // Initialize navigate function from useNavigate
   const [formData, setFormData] = useState({
     abbreviation: '',
     password: ''
@@ -29,7 +31,8 @@ const ClubLogin = () => {
         // Save clubID to localStorage
         localStorage.setItem('clubID', data.clubId);
     
-        // Redirect to club dashboard or display success message
+        // Redirect to club dashboard
+        navigate('/club');
       } else {
         const errorMessage = await response.text();
         console.error('Login failed:', errorMessage);

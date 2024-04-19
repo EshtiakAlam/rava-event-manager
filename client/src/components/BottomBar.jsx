@@ -12,10 +12,10 @@ export const BottomBar = () => {
                     <Link to="/about">
                         <h1>About</h1>
                     </Link>
-                    <Link to="/to_add">
+                    <Link to="/club/login">
                         <h1>Club Login</h1>
                     </Link>
-                    <Link to="/to_be_added">
+                    <Link to="/admin/login">
                         <h1>Admin Login</h1>
                     </Link>
                 </div>

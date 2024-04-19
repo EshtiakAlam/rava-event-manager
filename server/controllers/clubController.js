@@ -36,17 +36,31 @@ const getClubById = async (req, res) => {
 
 
 // POST a new club
+// POST a new club
 const createClub = async (req, res) => {
-    const { title, abbreviation, description, advisor, events, contactInformation } = req.body;
+    const { title, abbreviation, description, password, advisor, events, contactInformation } = req.body;
 
     try {
-        const club = await Club.create({ title, abbreviation, description, advisor, events, contactInformation });
+        // Check if all required fields are provided
+        if (!title || !abbreviation || !description || !password || !advisor) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        // Create the club
+        const club = await Club.create({ title, abbreviation, description, password, advisor, events, contactInformation });
         res.status(201).json(club);
     } catch (error) {
         console.error('Error creating club:', error);
+
+        // Check if the error is a Mongoose validation error
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({ error: error.message });
+        }
+
         res.status(500).json({ error: 'Could not create club.' });
     }
 };
+
 
 // DELETE a club by ID
 const deleteClub = async (req, res) => {

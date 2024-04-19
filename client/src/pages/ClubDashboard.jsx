@@ -6,8 +6,8 @@ import ShowClubEvents from './ShowClubEvents';
 
 const ClubDashboard = () => {
     const [clubData, setClubData] = useState(null);
-    const clubId = '65fe1c21a6ccec4a9928b348';             
-    // MANUALLY SET KORA; PORE PROP HISHABE PASS KORABO FROM LOGIN
+    const clubId = localStorage.getItem('clubID'); 
+    console.log("dashboard",clubId)
 
     useEffect(() => {
         const fetchClubData = async () => {
@@ -23,10 +23,10 @@ const ClubDashboard = () => {
             }
         };
 
-        fetchClubData();
-    }, []);
-
-
+        if (clubId) {
+            fetchClubData();
+        }
+    }, [clubId]); // Fetch data when clubId changes
 
     useEffect(() => {
         // Remove the Navbar component from the DOM when ClubDashboard mounts
@@ -65,6 +65,3 @@ const ClubDashboard = () => {
 }
 
 export default ClubDashboard;
-
-
-//shafi_club_work_pt1

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ClubSignup = () => {
+  const navigate = useNavigate(); // Initialize navigate function from useNavigate
   const [formData, setFormData] = useState({
     title: '',
     abbreviation: '',
     description: '',
+    password: '',
     contactInformation: { email: '' },
+    advisor: '',
     events: [],
     members: []
   });
@@ -13,12 +17,7 @@ const ClubSignup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'advisor') {
-      // Prevent sending an empty string for the advisor field
-      setFormData({ ...formData, [name]: value || null });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -35,7 +34,11 @@ const ClubSignup = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('Club created successfully:', data);
-        // Handle the response accordingly, e.g., redirect or show success message
+        // Save clubID to localStorage
+        localStorage.setItem('clubID', data.club._id);
+        
+        // Redirect to the club dashboard page
+        navigate('/club');
       } else {
         const errorMessage = await response.text();
         console.error('Error creating club:', errorMessage);
@@ -48,7 +51,7 @@ const ClubSignup = () => {
   };
 
   return (
-    <div className="container club-signup"> {/* Added class name for styling */}
+    <div className="container club-signup">
       <h2>Club Signup</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -91,9 +94,32 @@ const ClubSignup = () => {
             name="contactInformation"
             value={formData.contactInformation.email}
             onChange={(e) => setFormData({ ...formData, contactInformation: { email: e.target.value } })}
+            required
           />
         </div>
-        {/* Add input fields for panel, advisor, events, and members if needed */}
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="advisor">Advisor:</label>
+          <input
+            type="text"
+            id="advisor"
+            name="advisor"
+            value={formData.advisor}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        {/* Add input fields for panel, events, and members if needed */}
         <button type="submit">Sign Up</button>
       </form>
       {errorMessage && <p className="error">{errorMessage}</p>}
