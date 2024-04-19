@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
 import AdminEvent from './pages/AdminEvent';
 import AdminEventForm from './pages/AdminAddEvents';
 import Navbar from './components/Navbar';
@@ -15,6 +16,9 @@ import { useAuthContext } from './hooks/useAuthContext';
 import { useAdminAuthContext } from './hooks/useAdminAuthContext';
 import ClubLogin from './components/clublogin';
 import ClubSignup from './components/clubSignup';
+import UserProfileSignup from "./components/userprofilesignup"
+import UserProfilePage from './components/userprofilepage';
+
 function App() {
     const { user } = useAuthContext();
     const { admin } = useAdminAuthContext();
@@ -38,9 +42,12 @@ function App() {
                         <Route path="/events" element={user ? <Event /> : <Navigate to="/login" />} />
                         <Route path="/events/:_id" element={<EachEvent />} />
                         
-                         {/* Route for club login */}
-                         <Route path="/club/login" element={<ClubLogin />} />
-                         <Route path="/club/signup" element={<ClubSignup />} />
+                        {/* Route for club login */}
+                        <Route path="/admin/club/login" element={<ClubLogin />} />
+                        <Route path="/club/signup" element={<ClubSignup />} />
+                        
+                        <Route path="/profile/signup" element={<UserProfileSignup />} />
+                        <Route path="/profile/:_id" element={<UserProfilePage />} />
                         
                         <Route path="/" element={<Home />} />
                     </Routes>

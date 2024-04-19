@@ -29,7 +29,8 @@ const ClubLogin = () => {
         // Save clubID to localStorage
         localStorage.setItem('clubID', data.clubId);
     
-        // Redirect to club dashboard or display success message
+        // Redirect to club page
+        window.location.href = `/club/${data.clubId}`;
       } else {
         const errorMessage = await response.text();
         console.error('Login failed:', errorMessage);

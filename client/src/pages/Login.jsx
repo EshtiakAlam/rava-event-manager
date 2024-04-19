@@ -5,13 +5,13 @@ import { useLogin } from "../hooks/useLogin"
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [studentid, setStudentid] = useState("");
+ 
   const [buttonClicked, setButtonClicked] = useState(false);
   const {login} = useLogin()
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await login(email, password, studentid)
+    await login(email, password)
   
     setButtonClicked(true);
   }
@@ -46,13 +46,7 @@ export default function Login() {
           style={{ fontSize: "1.2em", padding: "12px", borderRadius: "6px", border: "1px solid #ddd", marginBottom: "20px", width: "100%", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}
         />
 
-        <input
-          onChange={(e) => setStudentid(e.target.value)}
-          type="text"
-          value={studentid}
-          placeholder="Student ID"
-          style={{ fontSize: "1.2em", padding: "12px", borderRadius: "6px", border: "1px solid #ddd", marginBottom: "20px", width: "100%", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}
-        />
+        
 
         <button
           className="login-button"
