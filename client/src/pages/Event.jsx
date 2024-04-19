@@ -22,7 +22,7 @@ const Event = () => {
           const response = await fetch("/api/events/approved/", {
             headers: {
               Authorization: `Bearer ${user.token}`,
-            },
+            },      
           });
           const json = await response.json();
 
@@ -33,6 +33,8 @@ const Event = () => {
             console.error("Error fetching events:", error);
         }
     };
+
+    console.log(`All events ki ki:`, events);
 
     function changeBackgroundToHomePage(){
         document.body.classList.add('body-event-main');
@@ -70,6 +72,9 @@ const Event = () => {
             setFutureEvents(futureEvents);
         }
     }, [events]);
+
+    console.log(`Ekhane asi`);
+    console.log(`Kaj ki korse?:`, thisMonthEvents, futureEvents);
 
   return (
       <div className="event-page">

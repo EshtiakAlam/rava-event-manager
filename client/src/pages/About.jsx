@@ -6,7 +6,7 @@ import { faFacebookSquare, faInstagramSquare, faTwitterSquare, faLinkedin } from
 import { Link } from 'react-router-dom';
 
 const About = () => {
-    const founders = ['Shamsur Shafi', 'Eshtiak Shihab', 'Israr Karim'];
+    const founders = ['Eshtiak Shihab', 'Shamsur Shafi', 'Israr Karim', 'Maruf Islam'];
     // Remove the founders_images array as we will use the user icon instead
     const [selectedPersonIndex, setSelectedPersonIndex] = useState(-1);
     const [introText, setIntroText] = useState('');
