@@ -7,13 +7,18 @@ export const Home = () => {
     const tag_line3 = "AROUND YOUR CAMPUS";
 
     function changeBackgroundToHomePage() {
+        //document.body.style.backgroundImage = `url(${bgImage})`;
         document.body.classList.add('body-home');
         return () => {
-            document.body.classList.add('body'); 
+
+            document.body.classList.remove('body-home'); 
         };
     }
 
-    useEffect(changeBackgroundToHomePage, []);
+    useEffect(() => {
+        changeBackgroundToHomePage();
+        
+    }, []);
 
     return (
         <header className="Homepage">

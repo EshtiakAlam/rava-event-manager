@@ -4,8 +4,14 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const eventRoutes = require('./routes/events')
-
+const userRoutes = require('./routes/user')
+const adminRoutes = require('./routes/admin')
+const clubRoutes= require('./routes/clubs')
+const clubLoginRoutes = require("./routes/clublogin")
+const clubMemberRoutes = require('./routes/clubMembers');
+const logisticsRoutes = require("./routes/logisticsRequests")
 // Express app
+
 const app = express()
 
 
@@ -22,7 +28,12 @@ app.use(morgan('dev'))         // log api calls
 
 // routes
 app.use('/api/events/',eventRoutes)
-
+app.use('/api/user',userRoutes)
+app.use('/api/admin',adminRoutes)
+app.use('/api/clubs',clubRoutes)
+app.use('/api/logistics', logisticsRoutes)
+app.use('/api/clubinfo',clubLoginRoutes)
+app.use('/api/club-members', clubMemberRoutes);
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
@@ -39,4 +50,4 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('Error connecting to MongoDB:', error.message)
     })
 
-console.log("israr karim fixed");
+//console.log("israr karim fixed");
