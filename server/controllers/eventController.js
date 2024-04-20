@@ -1,6 +1,6 @@
 const Event = require('../models/eventModel');
 const mongoose = require('mongoose');
-
+const Club = require('../models/clubModel');
 //GET all events
 const getEvents = async (req, res) => {
     try {
@@ -39,8 +39,22 @@ const createEvent = async (req, res) => {
     const { title, tagline, organizer, date, location, time, description, highlights, faq, like, approval, link } = req.body;
 
     try {
-        const event = await Event.create({ title, tagline, organizer, date, location, time, description, highlights, faq, like: 0, approval: false, link: 'None' });
+        console.log(organizer)
+        const organizerDetails = await Club.findById(organizer); // Assuming User model is used to store organizers' details
+        const organizerName = organizerDetails ? organizerDetails.title : 'Unknown Organizer';
+        console.log(organizerName)
+
+        const event = await Event.create({ title, tagline, organizer:organizerName, date, location, time, description, highlights, faq, like: 0, approval: false, link: 'None' });
+
+        // Add the event ID to organizer's events array
+        organizerDetails.events.push(event._id);
+
+        // Save the organizer document
+        await organizerDetails.save();
+
         res.status(201).json(event);
+
+
     } catch (error) {
         console.error('Error creating event:', error);
         res.status(500).json({ error: 'Could not create event.' });
