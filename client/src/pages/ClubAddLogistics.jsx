@@ -6,30 +6,12 @@ import { useState, useEffect } from "react";
 const ClubAddLogistics = () => {
     const { _id } = useParams();
     const [clubData, setClubData] = useState(null);
-    const [eventsData, setEventsData] = useState([]);
     const [eventName, setEventName] = useState("");
     const [itemName, setItemName] = useState("");
     const [quantity, setQuantity] = useState(0);
-    const [message, setMessage] = useState("");
     const [error, setError] = useState(null);
     const [requestSent, setRequestSent] = useState(false);
 
-    useEffect(() => {
-        const fetchEventData = async () => {
-            try {
-                const response = await fetch('/api/events');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch events data');
-                }
-                const eventData = await response.json();
-                setEventsData(eventData);
-            } catch (error) {
-                console.error('Error fetching events data:', error.message);
-            }
-        };
-
-        fetchEventData();
-    }, []);
 
     useEffect(() => {
         const fetchClubData = async () => {
@@ -48,6 +30,10 @@ const ClubAddLogistics = () => {
         fetchClubData();
     }, [_id]);
 
+    const eventsData = clubData?.events;
+
+    console.log(`EVENTS DATA KII`, eventsData);
+
     useEffect(() => {
         const navbarElement = document.querySelector('.Navbar');
         if (navbarElement) {
@@ -64,7 +50,7 @@ const ClubAddLogistics = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Validate all mandatory fields
-        if (!eventName || !itemName || quantity <= 0 || !message) {
+        if (!eventName || !itemName || quantity <= 0 ) {
             setError("Please fill out all mandatory fields.");
             return;
         }
@@ -73,7 +59,6 @@ const ClubAddLogistics = () => {
         setEventName("");
         setItemName("");
         setQuantity(0);
-        setMessage("");
         // Display "Request sent" message
         setRequestSent(true);
         // Clear the message after 3 seconds
@@ -85,9 +70,30 @@ const ClubAddLogistics = () => {
 
     const clubTitle = clubData ? clubData.title : null;
     // Filter events where organizer matches club title
-    const filteredEvents = clubData ? eventsData.filter(event => event.organizer === clubTitle && event.approval === true) : [];
+    const filteredEvents = eventsData ? eventsData.filter(event => event.approval === 1) : [];
 
     console.log(`Filtered events is:`, filteredEvents);
+
+    useEffect(() => {
+        // Remove the Navbar component from the DOM when ClubDashboard mounts
+        const navbarElement = document.querySelector('.Navbar');
+        if (navbarElement) {
+            navbarElement.style.display = 'none';
+        }
+
+        const bottomBarElement = document.querySelector('.BottomBar');
+        if (bottomBarElement) {
+            bottomBarElement.style.display = 'none';
+        }
+        
+        // Show the Navbar component again when ClubDashboard unmounts
+        return () => {
+            if (navbarElement) {
+                navbarElement.style.display = 'block';
+                bottomBarElement.style.display = 'block';
+            }
+        };
+    }, []);
 
     return (  
         <div className="ClubAddLogistics">
@@ -121,14 +127,6 @@ const ClubAddLogistics = () => {
                         id="quantity" 
                         value={quantity} 
                         onChange={(e) => setQuantity(e.target.value)} 
-                    />
-                </div>
-                <div className="Option">
-                    <label htmlFor="message">Message:  </label>
-                    <input 
-                        id="message" 
-                        value={message} 
-                        onChange={(e) => setMessage(e.target.value)} 
                     />
                 </div>
                 <button type="submit">Send Logistics Request</button>

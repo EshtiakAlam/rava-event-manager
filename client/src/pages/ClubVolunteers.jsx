@@ -91,40 +91,50 @@ export const ClubVolunteers = () => {
     };
 
     const promoteMember = async (index) => {
-        const memberToPromote = pendingMembers[index];
+        const memberToPromote = acceptedMembers[index];
         memberToPromote.status = "Panelist";
-
+    
         try {
-            const response = await fetch(`/api/club-members/${memberToPromote._id}`, {
+            // First PATCH operation to update member's status
+            const memberResponse = await fetch(`/api/club-members/${memberToPromote._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ status: "Panelist" }),
             });
-            if (!response.ok) {
+            if (!memberResponse.ok) {
                 throw new Error('Failed to promote member');
             }
-
-            const updatedPendingMembers = [...pendingMembers];
-            updatedPendingMembers.splice(index, 1);
-            setPendingMembers(updatedPendingMembers);
-
-            // Add member to clubData.panelist (Assuming clubData.panelist is an array)
-            const updatedClubData = { ...clubData };
-            updatedClubData.panelist.push(memberToPromote._id);
-            setClubData(updatedClubData);
-
+    
+            // Second PATCH operation to update club's panel array
+            const clubResponse = await fetch(`/api/clubs/${_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ panel: [...clubData.panel, memberToPromote._id] }), // Assuming panelist is an array in clubData
+            });
+            if (!clubResponse.ok) {
+                throw new Error('Failed to update club panel');
+            }
+    
+            // Update local state
+            const updatedAcceptedMembers = [...acceptedMembers];
+            updatedAcceptedMembers.splice(index, 1);
+            setAcceptedMembers(updatedAcceptedMembers);
+    
             console.log("Promoted:", memberToPromote);
         } catch (error) {
             console.error('Error promoting member:', error.message);
         }
     };
-
+    
+    
     const fireMember = async (index) => {
-        const memberToFire = pendingMembers[index];
+        const memberToFire = acceptedMembers[index];
         memberToFire.status = "Terminated";
-
+    
         try {
             const response = await fetch(`/api/club-members/${memberToFire._id}`, {
                 method: 'PATCH',
@@ -136,16 +146,17 @@ export const ClubVolunteers = () => {
             if (!response.ok) {
                 throw new Error('Failed to terminate member');
             }
-
-            const updatedPendingMembers = [...pendingMembers];
-            updatedPendingMembers.splice(index, 1);
-            setPendingMembers(updatedPendingMembers);
-
+    
+            const updatedAcceptedMembers = [...acceptedMembers];
+            updatedAcceptedMembers.splice(index, 1);
+            setAcceptedMembers(updatedAcceptedMembers);
+    
             console.log("Terminated:", memberToFire);
         } catch (error) {
             console.error('Error terminating member:', error.message);
         }
     };
+    
 
     const acceptRequest = async (index) => {
         const memberToAccept = pendingMembers[index];
