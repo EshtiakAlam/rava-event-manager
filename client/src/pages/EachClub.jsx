@@ -46,7 +46,13 @@ const EachClub = () => {
 
         const fetchEventData = async () => {
             try {
-                const response = await fetch('/api/events');
+                const response = await fetch(`/api/events/`, {
+                    headers: {
+                        // Include your authentication token or credentials here
+                        // Example:
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwYjEwY2U4Nzc4ZWFkOGM5ZmNlNTYiLCJpYXQiOjE3MTM0MTg1MDgsImV4cCI6MTcxMzY3NzcwOH0.Jfb3dGedHLQ3dzcElPBAKUulRcGSSsJORjyfiottnZ8'
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch events data');
                 }

@@ -1,58 +1,53 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import ClubNavbarVertical from '../components/ClubNavbarVertical';
-import ClubDashboardHeader from '../components/ClubDashboardHeader';
+import ClubNavbarVertical from "../components/ClubNavbarVertical";
+import ClubDashBoardHeader from "../components/ClubDashboardHeader";
 
 const UpdateClubData = () => {
     const { _id } = useParams();
+
+    const clubId = _id;
     const [clubData, setClubData] = useState(null);
-    const [editedClubData, setEditedClubData] = useState(null);
+    const [editedClubData, setEditedClubData] = useState({
+        title: '',
+        abbreviation: '',
+        description: '',
+        contactInformation: { email: '' },
+        advisor: '',
+        panelist: [{ name: '', email: '' }],
+    });
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    // Hardcoded members data
-    const members = [
-        { 'name': "Shamsur Shafi", "status": "Panelist", 'studentId': '001', 'email': "m.s.shafi@g.bracu.ac.bd", 'department': "CSE", 'joinDate': '2020-04-15T00:00:00.000Z' },
-        { 'name': "Eshtiak Shihab", "status": "Panelist", 'studentId': '002', 'email': "shihabi@g.bracu.ac.bd", 'department': "EEE", 'joinDate': '2021-06-15T00:00:00.000Z' },
-        { 'name': "Karim Benz", "status": "Panelist", 'studentId': '003', 'email': "karim.israr@g.bracu.ac.bd", 'department': "EEE" , 'joinDate': '2019-08-19T00:00:00.000Z' },
-        { 'name': "Maruf", "status": "Panelist", 'studentId': '004', 'email': "maruf@g.bracu.ac.bd", 'department': "ANT" , 'joinDate': '2020-12-02T00:00:00.000Z'},
-        { 'name': "Anurag Sikder", "status": "Member", 'studentId': '005', 'email': "anurag@g.bracu.ac.bd", 'department': "ECO"  , 'joinDate': '2023-04-15T00:00:00.000Z'},
-        { 'name': "Haseen", "status": "None", 'studentId': '010', 'email': "haseen@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2023-03-13T00:00:00.000Z'},
-        { 'name': "Nuzhat Rahman", "status": "Member", 'studentId': '006', 'email': "catto@g.bracu.ac.bd", 'department': "ANT" , 'joinDate': '2023-01-10T00:00:00.000Z'},
-        { 'name': "Nuhash Neeha", "status": "Member", 'studentId': '007', 'email': "kobir.bhai@g.bracu.ac.bd", 'department': "CS" , 'joinDate': '2024-01-01T00:00:00.000Z'},
-        { 'name': "Raki", "status": "Member", 'studentId': '008', 'email': "original.shafee.shamsur.shafi.nureaziz@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2024-03-13T00:00:00.000Z'},
-        { 'name': "Imtela Islam", "status": "Member", 'studentId': '009', 'email': "married.hu@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2019-09-22T00:00:00.000Z' },
-        { 'name': "Maliha Sejutee", "status": "None", 'studentId': '012', 'email': "sejutee@g.bracu.ac.bd", 'department': "MIC" , 'joinDate': '2024-03-13T00:00:00.000Z'},
-    ];
+    console.log(`CLUB ID:`,clubId);
 
-    const panelists = members.filter(member => member.status === 'Panelist');
-
-    // Fetch club data on component mount
     useEffect(() => {
         const fetchClubData = async () => {
             try {
-                const response = await fetch(`/api/clubs/${_id}`);
+                const response = await fetch(`/api/clubs/${clubId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch club data');
                 }
-                const clubData = await response.json();
-                setClubData(clubData);
+                const json = await response.json();
+                setClubData(json);
                 // Initialize editedClubData with club data, replacing empty fields with "None"
                 setEditedClubData({
-                    title: clubData.title || 'None',
-                    abbreviation: clubData.abbreviation || 'None',
-                    description: clubData.description || 'None',
-                    contactInformation: clubData.contactInformation || 'None',
-                    advisors: clubData.advisors || [{ name: 'None', email: 'None' }],
-                    panelists: panelists || [{ name: 'None', email: 'None' }],
+                    title: json?.title || 'None',
+                    abbreviation: json?.abbreviation || 'None',
+                    description: json?.description || 'None',
+                    contactInformation: { email: json?.contactInformation?.email || 'None' },
+                    advisor: json?.advisor || 'None',
+                    panelist: json?.panel || [{ name: 'None', email: 'None' }],
                 });
             } catch (error) {
                 console.error('Error fetching club data:', error.message);
             }
         };
 
-        fetchClubData();
-    }, []);
+        if (clubId) {
+            fetchClubData();
+        }
+    }, [clubId]); // Fetch data when clubId changes
 
     // Function to handle form submission
     const handleSubmit = async (e) => {
@@ -78,6 +73,8 @@ const UpdateClubData = () => {
         }
     };
 
+    console.log(`CLUB INFO:`, clubData);
+
     // Function to handle input change in form fields
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -93,7 +90,7 @@ const UpdateClubData = () => {
             ...editedClubData,
             [type]: [
                 ...editedClubData[type],
-                { name: 'New Member/Advisor', email: 'newmember@example.com' }
+                { name: 'New Member/Advisor', email: '' }
             ]
         });
     };
@@ -108,25 +105,34 @@ const UpdateClubData = () => {
         });
     };
 
-    console.log(`Update korar form e ashche:`,clubData);
-
     useEffect(() => {
+        // Remove the Navbar component from the DOM when ClubDashboard mounts
         const navbarElement = document.querySelector('.Navbar');
         if (navbarElement) {
             navbarElement.style.display = 'none';
         }
 
+        const bottomBarElement = document.querySelector('.BottomBar');
+        if (bottomBarElement) {
+            bottomBarElement.style.display = 'none';
+        }
+        
+        // Show the Navbar component again when ClubDashboard unmounts
         return () => {
             if (navbarElement) {
                 navbarElement.style.display = 'block';
+                bottomBarElement.style.display = 'block';
             }
         };
     }, []);
 
+    const panelist = clubData?.panel || [];
+
     return (
         <div className="UpdateClubData">
             <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
-            <ClubDashboardHeader />
+            <ClubDashBoardHeader />
+
 
             <h1 className="extra"><span className="special-letter">E</span>dit Key Club Details</h1>
 
@@ -144,6 +150,16 @@ const UpdateClubData = () => {
                             />
                         </div>
                         <div>
+                            <label htmlFor="abbreviation">Club Abbreviation:</label>
+                            <input
+                                type="text"
+                                id="abbreviation"
+                                name="abbreviation"
+                                value={editedClubData.abbreviation}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
                             <label htmlFor="description">Club Description:</label>
                             <textarea
                                 id="description"
@@ -153,63 +169,41 @@ const UpdateClubData = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="advisors">Advisors:</label>
-                            {editedClubData.advisors.map((advisor, index) => (
-                                <div key={index}>
-                                    <input
-                                        type="text"
-                                        placeholder="Advisor Name"
-                                        value={advisor.name}
-                                        onChange={(e) => {
-                                            const newAdvisors = [...editedClubData.advisors];
-                                            newAdvisors[index].name = e.target.value;
-                                            setEditedClubData({ ...editedClubData, advisors: newAdvisors });
-                                        }}
-                                    />
-                                    <input
-                                        type="text"
-                                        placeholder="Advisor Email"
-                                        value={advisor.email}
-                                        onChange={(e) => {
-                                            const newAdvisors = [...editedClubData.advisors];
-                                            newAdvisors[index].email = e.target.value;
-                                            setEditedClubData({ ...editedClubData, advisors: newAdvisors });
-                                        }}
-                                    />
-                                    <div className="Keys">
-                                        <button type="button" onClick={() => deleteMemberOrAdvisor('advisors', index)}>Delete</button>
-                                        <button type="button" onClick={() => addMemberOrAdvisor('advisors')}>Add Advisor</button>
-                                    </div>
-                                </div>
-                            ))}
+                            <label htmlFor="advisor">Club Advisor:</label>
+                            <textarea
+                                id="advisor"
+                                name="advisor"
+                                value={editedClubData.advisor}
+                                onChange={handleInputChange}
+                            />
                         </div>
                         <div>
                             <label htmlFor="panelists">Panelists:</label>
-                            {editedClubData.panelists.map((panelist, index) => (
+                            {panelist.map((panelist, index) => (
                                 <div key={index}>
                                     <input
                                         type="text"
                                         placeholder="Panelist Name"
                                         value={panelist.name}
                                         onChange={(e) => {
-                                            const newPanelists = [...editedClubData.panelists];
+                                            const newPanelists = [...editedClubData.panelist];
                                             newPanelists[index].name = e.target.value;
-                                            setEditedClubData({ ...editedClubData, panelists: newPanelists });
+                                            setEditedClubData({ ...editedClubData, panelist: newPanelists });
                                         }}
                                     />
                                     <input
                                         type="text"
                                         placeholder="Panelist Email"
                                         value={panelist.email}
+                                        // Inside the onChange handler for panelists' name and email inputs
                                         onChange={(e) => {
-                                            const newPanelists = [...editedClubData.panelists];
+                                            const newPanelists = [...editedClubData.panelist];
                                             newPanelists[index].email = e.target.value;
-                                            setEditedClubData({ ...editedClubData, panelists: newPanelists });
+                                            setEditedClubData({ ...editedClubData, panelist: newPanelists });
                                         }}
                                     />
                                     <div className="Keys">
-                                        <button type="button" onClick={() => deleteMemberOrAdvisor('panelists', index)}>Delete</button>
-                                        <button type="button" onClick={() => addMemberOrAdvisor('panelists')}>Add Panelist</button>
+                                        <button type="button" onClick={() => addMemberOrAdvisor('panelist')}>Edit Panelist</button>
                                     </div>
                                 </div>
                             ))}

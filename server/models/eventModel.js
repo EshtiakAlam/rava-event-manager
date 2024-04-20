@@ -47,7 +47,7 @@ const eventSchema = new Schema({
     },
     approval: {
         type: Number,
-        default: 0
+        default: 2
     },
     link:{
         type: String,

@@ -1,50 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import formatDate from "../utils/FormatDate"; 
-import ClubDashBoardHeader from '../components/ClubDashboardHeader';
-import ClubNavbarVertical from '../components/ClubNavbarVertical';
 import { Link, useParams } from 'react-router-dom';
+import ClubNavbarVertical from '../components/ClubNavbarVertical';
+import ClubDashboardHeader, { ClubDashBoardHeader } from '../components/ClubDashboardHeader';
 
 export const ClubVolunteers = () => {
-    const club_info = {
-        "abbreviation": "BUCC",
-        "advisor": [
-            { "name": "Asif Sir", "email": "asif@bracu.ac.bd" },
-            { "name": "Labiba", "email": "labiba@bracu.ac.bd" }
-        ],
-        "contactInformation": "bucc@g.bracu.ac.bd",
-        "description": "Computer Enthusiast Hub",
-        "events": [""],
-        "members": [
-            { 'name': "Shamsur Shafi", "status": "Panelist", 'studentId': '001', 'email': "m.s.shafi@g.bracu.ac.bd", 'department': "CSE", 'joinDate': '2020-04-15T00:00:00.000Z' },
-            { 'name': "Eshtiak Shihab", "status": "Panelist", 'studentId': '002', 'email': "shihabi@g.bracu.ac.bd", 'department': "EEE", 'joinDate': '2021-06-15T00:00:00.000Z' },
-            { 'name': "Karim Benz", "status": "Panelist", 'studentId': '003', 'email': "karim.israr@g.bracu.ac.bd", 'department': "EEE" , 'joinDate': '2019-08-19T00:00:00.000Z' },
-            { 'name': "Maruf", "status": "Panelist", 'studentId': '004', 'email': "maruf@g.bracu.ac.bd", 'department': "ANT" , 'joinDate': '2020-12-02T00:00:00.000Z'},
-            { 'name': "Anurag Sikder", "status": "Member", 'studentId': '005', 'email': "anurag@g.bracu.ac.bd", 'department': "ECO"  , 'joinDate': '2023-04-15T00:00:00.000Z'},
-            { 'name': "Haseen", "status": "None", 'studentId': '010', 'email': "haseen@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2023-03-13T00:00:00.000Z'},
-            { 'name': "Nuzhat Rahman", "status": "Member", 'studentId': '006', 'email': "catto@g.bracu.ac.bd", 'department': "ANT" , 'joinDate': '2023-01-10T00:00:00.000Z'},
-            { 'name': "Nuhash Neeha", "status": "Member", 'studentId': '007', 'email': "kobir.bhai@g.bracu.ac.bd", 'department': "CS" , 'joinDate': '2024-01-01T00:00:00.000Z'},
-            { 'name': "Raki", "status": "Member", 'studentId': '008', 'email': "original.shafee.shamsur.shafi.nureaziz@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2024-03-13T00:00:00.000Z'},
-            { 'name': "Imtela Islam", "status": "Member", 'studentId': '009', 'email': "married.hu@g.bracu.ac.bd", 'department': "MNS" , 'joinDate': '2019-09-22T00:00:00.000Z' },
-            { 'name': "Maliha Sejutee", "status": "None", 'studentId': '012', 'email': "sejutee@g.bracu.ac.bd", 'department': "MIC" , 'joinDate': '2024-03-13T00:00:00.000Z'},
-        ],
-        
-        "panel": [
-            { "$oid": "6606ce87735cc60ca01a3f26" },
-            { "$oid": "6606d43cb3ede7bc50db6a13" },
-            { "$oid": "6606d10f735cc60ca01a3f28" },
-            { "$oid": "6606d159735cc60ca01a3f2a" }
-        ],
-        "title": "BRAC University Computer Club"
-    };
-
     const { _id } = useParams();
-
-    //pore dynamically fetch korbo
-    const [panelistMembers, setPanelistMembers] = useState(club_info.members.filter(member => member.status === 'Panelist'));
-    const [members, setMembers] = useState(club_info.members.filter(member => member.status === 'Member'));
-    const [pendingMembers, setPendingMembers] = useState(club_info.members.filter(member => member.status === 'None'));
+    const [clubData, setClubData] = useState(null);
     const [popupContent, setPopupContent] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [pendingMembers, setPendingMembers] = useState([]);
+    const [acceptedMembers, setAcceptedMembers] = useState([]);
+
+    useEffect(() => {
+        const fetchClubData = async () => {
+            try {
+                const response = await fetch(`/api/clubs/${_id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch club data');
+                }
+                const data = await response.json();
+                setClubData(data);
+            } catch (error) {
+                console.error('Error fetching club data:', error.message);
+            }
+        };
+
+        fetchClubData();
+    }, [_id]);
+
+    useEffect(() => {
+        const fetchPendingMembers = async () => {
+            try {
+                const response = await fetch(`/api/club-members/pending-by-club/${clubData._id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch pending members');
+                }
+                const data = await response.json();
+                setPendingMembers(data);
+            } catch (error) {
+                console.error('Error fetching pending members:', error.message);
+            }
+        };
+
+        const fetchAcceptedMembers = async () => {
+            try {
+                const response = await fetch(`/api/club-members/approved-by-club/${clubData._id}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch accepted members');
+                }
+                const data = await response.json();
+                setAcceptedMembers(data);
+            } catch (error) {
+                console.error('Error fetching accepted members:', error.message);
+            }
+        };
+
+        if (clubData) {
+            fetchPendingMembers();
+            fetchAcceptedMembers();
+        }
+    }, [clubData]);
 
     useEffect(() => {
         const navbarElement = document.querySelector('.Navbar');
@@ -59,62 +75,155 @@ export const ClubVolunteers = () => {
         };
     }, []);
 
-    // Function to calculate years of membership
     const calculateYearsOfMembership = (joinDate) => {
         const currentDate = new Date();
         const years = currentDate.getFullYear() - new Date(joinDate).getFullYear();
         return years <= 0 ? "New" : `${years} yr`;
     };
 
-    // Function to handle mouse enter event on truncated text
     const handleMouseEnter = (content) => {
         setPopupContent(content);
         setShowPopup(true);
     };
 
-    // Function to handle mouse leave event
     const handleMouseLeave = () => {
         setShowPopup(false);
     };
 
-    // Function to promote a member to panelist
-    const promoteMember = (index) => {
-        const updatedMembers = [...members];
-        const promotedMember = updatedMembers[index];
-        promotedMember.status = "Panelist";
-        setPanelistMembers(prevPanelistMembers => [...prevPanelistMembers, promotedMember]);
-        setMembers(prevMembers => prevMembers.filter((_, i) => i !== index));
-        console.log("Promoted:", promotedMember);
+    const promoteMember = async (index) => {
+        const memberToPromote = pendingMembers[index];
+        memberToPromote.status = "Panelist";
+
+        try {
+            const response = await fetch(`/api/club-members/${memberToPromote._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: "Panelist" }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to promote member');
+            }
+
+            const updatedPendingMembers = [...pendingMembers];
+            updatedPendingMembers.splice(index, 1);
+            setPendingMembers(updatedPendingMembers);
+
+            // Add member to clubData.panelist (Assuming clubData.panelist is an array)
+            const updatedClubData = { ...clubData };
+            updatedClubData.panelist.push(memberToPromote._id);
+            setClubData(updatedClubData);
+
+            console.log("Promoted:", memberToPromote);
+        } catch (error) {
+            console.error('Error promoting member:', error.message);
+        }
     };
 
-    // Function to remove a member from the list
-    const fireMember = (index) => {
-        const updatedMembers = [...members];
-        const terminatedMember = updatedMembers[index];
-        terminatedMember.status = "Terminated";
-        setMembers(prevMembers => prevMembers.filter((_, i) => i !== index));
-        console.log("Terminated:", terminatedMember);
+    const fireMember = async (index) => {
+        const memberToFire = pendingMembers[index];
+        memberToFire.status = "Terminated";
+
+        try {
+            const response = await fetch(`/api/club-members/${memberToFire._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: "Terminated" }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to terminate member');
+            }
+
+            const updatedPendingMembers = [...pendingMembers];
+            updatedPendingMembers.splice(index, 1);
+            setPendingMembers(updatedPendingMembers);
+
+            console.log("Terminated:", memberToFire);
+        } catch (error) {
+            console.error('Error terminating member:', error.message);
+        }
     };
 
+    const acceptRequest = async (index) => {
+        const memberToAccept = pendingMembers[index];
+        memberToAccept.status = "Member";
+        memberToAccept.joinDate = new Date().toISOString();
 
-    // Function to accept a pending request
-    const acceptRequest = (index) => {
-        const currentDate = new Date().toISOString(); // Get today's date in ISO format
-        const acceptedMember = { ...pendingMembers[index], status: "Member", joinDate: currentDate };
-        setPendingMembers(prevPendingMembers => prevPendingMembers.filter((_, i) => i !== index));
-        setMembers(prevMembers => [...prevMembers, acceptedMember]);
-        console.log("Accepted:", acceptedMember);
+        try {
+            const response = await fetch(`/api/club-members/${memberToAccept._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: "Member", joinDate: memberToAccept.joinDate }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to accept member');
+            }
+
+            const updatedPendingMembers = [...pendingMembers];
+            updatedPendingMembers.splice(index, 1);
+            setPendingMembers(updatedPendingMembers);
+
+            setAcceptedMembers(prevAcceptedMembers => [...prevAcceptedMembers, memberToAccept]);
+
+            console.log("Accepted:", memberToAccept);
+        } catch (error) {
+            console.error('Error accepting member:', error.message);
+        }
     };
 
-    // Function to decline a pending request
-    const declineRequest = (index) => {
-        const declinedMember = pendingMembers[index];
-        declinedMember.status = "Terminated";
-        setPendingMembers(prevPendingMembers => prevPendingMembers.filter((_, i) => i !== index));
-        console.log("Declined:", declinedMember);
+    const declineRequest = async (index) => {
+        const memberToDecline = pendingMembers[index];
+        memberToDecline.status = "Terminated";
+
+        try {
+            const response = await fetch(`/api/club-members/${memberToDecline._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: "Terminated" }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to decline member');
+            }
+
+            const updatedPendingMembers = [...pendingMembers];
+            updatedPendingMembers.splice(index, 1);
+            setPendingMembers(updatedPendingMembers);
+
+            console.log("Declined:", memberToDecline);
+        } catch (error) {
+            console.error('Error declining member:', error.message);
+        }
     };
 
     console.log(`Ekhane club er id is:`, _id);
+
+    useEffect(() => {
+        // Remove the Navbar component from the DOM when ClubDashboard mounts
+        const navbarElement = document.querySelector('.Navbar');
+        if (navbarElement) {
+            navbarElement.style.display = 'none';
+        }
+
+        const bottomBarElement = document.querySelector('.BottomBar');
+        if (bottomBarElement) {
+            bottomBarElement.style.display = 'none';
+        }
+        
+        // Show the Navbar component again when ClubDashboard unmounts
+        return () => {
+            if (navbarElement) {
+                navbarElement.style.display = 'block';
+                bottomBarElement.style.display = 'block';
+            }
+        };
+    }, []);
 
     return (
         <div className="ClubVolunteers">
@@ -123,19 +232,19 @@ export const ClubVolunteers = () => {
 
             <h1 className='extra'><span className='special-letter'>V</span>olunteers</h1>
             
-            {members.length === 0 ? (
+            {acceptedMembers.length === 0 ? (
                 <h1 className='Nobody'>No one has joined yet</h1>
             ) : (
                 <div className="headers">
                     <div className="header-1">
                         <h1>Student ID</h1>
-                        {members.map((member, index) => (
-                            <p key={index}><strong>{member.studentId}</strong></p>
+                        {acceptedMembers.map((member, index) => (
+                            <p key={index}><strong>{member.studentID}</strong></p>
                         ))}
                     </div>
                     <div className="header-2">
                         <h1>Name</h1>
-                        {members.map((member, index) => (
+                        {acceptedMembers.map((member, index) => (
                             <p 
                                 key={index} 
                                 onMouseEnter={() => handleMouseEnter(member.name)} 
@@ -148,13 +257,13 @@ export const ClubVolunteers = () => {
                     </div>
                     <div className="header-3">
                         <h1>Department</h1>
-                        {members.map((member, index) => (
+                        {acceptedMembers.map((member, index) => (
                             <p key={index}>{member.department}</p>
                         ))}
                     </div>
                     <div className="header-4">
                         <h1>Email</h1>
-                        {members.map((member, index) => (
+                        {acceptedMembers.map((member, index) => (
                             <p 
                                 key={index} 
                                 onMouseEnter={() => handleMouseEnter(member.email)} 
@@ -165,15 +274,10 @@ export const ClubVolunteers = () => {
                             </p>
                         ))}
                     </div>
-                    <div className="header-5">
-                        <h1>Membership</h1>
-                        {members.map((member, index) => (
-                            <p key={index}>{calculateYearsOfMembership(member.joinDate)}</p>
-                        ))}
-                    </div>
+                    
                     <div className="header-6">
                         <h1>Action</h1>
-                        {members.map((member, index) => (
+                        {acceptedMembers.map((member, index) => (
                             <div key={index} className="action-buttons">
                                 <button className="promote-button" onClick={() => promoteMember(index)}>Promote</button>
                                 <button className="fire-button" onClick={() => fireMember(index)}>Fire</button>
@@ -191,7 +295,7 @@ export const ClubVolunteers = () => {
                         <div className="header-1">
                             <h1>Student ID</h1>
                             {pendingMembers.map((member, index) => (
-                                <p key={index}><strong>{member.studentId}</strong></p>
+                                <p key={index}><strong>{member.studentID}</strong></p>
                             ))}
                         </div>
                         <div className="header-2">

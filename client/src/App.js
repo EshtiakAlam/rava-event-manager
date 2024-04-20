@@ -85,10 +85,10 @@ function App() {
                         <Route path="/club/showVolunteers/:_id" element={<ClubVolunteers />} />
                         <Route path="/club/showLogistics/:_id" element={<ClubLogistics />} />
                         <Route path="/club/showclubevents/addEvent/:_id" element={<ClubAddEvent />}/>
-                        <Route path="/club/edit/event/:_id" element={<ClubEditEvent />} />
+                        <Route path="/club/edit/event/:_id/:_eventId" element={<ClubEditEvent />} />
                         <Route path="/club/showclubevents/:_id" element={<ShowClubEvents />} />
                         <Route path="/club/edit/:_id" element={<UpdateClubData />} />
-                        <Route path="/club" element={<ClubDashboard/>} />
+                        <Route path="/club/:_id" element={<ClubDashboard/>} />          
 
                         <Route path="/" element={<Home />} />
                         <Route path="/about" element={<About />} />

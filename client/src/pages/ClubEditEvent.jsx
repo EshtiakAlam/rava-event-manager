@@ -4,46 +4,32 @@ import ClubNavbarVertical from '../components/ClubNavbarVertical';
 import ClubDashBoardHeader from '../components/ClubDashboardHeader';
 
 const ClubEditEvent = () => {
-    const { _id } = useParams(); // Extract _id from URL parameters
+    const { _id, _eventId } = useParams(); // Extract _id from URL parameters
     const [eventData, setEventData] = useState(null);
-    const [editedEventData, setEditedEventData] = useState(null);
+    const [editedEventData, setEditedEventData] = useState({
+        // Initialize with an empty object and arrays for highlights and FAQ
+        title: '',
+        tagline: '',
+        organizer: '',
+        date: '',
+        time: '',
+        location: '',
+        link: '',
+        description: '',
+        highlights: [],
+        FAQ: []
+    });
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [clubData, setClubData] = useState(null);
     const [clubId, setClubId] = useState(null);
 
-    useEffect(() => {
-        const fetchClubData = async () => {
-            try {
-                const response = await fetch("/api/clubs/");
-                if (!response.ok) {
-                    throw new Error('Failed to fetch club data');
-                }
-                const json = await response.json();
-                setClubData(json);
-            } catch (error) {
-                console.error('Error fetching club data:', error.message);
-            }
-        };
-
-        fetchClubData();
-    }, []);
-
-    useEffect(() => {
-        if (clubData && eventData) {
-            const filterClub = clubData.filter(club => club.title === eventData.organizer);
-            if (filterClub.length > 0) {
-                setClubId(filterClub[0]._id);
-            }
-        }
-    }, [clubData, eventData]);
-
-    console.log(`All events info:`, clubData);
+    console.log(`PARAMS`,_id, _eventId);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`/api/events/${_id}`, {
+            const response = await fetch(`/api/events/${_eventId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,20 +53,27 @@ const ClubEditEvent = () => {
     useEffect(() => {
         const fetchEventData = async () => {
             try {
-                const response = await fetch(`/api/events/${_id}`);
+                const response = await fetch(`/api/events/${_eventId}`, {
+                    headers: {
+                        // Include your authentication token or credentials here
+                        // Example:
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIwYjEwY2U4Nzc4ZWFkOGM5ZmNlNTYiLCJpYXQiOjE3MTM0MTg1MDgsImV4cCI6MTcxMzY3NzcwOH0.Jfb3dGedHLQ3dzcElPBAKUulRcGSSsJORjyfiottnZ8'
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Failed to fetch event data');
                 }
                 const eventData = await response.json();
                 setEventData(eventData);
-                setEditedEventData({ ...eventData }); // Initialize editedEventData with event data
+                // Initialize editedEventData with event data or with default values
+                setEditedEventData(eventData); // You can adjust this line based on your requirements
             } catch (error) {
                 console.error('Error fetching event data:', error.message);
             }
         };
-
+    
         fetchEventData();
-    }, [_id]);
+    }, [_id, _eventId]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -139,11 +132,11 @@ const ClubEditEvent = () => {
         setEditedEventData({ ...editedEventData, FAQ: newFAQ });
     };
 
-    console.log(`Event date:`, eventData);
+    console.log(`EVENT DATA:`, eventData);
 
     return (
         <div className="ClubEditEvent">
-            <ClubNavbarVertical clubId={clubId} showHomepageButton={true} />
+            <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
             <ClubDashBoardHeader />
 
             <h1 className='extra'><span className='special-letter'>E</span>dit Event</h1>

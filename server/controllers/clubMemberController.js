@@ -66,7 +66,7 @@ const getApprovedClubMembersByClubId = async (req, res) => {
             return res.status(404).json({ error: 'Invalid club ID' });
         }
 
-        const approvedClubMembers = await ClubMember.find({ clubID: clubId, status: 'Approved' });
+        const approvedClubMembers = await ClubMember.find({ clubID: clubId, status: 'Member' });
 
         if (!approvedClubMembers || approvedClubMembers.length === 0) {
             return res.status(404).json({ error: 'No approved club members found for this club ID' });

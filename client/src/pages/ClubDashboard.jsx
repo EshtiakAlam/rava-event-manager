@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ClubNavbarVertical from '../components/ClubNavbarVertical';
 import ClubInfo from '../components/ClubInfo';
 import ClubDashboardHeader from '../components/ClubDashboardHeader';
-import ShowClubEvents from './ShowClubEvents';
 
 const ClubDashboard = () => {
     const [clubData, setClubData] = useState(null);

@@ -9,7 +9,6 @@ export const ShowClubEvents = () => {
     const clubId = _id;
 
     const [clubData, setClubData] = useState(null);
-    const [filteredEvents, setFilteredEvents] = useState([]);
 
     useEffect(() => {
         const fetchClubData = async () => {
@@ -29,56 +28,25 @@ export const ShowClubEvents = () => {
     }, [clubId]);
 
     useEffect(() => {
-        // Fetch event data only if clubData exists and has been fetched
-        if (clubData && clubData.events) {
-            const fetchEventDataById = async (eventId) => {
-                try {
-                    const response = await fetch(`/api/events/${eventId}`);
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch event with ID ${eventId}`);
-                    }
-                    return await response.json();
-                } catch (error) {
-                    console.error(`Error fetching event with ID ${eventId}:`, error.message);
-                    return null;
-                }
-            };
-
-            const fetchEvents = async () => {
-                const eventPromises = clubData.events.map(eventId => fetchEventDataById(eventId));
-                const events = await Promise.all(eventPromises);
-                const filteredEvents = events.filter(event => event !== null);
-                setFilteredEvents(filteredEvents);
-            };
-
-            fetchEvents();
-        }
-    }, [clubData]);
-
-    useEffect(() => {
         // Remove the Navbar component from the DOM when ClubDashboard mounts
         const navbarElement = document.querySelector('.Navbar');
         if (navbarElement) {
             navbarElement.style.display = 'none';
+        }
+
+        const bottomBarElement = document.querySelector('.BottomBar');
+        if (bottomBarElement) {
+            bottomBarElement.style.display = 'none';
         }
         
         // Show the Navbar component again when ClubDashboard unmounts
         return () => {
             if (navbarElement) {
                 navbarElement.style.display = 'block';
+                bottomBarElement.style.display = 'block';
             }
         };
     }, []);
-
-    const approvedEvents = filteredEvents.filter(event => event.approval === 1 || event.approval === 0);
-    const pendingEvents = filteredEvents.filter(event => event.approval !== 1);
-
-
-    console.log(`Ei club er events:`, filteredEvents);
-    console.log("Approved Events:", approvedEvents);
-    console.log("Pending Events:", pendingEvents);
-    console.log(`Ekhon ShowClubEvents e asi`);
-
 
     const handleDeleteEvent = async (eventId) => {
         try {
@@ -97,13 +65,15 @@ export const ShowClubEvents = () => {
         }
     };
 
-
+    const filteredEvents = clubData?.events || [];
+    const approvedEvents = filteredEvents.filter(event => event.approval === 1 || event.approval === 0);
+    const pendingEvents = filteredEvents.filter(event => event.approval !== 1);
 
     return (
         <div className="ShowClubEvents">
             <ClubNavbarVertical clubId={_id} showHomepageButton={true} />
             <ClubDashBoardHeader />
-            {clubData && clubData.events && (
+            {clubData && (
                 <>
                     <h1 className='extra'>Upcoming <span className='special-letter'>{clubData.abbreviation}</span> Events</h1>
     
@@ -175,7 +145,7 @@ export const ShowClubEvents = () => {
                                             <p><b><span className="special-letter">Date: </span>{formatDate(event.date)}</b></p>
                                             <div className='event-links'>
     
-                                                <Link to={`/club/edit/event/${event._id}`} className="EventLinkButton">
+                                                <Link to={`/club/edit/event/${_id}/${event._id}`} className="EventLinkButton">
                                                     <p>Edit Event</p>
                                                 </Link>
 
